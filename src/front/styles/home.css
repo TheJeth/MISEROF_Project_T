@@ -1,7 +1,16 @@
 /*
-    home.css: This website contains selectors only used in home.css
+.background {
+    background-image: url('../img/sky.jpg'); /* Adjust the path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 80vh; /* Adjust height as needed */
+  */
+  body{
+    background-image: url('../img/sky.jpg'); /* Adjust the path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 80vh; /* Adjust height as needed */
+    background-color: #cccccc;
+  }
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+  

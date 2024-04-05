@@ -1,0 +1,76 @@
+.nav-custom{
+    background-image: linear-gradient(
+      to right,
+      #0f0b01 0%,
+      #3b07f9 51%,
+      #000110 100%
+    
+    );
+    transition: 0.5s;
+    color: white !important;
+    border: none;
+  }
+
+  .nav-item{
+    color :white;
+    content: end;
+  }
+
+  li{
+    align-content: end;
+  }
+
+  .nav-link{
+    color : white;
+  }
+
+
+
+.btn-animated {
+    background-size: 80% 80%;
+    background-image: linear-gradient(
+      to right,
+      #4f52f7 0%,
+      #000000 51%,
+      rgb(8, 8, 145) 20%,
+      #000000 51%,
+      #2600ff 100%
+    );
+    transition: 0.5s;
+    color: white;
+    border: none;
+  }
+  
+  .btn-animated:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+    animation: gradient 2s ease infinite;
+  }
+
+  .btn-animated2 {
+    background-size: 80% 80%;
+    background-image: linear-gradient(
+      to right,
+      #4f52f7 0%,
+      #000000 51%,
+      rgb(8, 8, 145) 20%,
+      #000000 51%,
+      #2600ff 100%
+    );
+    transition: 0.5s;
+    color: white;
+    border: none;
+  }
+  
+  .btn-animated2:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+    animation: gradient 2s ease infinite;
+  }
+
+  navbar-brand{
+    color :#fff;
+    justify-content: left;
+  }

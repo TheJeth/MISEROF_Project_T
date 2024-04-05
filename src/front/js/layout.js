@@ -9,6 +9,7 @@ import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
+import {Nav} from "./component/nav";
 import { Footer } from "./component/footer";
 
 //create your first component
@@ -23,6 +24,7 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
+                    <Nav />
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />

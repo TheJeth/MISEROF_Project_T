@@ -1,0 +1,12 @@
+.nav{
+    background-image: linear-gradient(
+      to right,
+      #2c09f5 0%,
+      #020118 51%,
+      #0717f6 100%
+    
+    );
+    transition: 0.5s;
+    color: white !important;
+    border: none;
+  }
