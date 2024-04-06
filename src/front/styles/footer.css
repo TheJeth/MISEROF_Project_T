@@ -1,17 +1,4 @@
 h3{
-    font-size: medium;
-    font-family: Lucida Sans Regular;
+  font-size: medium;
+  font-family: Lucida Sans Regular;
 }
-
-.nav{
-    background-image: linear-gradient(
-      to right,
-      #03010e 0%,
-      #1b0cf4 51%,
-      #0b0000 100%
-    
-    );
-    transition: 0.5s;
-    color: white !important;
-    border: none;
-  }

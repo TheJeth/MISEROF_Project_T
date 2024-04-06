@@ -1,3 +1,31 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+
+
+.nav-custom{
+    background-image: linear-gradient(
+      to right,
+      #0f0b01 0%,
+      #3b07f9 51%,
+      #000110 100%
+    
+    );
+    transition: 0.5s;
+    color: white !important;
+    border: none;
+  }
+
+  p{
+    font-size: larger;
+    font-family: Lucida Sans Regular;
+    color: blue;
+
+  }
+
+  h5{
+    font-size:xx-large;
+    font-family: Lucida Sans Regular;
+    color: darkblue;
+  }
+  

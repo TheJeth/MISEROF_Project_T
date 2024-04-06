@@ -5,20 +5,20 @@ import "../../styles/navbar.css";
 export const Navbar = () => {
 	return (
 		<div className="container d-flex nav-custom navbar">
-			
-			
-					<div className="navbar-brand mb-0 h1 d-flex">
-						<Link to="/">
-								<img 
-								src="https://previews.dropbox.com/p/thumb/ACOIyeAjB97BAeGFJTNcn7teRXOokOCikWVJ7cd402HZjkkc51fQydUVZCra6PbNtWVRWwqiXXv7YWTvUsO7FTC8V1I1VuV_RnPXEtQOKvoQvGf8P-56gCGlAsTUhP2j1NRZLxdtTiQ9q79tkkkicn5K2WCjWV5Yy50uQB-ZvV05ugoeo8IPWDMRTdYPmrkTFJDGnNfe_MiWprzFj-0s8v9o1-fYH-wyAyYRcjSMIieK2Sgu-YoBD0wh9Q_Kr__tSkNay5pLGXtVCsardCtAraCvflL7tVxIh2zMDjjQhQCbe-owxlYE76GUI0toNsiS4Amstnx2nc-jndE0elJzNW8_/p.jpeg"
-								className="w-100" height="30px" alt="The logo" />
-						</Link>
-					</div>
-				
-			<ul class="nav justify-content-end  bg-dark border-bottom border-body" data-bs-theme="dark">
-				
+
+
+			<div className="navbar-brand mb-0 h1 d-flex">
+				<Link to="/">
+					<img
+						src="https://i.ibb.co/bmLJDgh/Miserof-logo.jpg"
+						className="w-100" height="30px" alt="The logo" />
+				</Link>
+			</div>
+
+			<ul class="nav justify-content-end  border-body" data-bs-theme="dark">
+
 				<li class="nav-item ">
-					<a class="nav-link active" aria-current="page" href="#">About us</a>
+					<a class="nav-link active" aria-current="page" href="../../pages/organisation.js">About us</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Locations</a>
