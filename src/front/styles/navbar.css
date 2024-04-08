@@ -61,3 +61,8 @@ navbar-brand{
   color :#fff;
   justify-content: left;
 }
+
+h5{
+  color: white;
+  font-size: small;
+}

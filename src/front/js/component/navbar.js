@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.css";
 
+
 export const Navbar = () => {
 	return (
-		<div className="container d-flex nav-custom navbar">
+		<nav className="navbar nav-custom ">
 
 
 			<div className="navbar-brand mb-0 h1 d-flex">
@@ -12,13 +13,14 @@ export const Navbar = () => {
 					<img
 						src="https://i.ibb.co/bmLJDgh/Miserof-logo.jpg"
 						className="w-100" height="30px" alt="The logo" />
+					
 				</Link>
 			</div>
 
 			<ul class="nav justify-content-end  border-body" data-bs-theme="dark">
 
 				<li class="nav-item ">
-					<a class="nav-link active" aria-current="page" href="../../pages/organisation.js">About us</a>
+					<Link class="nav-link active" aria-current="page" to="/organisation">About us</Link>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Locations</a>
@@ -42,6 +44,6 @@ export const Navbar = () => {
 				</form>
 			</ul>
 
-		</div>
+		</nav>
 	);
 };

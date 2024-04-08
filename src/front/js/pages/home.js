@@ -2,46 +2,30 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import "../../styles/index.css";
+import { Link } from "react-router-dom";
 
 
-/*		
-		<div className="background">
-		
-				<div className="text-center mt-5">
-					
-				</div>
-		</div>
-
-		<div class="jumbotron jumbotron-fluid">
-			<div class="container">
-				<h1>MISEROF</h1>
-				<p>
-					The presentation of MISEOROF going there
-				</p>
-  			</div>
-		</div>
-		*/
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-	
-		<div class="card mb-3">
-			<img src="../../img/sky.jpg" class="card-img-top" alt="..." />
-			<div class="card-body">
-				<h5 class="card-title">MISEROF</h5>
-				<p class="card-text">
-					MISEROFF : Est une Mission indépendante, chrétienne œuvrant dans le domaine social
-					 et évangélique dénommée: «Mission Socio-Évangélique Le Roc de la Foi Fondation». 
-				</p>
-				<p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-					<a href="../../pages/single.js" class="btn btn-primary">
-						Read more
-					</a>
+
+		<div className="card mb-3">
+			
+			<div className="card-body">
+				<h1 className="card-title"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h1>
+				<div className="card-text">
+
+					<h2><b>UN GESTE D'AMOUR POUR UN DIEU D'AMOUR!</b></h2>
+				</div>
+				<p className="card-text"><small className="text-body-secondary">We decided to serve The Lord with all our soul</small></p>
+				<Link to="/organisation" className="btn btn-primary">
+					Read more»»»
+				</Link>
 			</div>
-  		</div>
-		
-		
+		</div>
+
+
 	);
 };

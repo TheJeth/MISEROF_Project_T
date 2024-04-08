@@ -1,0 +1,13 @@
+.nav-custom1{
+    background-image: linear-gradient(
+      to right,
+      #2104fb 0%,
+      #060118 51%,
+      black 48%
+      #0415fa 100%
+    
+    );
+    transition: 0.5s;
+    color: white !important;
+    border: none;
+  }

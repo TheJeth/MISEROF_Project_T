@@ -1,0 +1,21 @@
+h6{
+    font-size:large;
+    font-family: 'Times New Roman';
+    color: white;
+  }
+  
+  h4{
+    font-size:larger;
+    font-family: 'Algerian';
+    color: white;
+  }
+  
+
+  .container-fluid{
+    background-image: url('https://i.ibb.co/XJYnnbB/blue-sky-without.jpg'); /* Adjust the path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 90vh; /* Adjust height as needed */
+    background-color: #cccccc;
+  }
+  

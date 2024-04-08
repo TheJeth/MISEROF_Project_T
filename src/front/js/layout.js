@@ -5,6 +5,7 @@ import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
 import {Organisation} from "./pages/organisation";
+import { Organisation1 } from "./pages/organisation1";
 import {Headquater} from "./pages/headquater";
 
 import { Single } from "./pages/single";
@@ -31,6 +32,7 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Organisation />} path="/organisation" />
+                        <Route element={<Organisation1 />} path="/organisation1" />
                         <Route element={<Headquater />} path="/headquater" />
                         
                         <Route element={<Single />} path="/single/:theid" />

@@ -7,7 +7,7 @@ import "../../styles/nav.css";
 
 export const Nav = () => {
 	return (
-		<div className="container ">
+		<nav className="nav-custom1 ">
 			<ul class="nav justify-content-end  nav-custom border-bottom border-body" data-bs-theme="dark">
 				<li class="nav-item ">
 					<a class="nav-link active" aria-current="page" href="#"><i class="fa-brands fa-facebook"></i></a>
@@ -30,6 +30,6 @@ export const Nav = () => {
 
 			</ul>
 
-		</div>
+		</nav>
 	);
 };
