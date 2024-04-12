@@ -1,9 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 import "../../styles/navbar.css";
 
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+	const navigate = useNavigate();
+
+	// Function to handle logout and navigate to login page
+	const handleLogout = () => {
+		actions.logout();
+		navigate("/login");
+	};
+
+	// Function to navigate to profile
+	const goToProfile = () => navigate("/profile");
+
+
 	return (
 		<nav className="navbar nav-custom ">
 
@@ -13,7 +27,7 @@ export const Navbar = () => {
 					<img
 						src="https://i.ibb.co/bmLJDgh/Miserof-logo.jpg"
 						className="w-100" height="30px" alt="The logo" />
-					
+
 				</Link>
 			</div>
 
@@ -25,23 +39,35 @@ export const Navbar = () => {
 				<li class="nav-item">
 					<a class="nav-link" href="#">Locations</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Activities</a>
-				</li>
 
-				<Link to="/signup">
-					<button type="button"
-						className="btn btn-primary btn-animated">Sign up</button>
-				</Link>
-				<Link to="/login">
-					<button type="button"
-						className="btn btn-primary btn-animated2">Login</button>
-				</Link>
+				<div class="dropdown">
+					<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Activities
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="prayer">Prayers</a></li>
+						<li><a class="dropdown-item" href="#">Another action</a></li>
+						<li><a class="dropdown-item" href="#">Something else here</a></li>
+					</ul>
+				</div>
 
-				<form class="d-flex" role="search">
-					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-					<button class="btn btn-outline-success" type="submit">Search</button>
-				</form>
+				{store.token ? <div>
+					<button className="btn btn-primary btn-animated3" onClick={handleLogout}>Logout</button>
+					<button className="btn btn-primary btn-animated4" onClick={goToProfile}>Profile</button>
+				</div>
+					: (
+
+						<>
+
+
+							<Link to="/login">
+								<button type="button"
+									className="btn btn-primary btn-animated2">Admin</button>
+							</Link>
+						</>
+					)
+				}
+
 			</ul>
 
 		</nav>

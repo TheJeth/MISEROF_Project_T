@@ -33,6 +33,9 @@ export const Organisation1 = () => {
 				
 			</p>
 
+			<Link to="/organisation" class="btn btn-primary">
+				Back to the organisation»»»
+			</Link>
 			<Link to="/headquater" class="btn btn-success">
 				Headquater members here»»»
 			</Link>

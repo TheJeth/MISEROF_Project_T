@@ -3,48 +3,18 @@
 */
 
 
-.nav-custom{
-    background-image: linear-gradient(
-      to right,
+.nav-custom {
+  background-image: linear-gradient(to right,
       #0f0101 0%,
       #3b07f9 51%,
-      #000110 100%
-    
-    );
-    transition: 0.5s;
-    color: white !important;
-    border: none;
-  }
+      #000110 100%);
+  transition: 0.5s;
+  color: white !important;
+  border: none;
+}
 
-  
-  .card-body{
-    background-image: url('https://i.ibb.co/9NmSNP2/croix-v.jpg'); /* Adjust the path */
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 45vh; /* Adjust height as needed */
-    background-color: #cccccc;
-  }
 
-  
-
-  h2{
-    font-size:large;
-    font-family:'Times New Roman';
-    color: white;
-
-  }
-
-  h1{
-    font-size:xx-large;
-    /*font-family:'Old English Text Mt';*/
-    font-family:'Algerian';
-    color: white;
-
-  }
-
-  h5{
-    font-size:xx-large;
-    font-family: Lucida Sans Regular;
-    color: darkblue;
-  }
-  
+.body {
+  font-family: 'Trebuchet MS', sans-serif;
+  background-color: white;
+}

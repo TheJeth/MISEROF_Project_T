@@ -11,6 +11,36 @@ li{
   color : white;
 }
 
+.btn-primary{
+  background-size: 80% 80%;
+  background-image: linear-gradient(
+    to right,
+    #4f52f7 0%,
+    #000000 51%,
+    rgb(8, 8, 145) 20%,
+    #000000 51%,
+    #2600ff 100%
+  );
+  transition: 0.5s;
+  color: white;
+  border: none;
+  margin-right: 2%;
+}
+
+.btn-success{
+  background-size: 80% 80%;
+  background-image: linear-gradient(
+    to right,
+    #000003 0%,
+    #0e06f2 51%,
+    rgb(2, 2, 84) 20%,
+    #1005a8 51%,
+    #030012 100%
+  );
+  transition: 0.5s;
+  color: white;
+  border: none;
+}
 
 
 .btn-animated {
