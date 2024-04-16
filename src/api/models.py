@@ -10,7 +10,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     tel = db.Column(db.String(20), unique=False, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    picture = db.Column(db.LargeBinary)
+    picture=db.Column(db.String(250), unique=True, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):

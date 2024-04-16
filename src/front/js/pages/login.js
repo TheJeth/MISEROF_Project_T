@@ -11,9 +11,6 @@ export const Login = () => {
     //const token = sessionStorage.getItem("token");
     const navigate = useNavigate();
 
-
-    console.log("This is your token", store.token);
-
     const handleClick = async () => {
 
         let result = await actions.login(email, password)
@@ -29,7 +26,7 @@ export const Login = () => {
 
     return (
         <div className="text-center mt-5">
-
+            <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
             <h1>Login</h1>
             {(store.token && store.token != "" && store.token != undefined) ? "You are logged in with a token" + store.token :
 

@@ -51,7 +51,7 @@ export const Navbar = () => {
 					</ul>
 				</div>
 
-				{store.token ? <div>
+				{store.token ? <div className="logged-in d-flex">
 					<button className="btn btn-primary btn-animated3" onClick={handleLogout}>Logout</button>
 					<button className="btn btn-primary btn-animated4" onClick={goToProfile}>Profile</button>
 				</div>

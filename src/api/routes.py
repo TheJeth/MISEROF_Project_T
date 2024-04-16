@@ -26,15 +26,15 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
-@api.route('/admin-login', methods=['POST'])
-def handle_admin_login():
+@api.route('/login', methods=['POST'])
+def handle_login():
     body = request.get_json(force=True)
     email = body.get('email')
     password = body.get('password')
     if email is None or password is None:
         raise APIException(400, "Email and password are required")
     user = User.query.filter_by(email=email).first()
-    if user is None or not user.verify_password(password):
+    if user is None or user.password!= password:
         raise APIException(400, "Invalid email or password")
     access_token = create_access_token(identity=user.id)
     response_body = {
