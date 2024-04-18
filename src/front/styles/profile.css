@@ -1,0 +1,16 @@
+p{
+    color:blue;
+}
+
+h1{
+    color:blue;
+}
+h6{
+    color:white;
+}
+
+.roundedPict{
+    border-style:groove;
+    border-color: blue;
+    border-width: 3%;    
+}

@@ -15,7 +15,7 @@ export const Login = () => {
 
         let result = await actions.login(email, password)
         if(result){
-            navigate("/profile")
+            navigate("/admin")
         }
         else{
             alert("There was an error attempting to log in!")

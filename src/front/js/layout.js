@@ -10,6 +10,8 @@ import {Headquater} from "./pages/headquater";
 import {Activities} from "./pages/activities";
 import {Login} from "./pages/login";
 import {Profile} from "./pages/profile";
+import {Admin} from "./pages/admin";
+import {Members} from "./pages/members";
 
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -37,9 +39,11 @@ const Layout = () => {
                         <Route element={<Organisation />} path="/organisation" />
                         <Route element={<Organisation1 />} path="/organisation1" />
                         <Route element={<Headquater />} path="/headquater" />
+                        <Route element={<Admin />} path="/admin" />
                         <Route element={<Activities />} path="/activities" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Profile />} path="/profile" />
+                        <Route element={<Members />} path="/members" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
