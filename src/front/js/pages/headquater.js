@@ -9,10 +9,10 @@ export const Headquater = () => {
 
 	return (
 		<div className="board">
+			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 			<table>
-				<tr>
-					<th colspan="5"><h3><img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="35px" width="100%" /><center>The board</center></h3></th>
-					
+				<tr colspan="3">
+					<h1 class="hq-h1"><center>The Board</center></h1>
 				</tr>
 				<tr>
 					<td>

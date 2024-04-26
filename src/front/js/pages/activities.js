@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 
 export const Activities = () => {
-	const { store, actions } = useContext(Context);
+        const { store, actions } = useContext(Context);
 	const user = store.user;
-    const [start_date, setStart_date] = useState();
-    const [end_date, setEnd_date] = useState();
-    const [description, setDescription] = useState();
-    const [responsible, setResponsible] = useState();
+        const [start_date, setStart_date] = useState();
+        const [end_date, setEnd_date] = useState();
+        const [description, setDescription] = useState();
+        const [responsible, setResponsible] = useState();
 
 	return (
 
@@ -35,19 +35,24 @@ export const Activities = () => {
                                                 <input value={end_date} onChange={(e) => setEnd_date(e.target.value)} type="Date" className="form-control col" id="formGroupExampleInput2"></input>
                                         </div>
 
-                                        <div className="mb-3 row">
+                                        <div className="mb-3 row ">
                                                 <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Activity Description</b></p>
-                                                <input value={description} onChange={(e) => setDescription(e.target.value)} type="textArea" width= "300px" height="450px" className="form-control col" id="formGroupExampleInput2" placeholder="Description on the activity here"></input>
+                                                <textarea value={description} onChange={(e) => setDescription(e.target.value)} style={{width : "770px"}} height="450px" className="form-control" id="formGroupExampleInput2" placeholder="Description on the activity here"></textarea>
+                                        </div>
+                                        <div className="mb-3 row">
+                                                <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Activity Pers. Responsible</b></p>
+                                                <input value={responsible} onChange={(e) => setResponsible(e.target.value)} type="textArea" width= "300px" height="450px" className="form-control col" id="formGroupExampleInput2" placeholder="Enter who is responsible of the activity here"></input>
                                         </div>
                                        
                                         <div classNameName="button">
-                                                <Link to={"/"} type="button" className="btn btn-primary" onClick={() => actions.createActivities(description,date_start,date_end,responsible)}>Create Activities </Link>
+                                                <button type="button" className="btn btn-primary" onClick={(e) =>{ 
+                                                        actions.createActivities(description,start_date,end_date,responsible)}}>Create Activities </button>
                                                 <Link type="button" to={"/admin"} className="btn btn-primary  justify-content-center">Back to Admin</Link>
                                                 <Link type="button" to={"/"} className="btn btn-primary  justify-content-center">Cancel</Link>
                                                 <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>
                                         </div>
                                 </div>
-							</div>			
+			</div>			
 		</div>
 
 	);

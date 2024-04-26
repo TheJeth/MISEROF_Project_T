@@ -10,11 +10,11 @@ export const Organisation1 = () => {
 	return (
 
 		<div class="container-fluid">
-
+			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 			<h1 class="row"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h1>
 			<p class="text">
 				<div className="englishVersion">
-					<h4><b>AREA OF DEVELOPMENT</b></h4>
+					<h4 className="area"><b>AREA OF DEVELOPMENT</b></h4>
 					<br />
 					<h6>
 						MISEROFF is a non-profit institution <br/>

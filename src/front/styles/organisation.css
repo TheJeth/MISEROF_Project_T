@@ -1,9 +1,11 @@
 .org-h6 {
   font-size:medium;
+  color:white;
 }
 
 .org-h4 {
   font-size: large;
+  color:white;
 }
 
 .org-container-fluid {
@@ -14,4 +16,19 @@
 
   height: 85vh;
   /* Adjust height as needed */
+}
+
+/*
+.container-fluid {
+  background-image: url('https://i.ibb.co/XJYnnbB/blue-sky-without.jpg');
+  /*Adjust the path */
+   font-size: large;
+   background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  /* Adjust height as needed 
+  
+}*/
+.row{
+  color:white;
 }

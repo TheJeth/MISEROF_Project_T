@@ -1,104 +1,126 @@
+import { Members } from "../pages/members";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: null,
-      	    user: null,
-    },
-	users: [],
+
+			activities :[],//that is a storage space to save all the activities fetched from the backend
+			members : [], //that is a storage space to save all the activities fetched from the backend
+			users: []
+
+		},
+		
 
 		actions: {
 			// Use getActions to call a function within a fuction
-			
-			  syncTokenFromSessionStore: () => {
+
+			syncTokenFromSessionStore: () => {
 				const token = sessionStorage.getItem("token");
 				console.log("Application just loaded synching the local storage");
 				if (token && token != "" && token != undefined)
-				  setStore({ token: token });
-			  },
-		
-			  logout: () => {
+					setStore({ token: token });
+			},
+
+			logout: () => {
 				sessionStorage.removeItem("token");
 				console.log("Log out");
 				setStore({ token: null });
 				setStore({ user: null });
-			  },
-
-			  getUser: async () => {
-				const response = await fetch(process.env.BACKEND_URL + "/api/login")
-				const data = await response.json()
-				setStore({ users: data })
 			},
 
-			  verifyUser: async (email) => {
+			verifyUser: async (email) => {
 				console.log("email", email);
-				
+
 				const opts = {
-				  method: "POST",
-				  headers: {
-					"Content-Type": "application/json",
-				  },
-				  body: JSON.stringify({
-					email: email,
-				  }),
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: email,
+					}),
 				};
 				try {
-				  const resp = await fetch(
-					process.env.BACKEND_URL + "/api/login",
-					opts
-				  );
-				  if (resp.status != 200) {
-					console.log(resp.status);
-					
-					return false;
-				  }
-				  const data = await resp.json();
-				  console.log("This comes from backend", data);
-				  return true;
+					const resp = await fetch(
+						process.env.BACKEND_URL + "/api/login",
+						opts
+					);
+					if (resp.status != 200) {
+						console.log(resp.status);
+
+						return false;
+					}
+					const data = await resp.json();
+					console.log("This comes from backend", data);
+					return true;
 				} catch (error) {
-				  console.log("There was error !!!", error);
+					console.log("There was error !!!", error);
 				}
-			  },
-			  
-			  login: async (email, password) => {
+			},
+
+			login: async (email, password) => {
 				console.log("email", email);
 				console.log("password", password);
 				const opts = {
-				  method: "POST",
-				  headers: {
-					"Content-Type": "application/json",
-				  },
-				  body: JSON.stringify({
-					email: email,
-					password: password,
-				  }),
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: email,
+						password: password,
+					}),
 				};
 				try {
-				  const resp = await fetch(
-					process.env.BACKEND_URL + "/api/login",
-					opts
-				  );
-				  if (resp.status != 200) {
-					console.log(resp.status);
-					
-					return false;
-				  }
-				  const data = await resp.json();
-				  console.log("This comes from backend", data);
-				  sessionStorage.setItem("token", data.access_token);
-				  setStore({ token: data.access_token, user: data.user });
-				  return true;
-				} catch (error) {
-				  console.log("There was error !!!", error);
-				}
-			  },
+					const resp = await fetch(
+						process.env.BACKEND_URL + "/api/login",
+						opts
+					);
+					if (resp.status != 200) {
+						console.log(resp.status);
 
-			  addMembers: async (first_name, last_name, email, phone, address) => {
+						return false;
+					}
+					const data = await resp.json();
+					console.log("This comes from backend", data);
+					sessionStorage.setItem("token", data.access_token);
+
+					return true;
+				} catch (error) {
+					console.log("There was error !!!", error);
+				}
+			},
+			getUserInfo: async () => {
+
+				try {
+					let response = await fetch(process.env.BACKEND_URL + "/api/get-user-info", {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: "Bearer " + sessionStorage.getItem("token")
+						}
+					})
+					if (response.status != 200) {
+						console.log(response.status);
+						return false;
+					} else {
+						const data = await response.json();
+						console.log(data);
+						return data;
+					}
+
+				} catch (error) { console.log(error) }
+
+
+			},
+
+			addMembers: async (first_name, last_name, email, phone, address) => {
 				const response = await fetch("https://playground.4geeks.com/apis/fake/contact/", {
 					method: "POST",
 					body: JSON.stringify(
 						{
 							first_name: first_name,
-							last_name: last_name,	
+							last_name: last_name,
 							email: email,
 							tel: tel,
 							picture: picture,
@@ -111,76 +133,166 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 			},
 
-			  getProfile : async(first_name, last_name, email, picture,id) => {
+			createActivities: async (description,start_date,end_date,responsible) => {
 				const opts = {
-				  method: "GET",
-				  headers: {
-					"Content-Type": "application/json",
-				  },
-				  body: JSON.stringify({
-					first_name : first_name,
-					last_name : last_name,
-                    email : email,
-					picture: picture,
-                    id : id
-				  }),
+					method: "POST",
+
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + sessionStorage.getItem("token")
+					},
+					body: JSON.stringify({
+						start_date: start_date,
+						end_date: end_date,
+						description: description,
+						responsible :responsible						
+					}),
 				};
 				try {
-				  const resp = await fetch(
-					process.env.BACKEND_URL + "/api/login",
-					opts
-				  );
-				  if (resp.status != 200) {
-					console.log(resp.status);
-					
-					return false;
-				  }
-				  const data = await resp.json();
-				  console.log("This comes from backend", data);
-				  sessionStorage.setItem("token", data.access_token);
-				  setStore({ token: data.access_token, user: data.user });
-				  return true;
+					const resp = await fetch(
+						process.env.BACKEND_URL + "/api/activities",
+						opts
+					);
+					if (resp.status != 200) {
+						console.log(resp.status);
+
+						return false;
+					}
+					const data = await resp.json();
+					console.log("This comes from backend", data);
+					sessionStorage.setItem("token", data.access_token);
+					setStore({ token: data.access_token, user: data.user });
+					return true;
 				} catch (error) {
-				  console.log("There was error !!!", error);
+					console.log("There was error !!!", error);
+					}
+				
+			},
+			getActivities: () => {
+				fetch(process.env.BACKEND_URL + "/api/activities")
+				    .then((response) => response.json())
+					.then((data) => {
+                        console.log(data);
+                        setStore({ activities: data.activities });
+                    })
+			},
+
+			registerMembers: async (first_name, last_name, email, tel, picture) => {
+				const opts = {
+					method: "POST",
+
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + sessionStorage.getItem("token")
+					},
+					body: JSON.stringify({
+						first_name: first_name,
+						last_name: last_name,
+                        email: email,
+                        tel: tel,
+                        picture: picture						
+					}),
+				};
+				try {
+					const resp = await fetch(
+						process.env.BACKEND_URL + "/api/members",
+						opts
+					);
+					if (resp.status != 200) {
+						console.log(resp.status);
+
+						return false;
+					}
+					const data = await resp.json();
+					console.log("This comes from backend", data);
+					sessionStorage.setItem("token", data.access_token);
+					setStore({ token: data.access_token, user: data.user });
+					return true;
+				} catch (error) {
+					console.log("There was error !!!", error);
+					}
+				
+			},
+			getMembers: () => {
+				fetch(process.env.BACKEND_URL + "/api/members")
+				    .then((response) => response.json())
+					.then((data) => {
+                        console.log(data);
+                        setStore({ members: data.members });
+                    })
+			},
+
+
+			getProfile: async (first_name, last_name, email, picture, id) => {
+				const opts = {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						first_name: first_name,
+						last_name: last_name,
+						email: email,
+						picture: picture,
+						id: id
+					}),
+				};
+				try {
+					const resp = await fetch(
+						process.env.BACKEND_URL + "/api/login",
+						opts
+					);
+					if (resp.status != 200) {
+						console.log(resp.status);
+
+						return false;
+					}
+					const data = await resp.json();
+					console.log("This comes from backend", data);
+					sessionStorage.setItem("token", data.access_token);
+					setStore({ token: data.access_token, user: data.user });
+					return true;
+				} catch (error) {
+					console.log("There was error !!!", error);
 				}
 			},
 
 
-			  updateProfile : async(first_name, last_name, email, picture,id) => {
+			updateProfile: async (first_name, last_name, email, picture, id) => {
 				const opts = {
-				  method: "PUT",
-				  headers: {
-					"Content-Type": "application/json",
-				  },
-				  body: JSON.stringify({
-					first_name : first_name,
-					last_name : last_name,
-                    email : email,
-					picture: picture,
-                    id : id
-				  }),
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						first_name: first_name,
+						last_name: last_name,
+						email: email,
+						picture: picture,
+						id: id
+					}),
 				};
 				try {
-				  const resp = await fetch(
-					process.env.BACKEND_URL + "/api/login",
-					opts
-				  );
-				  if (resp.status != 200) {
-					console.log(resp.status);
-					
-					return false;
-				  }
-				  const data = await resp.json();
-				  console.log("This comes from backend", data);
-				  sessionStorage.setItem("token", data.access_token);
-				  setStore({ token: data.access_token, user: data.user });
-				  return true;
+					const resp = await fetch(
+						process.env.BACKEND_URL + "/api/login",
+						opts
+					);
+					if (resp.status != 200) {
+						console.log(resp.status);
+
+						return false;
+					}
+					const data = await resp.json();
+					console.log("This comes from backend", data);
+					sessionStorage.setItem("token", data.access_token);
+					setStore({ token: data.access_token, user: data.user });
+					return true;
 				} catch (error) {
-				  console.log("There was error !!!", error);
+					console.log("There was error !!!", error);
 				}
 			}
 
-			
+
 		}
 	};
 };

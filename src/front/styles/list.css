@@ -7,7 +7,7 @@
   }
   */
 
-  .board {
+  .list {
     background-image: url('https://i.ibb.co/XJYnnbB/blue-sky-without.jpg');
     /*Adjust the path */
      font-size: large;
@@ -47,9 +47,9 @@
     margin-bottom: 0;
   }
   
-  .hq-h5 {
-    font-size: xx-large;
-    color: darkblue;
+  .la-h3 {
+    font-size: large;
+    color: black;
   }
 
   h4 {
@@ -64,4 +64,47 @@
     font-family: trebuchet MS;
     font-style: italic;
     font-weight: bold;
+  }
+
+  table{
+    border: 5px solid black;
+    border-collapse: collapse;
+    border-radius: 10px;
+    width:100%;
+    enable-background: 0%;
+    background-color: rgb(205, 230, 245);
+    
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  th{
+    align-items: center;
+    border: 5px solid rgb(0, 0, 0);
+    border-collapse: collapse;
+    color: blue;
+  }
+  td{
+    border: 5px solid rgb(244, 238, 238);
+    border-collapse: collapse;
+    border-radius: 10px;
+    color :cornflowerblue;
+  }
+
+  .btn-primary{
+    background-size: 80% 80%;
+    background-image: linear-gradient(
+      to right,
+      #4f52f7 0%,
+      #000000 51%,
+      rgb(8, 8, 145) 20%,
+      #000000 51%,
+      #2600ff 100%
+    );
+    transition: 0.5s;
+    color: white;
+    border: none;
+    margin-right: 2%;
+    align-content: center;
   }

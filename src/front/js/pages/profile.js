@@ -4,14 +4,44 @@ import "../../styles/profile.css";
 import { Link, useParams } from "react-router-dom";
 
 
-
-
 //create your first component
 export const Profile = () => {
         const { store, actions } = useContext(Context);
-        const [user, setUser] = useState(store.user);
+        const [user, setUser] = useState(
+                {
+                        first_name: "",
+                        last_name: "",
+                        email: "",
+                        tel: "",
+                        password: "",
+                        picture: "",
+                        id: ""
+                }
+        );
+        const [error, setError] = useState(null);
         const [file, setFile] = useState();
         const [previewURL, setPreviewURL] = useState();
+        useEffect(() => {
+                let fetchData = async () => {
+                        let result = await actions.getUserInfo();
+                        if (result) {
+                                setUser(result);
+                                setError(null);
+                        } else {
+                                setUser({
+                                        first_name: "",
+                                        last_name: "",
+                                        email: "",
+                                        tel: "",
+                                        password: "",
+                                        picture: "",
+                                        id: ""
+                                });
+                                setError("An error occured while trying to get user info");
+                        }
+                }
+                fetchData();
+        }, []);
 
         useEffect(() => {
                 if (!file) return;
@@ -46,22 +76,22 @@ export const Profile = () => {
                                         </div>
                                         <div className="mb-3 row" >
                                                 <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>First Name:</b></p>
-                                                <input value={user.first_name} onChange={(e) => setUser({first_name:e.target.value})} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your first name here"></input>
+                                                <input value={user.first_name} onChange={(e) => setUser({ first_name: e.target.value })} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your first name here"></input>
                                         </div>
 
                                         <div className="mb-3 row">
                                                 <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Last Name:</b></p>
-                                                <input value={user.last_name} onChange={(e) => setUser({lastname:e.target.value})} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your last name here"></input>
+                                                <input value={user.last_name} onChange={(e) => setUser({ lastname: e.target.value })} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your last name here"></input>
                                         </div>
 
                                         <div className="mb-3 row">
                                                 <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Email:</b></p>
-                                                <input value={user.email} onChange={(e) => setUser({email:e.target.value})} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your email address here"></input>
+                                                <input value={user.email} onChange={(e) => setUser({ email: e.target.value })} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your email address here"></input>
                                         </div>
 
                                         <div className="mb-3 row">
                                                 <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Phone:</b></p>
-                                                <input value={user.tel} onChange={(e) => setUser({tel:e.target.value})} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your Telephone here"></input>
+                                                <input value={user.tel} onChange={(e) => setUser({ tel: e.target.value })} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your Telephone here"></input>
                                         </div>
 
                                         <div classNameName="button">
@@ -77,10 +107,3 @@ export const Profile = () => {
                 </div>
         );
 };
-
-
-
-
-
-
-
