@@ -89,7 +89,7 @@
     border: 5px solid rgb(244, 238, 238);
     border-collapse: collapse;
     border-radius: 10px;
-    color :cornflowerblue;
+    color :rgba(19, 34, 194, 0.45);
   }
 
   .btn-primary{

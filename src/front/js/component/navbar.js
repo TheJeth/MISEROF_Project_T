@@ -45,7 +45,8 @@ export const Navbar = () => {
 						Activities
 					</a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="prayer">Testimonies</a></li>
+						<li><a class="dropdown-item" href="testimonies">Post Testimony</a></li>
+						<li><a class="dropdown-item" href="listTestimonies">Testimonies posted</a></li>
 						<li><a class="dropdown-item" href="listActivities">Activities</a></li>
 						<li><a class="dropdown-item" href="listMembers">Members</a></li>
 					</ul>

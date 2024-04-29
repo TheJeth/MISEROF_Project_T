@@ -1,13 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/list.css"
 import { Link } from "react-router-dom";
-import { MembersModal } from "../component/membersModal";
+import { MemberCard } from "../component/memberCard";
 
 
 
 export const ListMembers = () => {
         const { store, actions } = useContext(Context);
+        const [selectedMember, setSelectedMember] = useState()
         useEffect(() => {
                 actions.getMembers()
         }, [])
@@ -22,30 +23,49 @@ export const ListMembers = () => {
                                 {store.members.map((member, index) => {
                                         return (
                                                 <tr>
-                                                        <MembersModal index={index} member={member} />
+
                                                         <td>
-                                                                <a type="button" data-bs-toggle="modal" data-bs-target={"#memberModal"+index}>
+                                                                <a className="btn" type="button" data-bs-toggle="modal" data-bs-target={"#memberModal" + index}>
                                                                         <h3 className="la-h3"><b>{member.first_name}</b></h3>
 
                                                                 </a>
                                                         </td>
                                                         <td>
-                                                                <a type="button" data-bs-toggle="modal" data-bs-target={"#memberModal"+index}>
+                                                                <a className="btn" type="button" data-bs-toggle="modal" data-bs-target={"#memberModal" + index}>
                                                                         <h3 className="la-h3"><b>{member.last_name}</b></h3>
                                                                 </a>
                                                         </td>
                                                         <td>
-                                                                <a type="button" data-bs-toggle="modal" data-bs-target={"#memberModal"+index}>
+                                                                <a className="btn" type="button" data-bs-toggle="modal" data-bs-target={"#memberModal" + index}>
                                                                         <h3 className="la-h3"><b>{member.picture}</b></h3>
                                                                 </a>
                                                         </td>
+                                                        <div class="modal fade" id={"memberModal" + index} tabindex="-1" aria-labelledby={"memberModalLabel" + index} aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                                <div class="modal-header">
 
+                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                        <MemberCard member={member} />
+                                                                                </div>
+
+                                                                        </div>
+                                                                </div>
+                                                        </div>
                                                 </tr>
                                         )
                                 })}
 
+
+
+
+
+
+
                         </table>
-                        
+
                         <button type="button" className="btn btn-primary  justify-content-center" onClick={(e) => {
                                 window.print()
                         }}><i class="fa-solid fa-print"></i></button>

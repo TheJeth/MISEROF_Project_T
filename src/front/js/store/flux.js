@@ -6,11 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			activities :[],//that is a storage space to save all the activities fetched from the backend
 			members : [], //that is a storage space to save all the activities fetched from the backend
-			users: []
+			users: [],
+			testimonies:[]
 
 		},
-		
-
 		actions: {
 			// Use getActions to call a function within a fuction
 
@@ -114,25 +113,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			addMembers: async (first_name, last_name, email, phone, address) => {
-				const response = await fetch("https://playground.4geeks.com/apis/fake/contact/", {
-					method: "POST",
-					body: JSON.stringify(
-						{
-							first_name: first_name,
-							last_name: last_name,
-							email: email,
-							tel: tel,
-							picture: picture,
-							agenda_slug: "jethro_agenda"
-						}),
-					headers: {
-						"Content-Type": "application/json"
-					},
-				})
-				const data = await response.json();
-			},
-
 			createActivities: async (description,start_date,end_date,responsible) => {
 				const opts = {
 					method: "POST",
@@ -177,7 +157,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
 			},
 
-			registerMembers: async (first_name, last_name, email, tel, picture) => {
+			addMembers: async (first_name, last_name, email, tel,description, picture) => {
 				const opts = {
 					method: "POST",
 
@@ -190,6 +170,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						last_name: last_name,
                         email: email,
                         tel: tel,
+						description: description,
                         picture: picture						
 					}),
 				};
@@ -222,6 +203,47 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
 			},
 
+			postTestimony: async (full_name,description) => {
+				const opts = {
+					method: "POST",
+
+					headers: {
+						"Content-Type": "application/json",
+						
+					},
+					body: JSON.stringify({
+						full_name: full_name,
+						description: description				
+					}),
+				};
+				try {
+					const resp = await fetch(
+						process.env.BACKEND_URL + "/api/testimonies",
+						opts
+					);
+					if (resp.status != 200) {
+						console.log(resp.status);
+
+						return false;
+					}
+					const data = await resp.json();
+					console.log("This comes from backend", data);
+					//sessionStorage.setItem("token", data.access_token);
+					//setStore({ token: data.access_token, user: data.user });
+					return true;
+				} catch (error) {
+					console.log("There was error !!!", error);
+					}
+				        
+			},
+			getTestimony: () => {
+				fetch(process.env.BACKEND_URL + "/api/testimonies")
+				    .then((response) => response.json())
+					.then((data) => {
+                        console.log(data);
+                        setStore({ members: data.testimonies });
+                    })
+			},
 
 			getProfile: async (first_name, last_name, email, picture, id) => {
 				const opts = {

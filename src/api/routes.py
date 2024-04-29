@@ -100,10 +100,11 @@ def create_members():
     last_name = body.get('last_name')
     email = body.get('email')
     tel = body.get('tel')
+    description = body.get('description')
     picture = body.get('picture')    
-    if first_name is None or last_name is None or email is None or tel is None or picture is None:
-        raise APIException(400, "first_name, last_name, email, tel, picture are required")
-    member = Member(first_name=first_name, last_name=last_name, email=email, tel=tel, picture=picture)
+    if first_name is None or last_name is None or email is None or tel is None or description is None or picture is None:
+        raise APIException(400, "first_name, last_name, email, tel,description picture are required")
+    member = Member(first_name=first_name, last_name=last_name, email=email, tel=tel, description=description, picture=picture)
     db.session.add(member)
     db.session.commit()
     db.session.refresh(member)
@@ -124,5 +125,37 @@ def get_members():
     response_body = {
         "message": "Here is the list of the members",
         "members": serialized_members
+    }
+    return jsonify(response_body), 200
+
+@api.route('/testimony', methods=['POST'])
+def post_testimony():
+    body = request.get_json(force=True)
+    full_name = body.get('full_name')
+    description = body.get('description')
+    dateTestimony = body.get('dateTestimony')    
+    if full_name is None or description is None or dateTestimony is None :
+        raise APIException(400, "full_name, description,date are required")
+    testimony = Testimony(full_name=full_name, description=description, dateTestimony=dateTestimony)
+    db.session.add(testimony)
+    db.session.commit()
+    db.session.refresh(testimony)
+    response_body = {
+        "message": "Member registered successfully",
+        "testimony": testimony.serialize()
+    }
+    return jsonify(response_body), 200
+
+
+
+@api.route('/testimony', methods=['GET'])
+def get_testimonies():
+    testimonies = Testimony.query.all() #a query that checks the query all the activities and put them in a variable named activity
+    serialized_testimonies = [] # the list of activities once they are serialized (a function that organizes the info ref model: serialized function)
+    for testimony in testimonies :
+        serialized_testimonies.append(testimony.serialize())# append or add each activity after they have been serialized
+    response_body = {
+        "message": "Here is the list of the members",
+        "testimonies": serialized_testimonies
     }
     return jsonify(response_body), 200

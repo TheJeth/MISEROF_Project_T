@@ -1,11 +1,11 @@
 .org-h6 {
   font-size:medium;
-  color:white;
+  color:rgb(27, 130, 232);
 }
 
 .org-h4 {
   font-size: large;
-  color:white;
+  color:rgb(61, 130, 234);
 }
 
 .org-container-fluid {
@@ -30,5 +30,5 @@
   
 }*/
 .row{
-  color:white;
+  color:rgb(3, 31, 131);
 }

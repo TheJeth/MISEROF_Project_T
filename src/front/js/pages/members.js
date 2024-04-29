@@ -14,6 +14,7 @@ export const Members = () => {
         const [last_name, setLast_name] = useState();
         const [email, setEmail] = useState();
         const [tel, setTel] = useState();
+        const [description, setDescription] = useState();
         const [password, setPassword] = useState();
         const [picture, setPicture] = useState();
         const [file, setFile]=useState();
@@ -68,12 +69,17 @@ export const Members = () => {
                                         </div>
 
                                         <div className="mb-3 row">
-                                                <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Email:</b></p>
+                                                <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Tel:</b></p>
                                                 <input value={tel} onChange={(e) => setTel(e.target.value)} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your Telephone here"></input>
                                         </div>
 
+                                        <div className="mb-3 row">
+                                                <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Description</b></p>
+                                                <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="A Short description of the member here"></input>
+                                        </div>
+
                                         <div classNameName="button">
-                                                <Link to={"/"} type="button" className="btn btn-primary" onClick={() => actions.addMembers(first_name, last_name,tel, email,picture,id)}>Create Members </Link>
+                                                <button className="btn btn-primary" onClick={() => actions.addMembers(first_name, last_name, email, tel,description, picture)}>Create Members </button>
                                                 <Link type="button" to={"/admin"} className="btn btn-primary  justify-content-center">Back to Admin page</Link>
                                                 <Link type="button" to={"/"} className="btn btn-primary  justify-content-center">Cancel</Link>
                                                 <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>

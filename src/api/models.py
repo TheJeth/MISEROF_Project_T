@@ -51,6 +51,7 @@ class Member(db.Model):
     last_name = db.Column(db.String(80), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     tel = db.Column(db.String(20), unique=False, nullable=False)
+    description = db.Column(db.String(500), nullable=True)
     picture = db.Column(db.String(255), unique=False, nullable=True)
     
     def serialize(self):
@@ -58,8 +59,23 @@ class Member(db.Model):
             "id": self.id,
             "first_name": self.first_name,
             "last_name": self.last_name,
-            "tel": self.tel,
+            "description": self.description,
             "picture": self.picture,
-            "email": self.email,
             # do not serialize the password, its a security breach
+        }
+
+class Testimony(db.Model):
+    __tablename__ = "testimony"
+    id = db.Column(db.Integer, primary_key=True)
+    full_name = db.Column(db.String(100), unique=False, nullable=False)
+    description = db.Column(db.String(1000), unique=False, nullable=False)
+    dateTestimony = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+    
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "full_name": self.full_name,
+            "description": self.description,            
         }
