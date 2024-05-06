@@ -127,6 +127,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						description: description,
 						responsible :responsible						
 					}),
+					
 				};
 				try {
 					const resp = await fetch(
@@ -157,43 +158,52 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
 			},
 
-			addMembers: async (first_name, last_name, email, tel,description, picture) => {
+			addMembers: async (
+				first_name,
+				last_name,
+				email,
+				tel,
+				description,
+				picture
+			  ) => {
+				let data = JSON.stringify({
+				  first_name: first_name,
+				  last_name: last_name,
+				  email: email,
+				  tel: tel,
+				  description: description,
+				});
+		
+				const formData = new FormData();
+		
+				formData.append("data", data);
+		
+				formData.append("file", picture);
+		
 				const opts = {
-					method: "POST",
-
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: "Bearer " + sessionStorage.getItem("token")
-					},
-					body: JSON.stringify({
-						first_name: first_name,
-						last_name: last_name,
-                        email: email,
-                        tel: tel,
-						description: description,
-                        picture: picture						
-					}),
+				  method: "POST",
+		
+				  headers: {
+					Authorization: "Bearer " + sessionStorage.getItem("token"),
+				  },
+				  body: formData,
 				};
-				try {
-					const resp = await fetch(
-						process.env.BACKEND_URL + "/api/members",
-						opts
-					);
-					if (resp.status != 200) {
-						console.log(resp.status);
-
-						return false;
-					}
-					const data = await resp.json();
-					console.log("This comes from backend", data);
-					sessionStorage.setItem("token", data.access_token);
-					setStore({ token: data.access_token, user: data.user });
-					return true;
-				} catch (error) {
-					console.log("There was error !!!", error);
-					}
+				  const resp = await fetch(
+					process.env.BACKEND_URL + "/api/members",
+					opts
+				  );
+				  if (resp.status != 200) {
+					let errorMsg = await resp.json();
+					alert("An error occured while submitted the new member: "+errorMsg.msg)
+					return false;
+				  }
+				  const respBody = await resp.json();
+				  console.log("This comes from backend", respBody);
+				  sessionStorage.setItem("token", respBody.access_token);
+				  setStore({ token: respBody.access_token, user: respBody.user });
+				  return true;
 				
-			},
+			  },   
 			getMembers: () => {
 				fetch(process.env.BACKEND_URL + "/api/members")
 				    .then((response) => response.json())
@@ -203,7 +213,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
 			},
 
-			postTestimony: async (full_name,description) => {
+			postTestimony: async (full_name,description,dateTestimony) => {
 				const opts = {
 					method: "POST",
 
@@ -213,12 +223,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify({
 						full_name: full_name,
-						description: description				
+						description: description,
+						dateTestimony: dateTestimony				
 					}),
 				};
 				try {
 					const resp = await fetch(
-						process.env.BACKEND_URL + "/api/testimonies",
+						process.env.BACKEND_URL + "/api/testimony",
 						opts
 					);
 					if (resp.status != 200) {
@@ -237,7 +248,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				        
 			},
 			getTestimony: () => {
-				fetch(process.env.BACKEND_URL + "/api/testimonies")
+				fetch(process.env.BACKEND_URL + "/api/testimony")
 				    .then((response) => response.json())
 					.then((data) => {
                         console.log(data);

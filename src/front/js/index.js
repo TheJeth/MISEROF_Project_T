@@ -9,4 +9,8 @@ import "../styles/index.css";
 import Layout from "./layout";
 
 //render your react application
+
 ReactDOM.render(<Layout />, document.querySelector("#app"));
+
+//the below code fragment can be found in for dates:
+document.getElementById('datePicker').value = new Date().loadDateVaue(); 

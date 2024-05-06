@@ -47,7 +47,7 @@ export const Admin = () => {
                         <center>
                             <Link to={"/profile"} type="button" className="btn btn-primary" onClick={() => actions.verifyUser(first_name, last_name, email, picture, id)}>Update profile </Link>
                             <Link to={"/"} type="button" className="btn btn-primary" onClick={() => actions.updateProfile(first_name, last_name, email, picture, id)}>Create Prayers </Link>
-                            <Link type="button" to={"/members"} className="btn btn-primary  justify-content-center">Create Members</Link>
+                            <Link type="button" to={"/createMembers"} className="btn btn-primary  justify-content-center">Create Members</Link>
                             <Link to={"/activities"} type="button" className="btn btn-primary" >Create Activities </Link>
                             <Link type="button" to={"/"} className="btn btn-primary  justify-content-center">Cancel</Link>
                             <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>

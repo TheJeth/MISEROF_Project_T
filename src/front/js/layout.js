@@ -11,7 +11,7 @@ import {Activities} from "./pages/activities";
 import {Login} from "./pages/login";
 import {Profile} from "./pages/profile";
 import {Admin} from "./pages/admin";
-import {Members} from "./pages/members";
+import {CreateMembers} from "./pages/createMembers";
 import {Testimonies} from "./pages/testimonies";
 import {ListTestimonies} from "./pages/listTestimonies";
 
@@ -50,7 +50,7 @@ const Layout = () => {
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<ListActivities />} path="/listActivities" />
                         <Route element={<ListMembers />} path="/listMembers" />
-                        <Route element={<Members />} path="/members" />
+                        <Route element={<CreateMembers />} path="/createMembers" />
                         <Route element={<Testimonies />} path="/testimonies" />
                         <Route element={<listTestimonies />} path="/listtestimonies" />
                         <Route element={<Single />} path="/single/:theid" />

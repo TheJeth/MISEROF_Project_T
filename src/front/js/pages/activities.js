@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 export const Activities = () => {
         const { store, actions } = useContext(Context);
 	const user = store.user;
-        const [start_date, setStart_date] = useState();
-        const [end_date, setEnd_date] = useState();
+        const [startDate, setStartDate] = useState();
+        const [endDate, setEndDate] = useState();
         const [description, setDescription] = useState();
         const [responsible, setResponsible] = useState();
 
@@ -27,12 +27,18 @@ export const Activities = () => {
                                         
                                         <div className="mb-3 row" >
                                                 <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Starting Date:</b></p>
-                                                <input value={start_date} onChange={(e) => setStart_date(e.target.value)} type="Date" className="form-control col" id="formGroupExampleInput2"></input>
+                                                <input value={startDate} onChange={(e) =>{
+                                                        let date= new Date(e.target.value)
+                                                        setStartDate(date)
+                                                } } type="Date" className="form-control col" id="formGroupExampleInput2"></input>
                                         </div>
 
                                         <div className="mb-3 row">
                                                 <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Ending Date:</b></p>
-                                                <input value={end_date} onChange={(e) => setEnd_date(e.target.value)} type="Date" className="form-control col" id="formGroupExampleInput2"></input>
+                                                <input value={endDate} onChange={(e) =>{
+                                                        let date= new Date(e.target.value)
+                                                        setEndDate(date)
+                                                } } type="Date" className="form-control col" id="formGroupExampleInput2"></input>
                                         </div>
 
                                         <div className="mb-3 row ">
@@ -46,7 +52,8 @@ export const Activities = () => {
                                        
                                         <div classNameName="button">
                                                 <button type="button" className="btn btn-primary" onClick={(e) =>{ 
-                                                        actions.createActivities(description,start_date,end_date,responsible)}}>Create Activities </button>
+                                                        actions.createActivities(description,startDate,endDate,responsible)}}>Create Activities </button>
+                                               
                                                 <Link type="button" to={"/admin"} className="btn btn-primary  justify-content-center">Back to Admin</Link>
                                                 <Link type="button" to={"/"} className="btn btn-primary  justify-content-center">Cancel</Link>
                                                 <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>

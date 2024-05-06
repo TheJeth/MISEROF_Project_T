@@ -1,6 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import os
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Activities, Member
 from api.utils import generate_sitemap, APIException
@@ -8,6 +9,16 @@ from flask_cors import CORS
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+import json
+import cloudinary
+import cloudinary.uploader
+          
+cloudinary.config( 
+  cloud_name = "dkwnepcnk", 
+  api_key = os.getenv("CLOUDINARY_API_KEY"), 
+  api_secret = os.getenv("CLOUDINARY_SECRET_KEY"), 
+)  
+ 
 
 
 api = Blueprint('api', __name__)
@@ -95,16 +106,27 @@ def get_activities():
 @api.route('/members', methods=['POST'])
 @jwt_required()
 def create_members():
-    body = request.get_json(force=True)
+    raw_data = request.form.get("data")
+    print("raw_data print: ",raw_data)
+    picture = request.files.get("file")
+    print("picture print: ",picture)
+    body = json.loads(raw_data)
     first_name = body.get('first_name')
     last_name = body.get('last_name')
     email = body.get('email')
     tel = body.get('tel')
     description = body.get('description')
-    picture = body.get('picture')    
+    
+    
     if first_name is None or last_name is None or email is None or tel is None or description is None or picture is None:
-        raise APIException(400, "first_name, last_name, email, tel,description picture are required")
-    member = Member(first_name=first_name, last_name=last_name, email=email, tel=tel, description=description, picture=picture)
+       return jsonify({"msg" : "first_name, last_name, email, tel,description picture are required"}),400
+    check_member = Member.query.filter_by(email=email).first()#the first email is the table properties the second one is the variable found above in the create_member function 
+    if check_member :
+        return jsonify({"msg" : "Member with this email already exists"}),409
+    
+
+    response = cloudinary.uploader.upload(picture)
+    member = Member(first_name=first_name, last_name=last_name, email=email, tel=tel, description=description, picture=response["secure_url"])
     db.session.add(member)
     db.session.commit()
     db.session.refresh(member)
@@ -113,6 +135,7 @@ def create_members():
         "member": member.serialize()
     }
     return jsonify(response_body), 200
+    
 
 
 

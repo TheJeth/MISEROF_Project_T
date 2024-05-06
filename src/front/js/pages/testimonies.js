@@ -11,6 +11,12 @@ export const Testimonies = () => {
     const [description, setDescription] = useState();
     const [dateTestimony, setDateTestimony] = useState();
 
+    Date.prototype.loadDateVaue = (function() { 
+        var dt = new Date(this); 
+        dt.setMinutes(this.getMinutes() - this.getTimezoneOffset()); 
+        return dt.toJSON().slice(0,10); 
+    }); 
+
     return (
 
         <div className="container-fluid org-container-fluid text-center">
@@ -33,7 +39,11 @@ export const Testimonies = () => {
 
                     <div className="mb-3 row" >
                         <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Date</b></p>
-                        <input value={dateTestimony} onChange={(e) => setDateTestimony(e.target.value)} type="Date" className="form-control col" style={{ width: "220px" }} id="formGroupExampleInput2" placeholder="Your full name"></input>
+                        <input value={dateTestimony} onChange={(e) =>{
+                                                        let date= new Date(e.target.value)
+                                                        setDateTestimony(date)
+                                                } }
+                             type="Date" className="form-control col" style={{ width: "220px" }} id="formGroupExampleInput2" placeholder="Your full name"></input>
                     </div>
 
                     <div classNameName="button">
@@ -44,7 +54,7 @@ export const Testimonies = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
 
     );
 };
