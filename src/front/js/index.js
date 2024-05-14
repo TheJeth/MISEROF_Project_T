@@ -12,5 +12,3 @@ import Layout from "./layout";
 
 ReactDOM.render(<Layout />, document.querySelector("#app"));
 
-//the below code fragment can be found in for dates:
-document.getElementById('datePicker').value = new Date().loadDateVaue(); 

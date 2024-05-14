@@ -1,7 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/organisation.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ValidateTextArea } from "../store/validators";
+
+
 
 
 export const Testimonies = () => {
@@ -9,13 +12,36 @@ export const Testimonies = () => {
     const user = store.user;
     const [full_name, setFull_name] = useState();
     const [description, setDescription] = useState();
-    const [dateTestimony, setDateTestimony] = useState();
+    
+    const [invalidItems, setInvalidItems] = useState([]);
+    const navigate = useNavigate();
 
     Date.prototype.loadDateVaue = (function() { 
         var dt = new Date(this); 
         dt.setMinutes(this.getMinutes() - this.getTimezoneOffset()); 
         return dt.toJSON().slice(0,10); 
     }); 
+
+        const handleSubmit = async () => {
+                let isDescriptionValid = ValidateTextArea(description, setInvalidItems);
+                let isFullNameValid = ValidateTextArea(full_name, setInvalidItems);
+
+                
+                if (isDescriptionValid && isFullNameValid) {
+
+                        let result = await actions.postTestimony(full_name, description);
+                
+
+                    if (result) {
+                        setDescription("");
+                        setFull_name("");
+                       
+                    } else {
+                        console.log("There was an error attempting to create the member!");
+                }
+            }
+        }
+
 
     return (
 
@@ -37,19 +63,10 @@ export const Testimonies = () => {
                         <textarea value={description} onChange={(e) => setDescription(e.target.value)} style={{ width: "920px" }} height="850px" className="form-control" id="formGroupExampleInput2" placeholder="Your testimony here"></textarea>
                     </div>
 
-                    <div className="mb-3 row" >
-                        <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Date</b></p>
-                        <input value={dateTestimony} onChange={(e) =>{
-                                                        let date= new Date(e.target.value)
-                                                        setDateTestimony(date)
-                                                } }
-                             type="Date" className="form-control col" style={{ width: "220px" }} id="formGroupExampleInput2" placeholder="Your full name"></input>
-                    </div>
+                    
 
                     <div classNameName="button">
-                        <button type="button" className="btn btn-primary" onClick={(e) => {
-                            actions.postTestimony(full_name, description, dateTestimony)
-                        }}>Post </button>
+                        <button type="button" className="btn btn-primary" onClick={handleSubmit}>Post </button>
                         <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>
                     </div>
                 </div>

@@ -27,39 +27,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ user: null });
 			},
 
-			verifyUser: async (email) => {
-				console.log("email", email);
-
+			authenticate: async () => {
 				const opts = {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						email: email,
-					}),
+				  method: "GET",
+				  headers: {
+					"Content-Type": "application/json",
+					Authorization: "Bearer " + sessionStorage.getItem("token"),
+				  },
 				};
-				try {
-					const resp = await fetch(
-						process.env.BACKEND_URL + "/api/login",
-						opts
-					);
-					if (resp.status != 200) {
-						console.log(resp.status);
-
-						return false;
-					}
-					const data = await resp.json();
-					console.log("This comes from backend", data);
-					return true;
-				} catch (error) {
-					console.log("There was error !!!", error);
+		
+				const resp = await fetch(
+				  process.env.BACKEND_URL + "/api/authentication",
+				  opts
+				);
+				if (resp.status != 200) {
+				  console.log(resp.status);
+		
+				  return false;
 				}
-			},
+				const data = await resp.json();
+				console.log("This comes from backend", data);
+				return true;
+			  },
+		
 
 			login: async (email, password) => {
 				console.log("email", email);
-				console.log("password", password);
 				const opts = {
 					method: "POST",
 					headers: {
@@ -83,8 +76,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json();
 					console.log("This comes from backend", data);
 					sessionStorage.setItem("token", data.access_token);
-
+					setStore({ token: data.access_token });
 					return true;
+					
 				} catch (error) {
 					console.log("There was error !!!", error);
 				}
@@ -143,6 +137,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("This comes from backend", data);
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token, user: data.user });
+					alert("Activity successfully created!");
 					return true;
 				} catch (error) {
 					console.log("There was error !!!", error);
@@ -201,6 +196,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.log("This comes from backend", respBody);
 				  sessionStorage.setItem("token", respBody.access_token);
 				  setStore({ token: respBody.access_token, user: respBody.user });
+				  alert("New member added successfully");
 				  return true;
 				
 			  },   
@@ -213,7 +209,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
 			},
 
-			postTestimony: async (full_name,description,dateTestimony) => {
+			postTestimony: async (full_name,description) => {
 				const opts = {
 					method: "POST",
 
@@ -224,7 +220,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({
 						full_name: full_name,
 						description: description,
-						dateTestimony: dateTestimony				
 					}),
 				};
 				try {
@@ -239,21 +234,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					const data = await resp.json();
 					console.log("This comes from backend", data);
-					//sessionStorage.setItem("token", data.access_token);
-					//setStore({ token: data.access_token, user: data.user });
+					alert("Thank you for posting your testimony");
 					return true;
 				} catch (error) {
 					console.log("There was error !!!", error);
 					}
-				        
+				
 			},
 			getTestimony: () => {
 				fetch(process.env.BACKEND_URL + "/api/testimony")
 				    .then((response) => response.json())
 					.then((data) => {
                         console.log(data);
-                        setStore({ members: data.testimonies });
+                        setStore({ testimonies: data.testimonies });
+
                     })
+					.catch((error) => {
+                        console.log(error);
+                    });
 			},
 
 			getProfile: async (first_name, last_name, email, picture, id) => {

@@ -52,9 +52,10 @@ export const Navbar = () => {
 					</ul>
 				</div>
 
-				{store.token ? <div className="logged-in d-flex">
+				{sessionStorage.getItem("token") ? <div className="logged-in d-flex">
+					<Link to="/admin"><button className="btn btn-primary btn-animated3" onClick={""}>Admin</button></Link>
 					<button className="btn btn-primary btn-animated3" onClick={handleLogout}>Logout</button>
-					<button className="btn btn-primary btn-animated4" onClick={goToProfile}>Profile</button>
+					
 				</div>
 					: (
 
@@ -63,7 +64,7 @@ export const Navbar = () => {
 
 							<Link to="/login">
 								<button type="button"
-									className="btn btn-primary btn-animated2">Admin</button>
+									className="btn btn-primary btn-animated2">Login</button>
 							</Link>
 						</>
 					)

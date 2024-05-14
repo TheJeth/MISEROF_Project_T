@@ -72,7 +72,7 @@
     border-radius: 10px;
     width:100%;
     enable-background: 0%;
-    background-color: rgb(205, 230, 245);
+    background-color: rgb(205, 206, 245);
     
     padding-top: 5px;
     padding-bottom: 5px;
@@ -107,4 +107,10 @@
     border: none;
     margin-right: 2%;
     align-content: center;
+  }
+
+  .testimonyBubble{
+    height :auto;
+    width :40%;
+    
   }

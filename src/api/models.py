@@ -1,5 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
 import datetime
+import enum
+
+
+class MyEnum(enum.Enum):
+    one = 1
+    two = 2
+    three = 3
 
 db = SQLAlchemy()
 
@@ -11,6 +18,7 @@ class User(db.Model):
     tel = db.Column(db.String(20), unique=False, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     picture=db.Column(db.String(250), unique=True, nullable=True)
+    #levelAccess=db.Column(db.Enum(MyEnum))
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
@@ -69,7 +77,7 @@ class Testimony(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(100), unique=False, nullable=False)
     description = db.Column(db.String(1000), unique=False, nullable=False)
-    dateTestimony = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+    dateTestimony =  db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
     
 
@@ -77,5 +85,6 @@ class Testimony(db.Model):
         return {
             "id": self.id,
             "full_name": self.full_name,
-            "description": self.description,            
+            "description": self.description,
+            "dateTestimony": self.dateTestimony           
         }

@@ -10,26 +10,19 @@ export const Nav = () => {
 		<nav className="nav-custom1 ">
 			<ul class="nav justify-content-end  nav-custom border-bottom border-body" data-bs-theme="dark">
 				<li class="nav-item ">
-					<a class="nav-link active" aria-current="page" href="https://facebook.com/events/s/mission-socio-evangelic-roc-of/797590671964656/"><i class="fa-brands fa-facebook"></i></a>
+					<a class="nav-link active" aria-current="page" href="https://twitter.com/MISEROF18948/status/1788876904713355315?t=a-OmUq_y6vCqV41jxjj8HA&s=19">
+						<i class="fa-brands fa-square-x-twitter"></i>
+						<i class="fa-brands fa-square-twitter"></i>
+					</a>					
 				</li>
 				<li class="nav-item ">
-					<a class="nav-link active" aria-current="page" href="#"><i class="fa-brands fa-x-twitter"></i></a>
+					<a class="nav-link active" aria-current="page" href="https://www.facebook.com/share/p/HT4cAnGk53RjnWYq/?mibextid=qi2Omg"><i class="fa-brands fa-facebook"></i></a>
 				</li>
 				<li class="nav-item ">
-					<a class="nav-link active" aria-current="page" href="#"><i class="fa-brands fa-instagram"></i></a>
-				</li>
-				<li class="nav-item ">
-					<a class="nav-link active" aria-current="page" href="#"><i class="fa-brands fa-tiktok"></i></a>
-				</li>
-				<li class="nav-item ">
-					<a class="nav-link active" aria-current="page" href="#"><i class="fa-brands fa-snapchat"></i></a>
-				</li>
-				<li class="nav-item ">
-					<a class="nav-link active" aria-current="page" href="https://www.youtube.com/@user-gk3rg2wb7">
+					<a class="nav-link active" aria-current="page" href="https://youtube.com/@user-gk3rg2wb7?si=8_3ok5VfSBYPT5cR">
 						<i class="fa-brands fa-youtube"></i>
 					</a>
-				</li>
-
+				</li>							
 			</ul>
 
 		</nav>

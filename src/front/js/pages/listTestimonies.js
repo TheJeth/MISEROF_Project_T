@@ -7,33 +7,34 @@ import { Link } from "react-router-dom";
 export const ListTestimonies = () => {
         const { store, actions } = useContext(Context);
         useEffect(() => {
-                actions.getTestimonies()
+                actions.getTestimony()
         }, [])
         return (
                 <div className="list">
                         <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 
-                        <table>
-                                
-                                {store.activities.map((activity, index) => {
+                        <div className="testimonyFeed w-auto mx-auto">
+
+                                {store.testimonies.map((item, index) => {
+                                        let convertedDate = new Date(item.dateTestimony);
+                                        let daysOfWeek = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+                                        let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+                                        let formattedDate = daysOfWeek[convertedDate.getDay()]+ ", "+months[convertedDate.getMonth()]+" "+convertedDate.getDate()+", "+convertedDate.getFullYear()
                                         return (
-                                                <tr>
-                                                        <td><h5 className="la-h3"><b>{activity.dateTestimony}</b></h5>
-                                                             <br />
-                                                             <br />
-                                                            <h5 className="la-h3">{activity.description}</h5>
-                                                            <br />
-                                                            <br />
-                                                            <h5 className="la-h3"><b>{activity.full_name}</b></h5>
-                                                        </td>
-                                                </tr>
+                                                <div className="bg-light rounded mb-5 testimonyBubble ps-2 pt-2 ">
+                                                        
+                                                        <p className="la-h3">{item.description}</p>
+                                                        <div className="d-flex ">
+                                                                
+                                                                <p className="me-3">{item.full_name}</p>
+                                                                <p className="la-h3">{formattedDate}</p>
+                                                        </div>
+                                                </div>
                                         )
                                 })}
 
-                        </table>
-                        <button type="button" className="btn btn-primary  justify-content-center" onClick={(e) => {
-                                window.print()
-                        }}><i class="fa-solid fa-print"></i></button>
+                        </div>
+                        <button type="button" className="btn btn-primary  justify-content-center"><i class="fa-solid fa-print"></i></button>
                         <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>
                 </div>
 

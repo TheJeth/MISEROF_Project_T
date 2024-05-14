@@ -3,13 +3,13 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Activities, Member
+from api.models import db, User, Activities, Member, Testimony
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
-import json
+import json, datetime
 import cloudinary
 import cloudinary.uploader
           
@@ -36,6 +36,12 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+@api.route('/authentication', methods=['GET'])
+@jwt_required()
+def authenticate_user():
+    response_body = {msg: "Congrats, you are authenticated!"}
+    return jsonify(response_body), 200
+
 
 @api.route('/login', methods=['POST'])
 def handle_login():
@@ -47,7 +53,8 @@ def handle_login():
     user = User.query.filter_by(email=email).first()
     if user is None or user.password!= password:
         raise APIException(400, "Invalid email or password")
-    access_token = create_access_token(identity=user.id)
+    expires = datetime.timedelta(hours=1)
+    access_token = create_access_token(identity=user.id,expires_delta=expires)
     response_body = {
 
         "message": "You are successfully logged in",
@@ -156,10 +163,10 @@ def post_testimony():
     body = request.get_json(force=True)
     full_name = body.get('full_name')
     description = body.get('description')
-    dateTestimony = body.get('dateTestimony')    
-    if full_name is None or description is None or dateTestimony is None :
+     
+    if full_name is None or description is None :
         raise APIException(400, "full_name, description,date are required")
-    testimony = Testimony(full_name=full_name, description=description, dateTestimony=dateTestimony)
+    testimony = Testimony(full_name=full_name, description=description)
     db.session.add(testimony)
     db.session.commit()
     db.session.refresh(testimony)
