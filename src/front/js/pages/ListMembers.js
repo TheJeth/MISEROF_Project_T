@@ -13,7 +13,7 @@ export const ListMembers = () => {
                 actions.getMembers()
         }, [])
         return (
-                <div className="list">
+                <div className="list listView">
                         <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 
                         <table>

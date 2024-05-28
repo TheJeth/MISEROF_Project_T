@@ -52,7 +52,7 @@ export const Profile = () => {
 
         return (
 
-                <div className="form" >
+                <div className="form  h-auto" >
                         <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
                         <div className="mb-3">
                                 <h1 className="text-center">Update Profile</h1>

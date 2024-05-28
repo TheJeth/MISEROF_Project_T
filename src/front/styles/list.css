@@ -24,7 +24,7 @@
     background-repeat: no-repeat;
     height: 55vh;
     /* Adjust height as needed 
-      background-color: #cccccc;*/
+        background-color: #cccccc;*/
   }
   
   .hq-card-title {
@@ -69,36 +69,37 @@
     border-radius: 10px;
     width: 100%;
     enable-background: 0%;
-    background-color: rgb(205, 206, 245);
+    background-color: rgb(233, 233, 243);
   
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 5px;
     padding-right: 5px;
   }
+  
   th {
     align-items: center;
     border: 5px solid rgb(0, 0, 0);
     border-collapse: collapse;
     color: blue;
   }
+  
   td {
     border: 5px solid rgb(244, 238, 238);
     border-collapse: collapse;
     border-radius: 10px;
-    color: rgba(19, 34, 194, 0.45);
+    color: rgba(221, 222, 237, 0.45);
   }
+  
   
   .btn-primary {
     background-size: 80% 80%;
-    background-image: linear-gradient(
-      to right,
-      #4f52f7 0%,
-      #000000 51%,
-      rgb(8, 8, 145) 20%,
-      #000000 51%,
-      #2600ff 100%
-    );
+    background-image: linear-gradient(to right,
+        #4f52f7 0%,
+        #000000 51%,
+        rgb(8, 8, 145) 20%,
+        #000000 51%,
+        #2600ff 100%);
     transition: 0.5s;
     color: white;
     border: none;
@@ -109,14 +110,26 @@
   .testimonyBubble {
     height: auto;
   }
+  
   .testimonyFeed {
     width: 40%;
   }
   
-  
-  
-  
-  
-  
-  
-  
+  .custom-width {
+    width: 40%
+  }
+
+  .page-link{
+    background-size: 80% 80%;
+    background-image: linear-gradient(to right,
+        #4f52f7 0%,
+        #000000 51%,
+        rgb(8, 8, 145) 20%,
+        #000000 51%,
+        #2600ff 100%);
+    transition: 0.5s;
+    color: white;
+    border: none;
+    margin-right: 2%;
+    align-content: center;
+  }

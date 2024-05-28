@@ -43,7 +43,7 @@ export const Activities = () => {
 
 return (
 
-        <div className="container-fluid org-container-fluid text-center">
+        <div className="container-fluid org-container-fluid text-center h-auto">
                 <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
                 <div className="mb-3">
                         <h1 className="text-center">Creating Activities</h1>

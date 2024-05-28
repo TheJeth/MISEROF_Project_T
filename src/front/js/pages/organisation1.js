@@ -9,7 +9,7 @@ export const Organisation1 = () => {
 
 	return (
 
-		<div class="container-fluid">
+		<div class="container-fluid h-auto">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 			<h1 class="row"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h1>
 			<p class="text">
@@ -32,15 +32,22 @@ export const Organisation1 = () => {
 				</div>
 				
 			</p>
-
-			<Link to="/organisation" class="btn btn-primary">
-				Back to the organisation»»»
-			</Link>
-			<Link to="/headquater" class="btn btn-success">
-				Headquater members here»»»
-			</Link>
+		
+		<div className="row">
+			<div className="col">
+				<Link to="/organisation" class="btn btn-primary">
+					Back to the organisation»»»
+				</Link>
+			</div>
+			<div className="col">
+				<Link to="/headquater" class="btn btn-success">
+					Headquater members here»»»
+				</Link>
+			</div>
 
 		</div>
+
+	</div>
 
 	);
 };

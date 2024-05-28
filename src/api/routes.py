@@ -171,7 +171,7 @@ def post_testimony():
     db.session.commit()
     db.session.refresh(testimony)
     response_body = {
-        "message": "Member registered successfully",
+        "message": "Testimony posted successfully",
         "testimony": testimony.serialize()
     }
     return jsonify(response_body), 200
@@ -185,7 +185,7 @@ def get_testimonies():
     for testimony in testimonies :
         serialized_testimonies.append(testimony.serialize())# append or add each activity after they have been serialized
     response_body = {
-        "message": "Here is the list of the members",
+        "message": "The different testimonies are here",
         "testimonies": serialized_testimonies
     }
     return jsonify(response_body), 200

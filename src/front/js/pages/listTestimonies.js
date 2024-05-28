@@ -1,15 +1,28 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 //import "../../styles/list.css"
 import { Link } from "react-router-dom";
+import Pagination from "../component/pagination";
 
 export const ListTestimonies = () => {
         const { store, actions } = useContext(Context);
+        const [loading, setLoading] = useState(false);
+        const [currentPage, setCurrentPage] = useState(1);
+        const [itemsPerPage] = useState(10);
+
         useEffect(() => {
                 actions.getTestimony();
         }, []);
+
+        const indexOfLastItem = currentPage * itemsPerPage;
+        const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+        const currentItems = store.testimonies.slice(
+                indexOfFirstItem,
+                indexOfLastItem
+        );
+        const paginate = (pageNumber) => setCurrentPage(pageNumber);
         return (
-                <div className="listView ">
+                <div className="listView h-auto">
                         <img
                                 src="https://i.ibb.co/4j8Gs4q/banner.jpg"
                                 height="75px"
@@ -17,7 +30,7 @@ export const ListTestimonies = () => {
                         />
 
                         <div className="testimonyFeed  mx-auto pt-5">
-                                {store.testimonies.map((item, index) => {
+                                {currentItems.map((item, index) => {
                                         let convertedDate = new Date(item.dateTestimony);
                                         let daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
                                         let months = [
@@ -53,16 +66,30 @@ export const ListTestimonies = () => {
                                         );
                                 })}
                         </div>
-                        <button type="button" className="btn btn-primary  justify-content-center">
-                                <i class="fa-solid fa-print"></i>
-                        </button>
-                        <Link
-                                type="button"
-                                to={"/"}
-                                className="btn btn-primary justify-content-right"
-                        >
-                                Go to Home page
-                        </Link>
+                        <div className="d-flex">
+                                <div className="custom-width">
+                                        <button
+                                                type="button"
+                                                className="btn btn-primary  justify-content-center"
+                                        >
+                                                <i class="fa-solid fa-print"></i>
+                                        </button>
+                                        <Link
+                                                type="button"
+                                                to={"/"}
+                                                className="btn btn-primary justify-content-right"
+                                        >
+                                                Go to Home page
+                                        </Link>
+                                </div>
+
+                                <Pagination
+                                        itemsPerPage={itemsPerPage}
+                                        totalItems={store.testimonies.length}
+                                        paginate={paginate}
+                                        currentPage={currentPage}
+                                />
+                        </div>
                 </div>
         );
 };

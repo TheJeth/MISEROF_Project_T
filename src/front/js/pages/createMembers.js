@@ -99,7 +99,7 @@ export const CreateMembers = () => {
   };
 
   return (
-    <div className="form">
+    <div className="form h-auto">
       <img
         src="https://i.ibb.co/4j8Gs4q/banner.jpg"
         height="75px"
@@ -240,32 +240,41 @@ export const CreateMembers = () => {
               </label>
             )}
           </div>
+      <div className="row">
+        <div classNameName="button">
+              <div className="col">
+                <button className="btn btn-primary" onClick={handleSubmit}>
+                  Create Members{" "}
+                </button>
+              </div>
+              <div className="col">
+                      <Link
+                    type="button"
+                    to={"/admin"}
+                    className="btn btn-primary  justify-content-center">
+                    Back to Admin page
+                  </Link>
+              </div>
+              <div className="col">
+                  <Link
+                    type="button"
+                    to={"/"}
+                    className="btn btn-primary  justify-content-center"
+                  >
+                    Cancel
+                  </Link>
+              </div>
+              <div className="col">
+                    <Link
+                  type="button"
+                  to={"/"}
+                  className="btn btn-primary justify-content-right"
+                >
+                  Go to Home page
+                </Link>
+              </div>
+    </div>
 
-          <div classNameName="button">
-            <button className="btn btn-primary" onClick={handleSubmit}>
-              Create Members{" "}
-            </button>
-            <Link
-              type="button"
-              to={"/admin"}
-              className="btn btn-primary  justify-content-center"
-            >
-              Back to Admin page
-            </Link>
-            <Link
-              type="button"
-              to={"/"}
-              className="btn btn-primary  justify-content-center"
-            >
-              Cancel
-            </Link>
-            <Link
-              type="button"
-              to={"/"}
-              className="btn btn-primary justify-content-right"
-            >
-              Go to Home page
-            </Link>
           </div>
         </div>
       </div>

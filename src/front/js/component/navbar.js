@@ -19,59 +19,61 @@ export const Navbar = () => {
 
 
 	return (
-		<nav className="navbar nav-custom ">
 
-
-			<div className="navbar-brand mb-0 h1 d-flex">
+		<nav class="navbar navbar-expand-lg bg-body-tertiary nav-custom">
+			<div class="container">
 				<Link to="/">
 					<img
 						src="https://i.ibb.co/bmLJDgh/Miserof-logo.jpg"
-						className="w-100" height="30px" alt="The logo" />
+						className="" height="50px" alt="The logo" />
 
 				</Link>
-			</div>
+				<button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					{/* <span class="navbar-toggler-icon text-black"></span> */}
+					<i class="fa-solid fa-bars text-black"></i>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ms-auto">
 
-			<ul class="nav justify-content-end  border-body" data-bs-theme="dark">
+						<li class="nav-item ">
+							<Link class="nav-link active" aria-current="page" to="/organisation">About us</Link>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Locations</a>
+						</li>
 
-				<li class="nav-item ">
-					<Link class="nav-link active" aria-current="page" to="/organisation">About us</Link>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Locations</a>
-				</li>
+						<div class="dropdown me-5">
+							<a class="btn text-white borner-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								More
+							</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="testimonies">Post Testimony</a></li>
+								<li><a class="dropdown-item" href="listTestimonies">Testimonies posted</a></li>
+								<li><a class="dropdown-item" href="listActivities">Activities</a></li>
+								<li><a class="dropdown-item" href="listMembers">Members</a></li>
+								<li>{sessionStorage.getItem("token") ? <div className="logged-in d-flex">
+									<Link to="/admin"><button className="btn btn-primary btn-animated3" onClick={""}>Admin</button></Link>
+									<button className="btn btn-primary btn-animated3" onClick={handleLogout}>Logout</button>
 
-				<div class="dropdown">
-					<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Activities
-					</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="testimonies">Post Testimony</a></li>
-						<li><a class="dropdown-item" href="listTestimonies">Testimonies posted</a></li>
-						<li><a class="dropdown-item" href="listActivities">Activities</a></li>
-						<li><a class="dropdown-item" href="listMembers">Members</a></li>
+								</div>
+									: (
+										<li class="nav-item ">
+											<Link to="/login" className="text-decoration-none text-black"><a class="dropdown-item" href="#">Admin Login</a></Link>
+										</li>
+
+
+									)
+								}</li>
+							</ul>
+						</div>
+
 					</ul>
 				</div>
-
-				{sessionStorage.getItem("token") ? <div className="logged-in d-flex">
-					<Link to="/admin"><button className="btn btn-primary btn-animated3" onClick={""}>Admin</button></Link>
-					<button className="btn btn-primary btn-animated3" onClick={handleLogout}>Logout</button>
-					
-				</div>
-					: (
-
-						<>
-
-
-							<Link to="/login">
-								<button type="button"
-									className="btn btn-primary btn-animated2">Login</button>
-							</Link>
-						</>
-					)
-				}
-
-			</ul>
-
+			</div>
 		</nav>
+
+
+
+
 	);
 };

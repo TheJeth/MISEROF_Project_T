@@ -1,11 +1,25 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/list.css"
 import { Link } from "react-router-dom";
+import Pagination from "../component/pagination";
 
 
 export const ListActivities = () => {
         const { store, actions } = useContext(Context);
+
+        const [loading, setLoading] = useState(false);
+        const [currentPage, setCurrentPage] = useState(1);
+        const [itemsPerPage] = useState(10);
+
+        const indexOfLastItem = currentPage * itemsPerPage;
+        const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+        const currentItems = store.testimonies.slice(
+                indexOfFirstItem,
+                indexOfLastItem
+        );
+        const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
         useEffect(() => {
                 actions.getActivities()
         }, [])
@@ -30,10 +44,21 @@ export const ListActivities = () => {
                                 })}
 
                         </table>
-                        <button type="button" className="btn btn-primary  justify-content-center" onClick={(e) => {
-                                window.print()
-                        }}><i class="fa-solid fa-print"></i></button>
-                        <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>
+                        <div className="d-flex">
+                                <div className="custom-width">
+                                        <button type="button" className="btn btn-primary  justify-content-center" onClick={(e) => {
+                                                window.print()
+                                        }}><i class="fa-solid fa-print"></i></button>
+                                        <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>
+                                </div>
+                                <Pagination
+                                        itemsPerPage={itemsPerPage}
+                                        totalItems={store.testimonies.length}
+                                        paginate={paginate}
+                                        currentPage={currentPage}
+                                />
+                        </div>
+
                 </div>
 
         );
