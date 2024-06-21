@@ -14,6 +14,8 @@ import {Admin} from "./pages/admin";
 import {CreateMembers} from "./pages/createMembers";
 import {Testimonies} from "./pages/testimonies";
 import {ListTestimonies} from "./pages/listTestimonies";
+import { ForgotPassword } from "./pages/forgotPassword";
+import { PastEvent } from "./pages/pastEvent";
 
 
 import { Single } from "./pages/single";
@@ -47,12 +49,14 @@ const Layout = () => {
                         <Route element={<Admin />} path="/admin" />
                         <Route element={<Activities />} path="/activities" />
                         <Route element={<Login />} path="/login" />
+                        <Route element={<ForgotPassword />} path="/forgotPassword" />
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<ListActivities />} path="/listActivities" />
                         <Route element={<ListMembers />} path="/listMembers" />
                         <Route element={<CreateMembers />} path="/createMembers" />
                         <Route element={<Testimonies />} path="/testimonies" />
                         <Route element={<ListTestimonies />} path="/listTestimonies" />
+                        <Route element={<PastEvent />} path="/pastEvent" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

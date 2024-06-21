@@ -1,14 +1,28 @@
+from flask import Flask, render_template, url_for, flash, redirect, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+#from flask_mail import Mail, Message
+#from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+#from flask_bcrypt import Bcrypt
 import datetime
 import enum
 
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'your_email@gmail.com'
+app.config['MAIL_PASSWORD'] = 'your_email_password'
+
+db = SQLAlchemy(app)
+#mail = Mail(app)
+#bcrypt = Bcrypt(app)
 
 class MyEnum(enum.Enum):
     one = 1
     two = 2
     three = 3
-
-db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,8 +31,8 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     tel = db.Column(db.String(20), unique=False, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    picture=db.Column(db.String(250), unique=True, nullable=True)
-    #levelAccess=db.Column(db.Enum(MyEnum))
+    picture = db.Column(db.String(250), unique=True, nullable=True)
+    # levelAccess = db.Column(db.Enum(MyEnum))
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
@@ -32,8 +46,22 @@ class User(db.Model):
             "tel": self.tel,
             "picture": self.picture,
             "email": self.email,
-            # do not serialize the password, its a security breach
+            # do not serialize the password, it's a security breach
         }
+
+
+#    def get_reset_token(self, expires_sec=1800):
+ #       s = Serializer(app.config['SECRET_KEY'], expires_sec)
+  #      return s.dumps({'user_id': self.id}).decode('utf-8')
+    
+   # @staticmethod
+  #  def verify_reset_token(token):
+   #     s = Serializer(app.config['SECRET_KEY'])
+    #    try:
+     #       user_id = s.loads(token)['user_id']
+      #  except:
+       #     return None
+        #return User.query.get(user_id)
     
 class Activities(db.Model):
     __tablename__ = "activities"
@@ -52,7 +80,6 @@ class Activities(db.Model):
             "responsible": self.responsible,
         }
 
-
 class Member(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(250), unique=False, nullable=False)
@@ -69,7 +96,6 @@ class Member(db.Model):
             "last_name": self.last_name,
             "description": self.description,
             "picture": self.picture,
-            # do not serialize the password, its a security breach
         }
 
 class Testimony(db.Model):
@@ -77,14 +103,12 @@ class Testimony(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(100), unique=False, nullable=False)
     description = db.Column(db.String(1000), unique=False, nullable=False)
-    dateTestimony =  db.Column(db.DateTime(timezone=True), server_default=db.func.now())
-
-    
+    dateTestimony = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
     def serialize(self):
         return {
             "id": self.id,
             "full_name": self.full_name,
             "description": self.description,
-            "dateTestimony": self.dateTestimony           
+            "dateTestimony": self.dateTestimony
         }

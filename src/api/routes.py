@@ -6,9 +6,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Activities, Member, Testimony
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 import json, datetime
 import cloudinary
 import cloudinary.uploader
@@ -18,30 +16,24 @@ cloudinary.config(
   api_key = os.getenv("CLOUDINARY_API_KEY"), 
   api_secret = os.getenv("CLOUDINARY_SECRET_KEY"), 
 )  
- 
-
 
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
 
-
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
-
     response_body = {
         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
     }
-
     return jsonify(response_body), 200
 
 @api.route('/authentication', methods=['GET'])
 @jwt_required()
 def authenticate_user():
-    response_body = {msg: "Congrats, you are authenticated!"}
+    response_body = {"msg": "Congrats, you are authenticated!"}
     return jsonify(response_body), 200
-
 
 @api.route('/login', methods=['POST'])
 def handle_login():
@@ -49,20 +41,17 @@ def handle_login():
     email = body.get('email')
     password = body.get('password')
     if email is None or password is None:
-        raise APIException(400, "Email and password are required")
+        raise APIException("Email and password are required", 400)
     user = User.query.filter_by(email=email).first()
-    if user is None or user.password!= password:
-        raise APIException(400, "Invalid email or password")
+    if user is None or user.password != password:
+        raise APIException("Invalid email or password", 400)
     expires = datetime.timedelta(hours=1)
-    access_token = create_access_token(identity=user.id,expires_delta=expires)
+    access_token = create_access_token(identity=user.id, expires_delta=expires)
     response_body = {
-
         "message": "You are successfully logged in",
         "access_token": access_token,
-        "user" : user.serialize()
-        
+        "user": user.serialize()
     }
-
     return jsonify(response_body), 200
 
 @api.route("/get-user-info", methods=["GET"])
@@ -71,9 +60,8 @@ def get_user_info():
     user_id = get_jwt_identity()
     user = User.query.filter_by(id=user_id).first()
     if user is None:
-        raise APIException(400, "User not found")
+        raise APIException("User not found", 400)
     return jsonify(user.serialize()), 200
-
 
 @api.route('/activities', methods=['POST'])
 @jwt_required()
@@ -84,7 +72,7 @@ def handle_createActivities():
     end_date = body.get('end_date')
     responsible = body.get('responsible')
     if description is None or start_date is None or end_date is None or responsible is None:
-        raise APIException(400, "Description, start_date, end_date and responsible are required")
+        raise APIException("Description, start_date, end_date and responsible are required", 400)
     activity = Activities(description=description, start_date=start_date, end_date=end_date, responsible=responsible)
     db.session.add(activity)
     db.session.commit()
@@ -95,42 +83,33 @@ def handle_createActivities():
     }
     return jsonify(response_body), 200
 
-
-
 @api.route('/activities', methods=['GET'])
 def get_activities():
-    activities = Activities.query.all() #a query that checks the query all the activities and put them in a variable named activity
-    serialized_activities = [] # the list of activities once they are serialized (a function that organizes the info ref model: serialized function)
-    for activity in activities :
-        serialized_activities.append(activity.serialize())# append or add each activity after they have been serialized
+    activities = Activities.query.all()
+    serialized_activities = [activity.serialize() for activity in activities]
     response_body = {
         "message": "Here is the list of activities",
         "activities": serialized_activities
     }
     return jsonify(response_body), 200
 
-
 @api.route('/members', methods=['POST'])
 @jwt_required()
 def create_members():
     raw_data = request.form.get("data")
-    print("raw_data print: ",raw_data)
     picture = request.files.get("file")
-    print("picture print: ",picture)
     body = json.loads(raw_data)
     first_name = body.get('first_name')
     last_name = body.get('last_name')
     email = body.get('email')
     tel = body.get('tel')
     description = body.get('description')
-    
-    
+
     if first_name is None or last_name is None or email is None or tel is None or description is None or picture is None:
-       return jsonify({"msg" : "first_name, last_name, email, tel,description picture are required"}),400
-    check_member = Member.query.filter_by(email=email).first()#the first email is the table properties the second one is the variable found above in the create_member function 
-    if check_member :
-        return jsonify({"msg" : "Member with this email already exists"}),409
-    
+        return jsonify({"msg": "first_name, last_name, email, tel, description, and picture are required"}), 400
+    check_member = Member.query.filter_by(email=email).first()
+    if check_member:
+        return jsonify({"msg": "Member with this email already exists"}), 409
 
     response = cloudinary.uploader.upload(picture)
     member = Member(first_name=first_name, last_name=last_name, email=email, tel=tel, description=description, picture=response["secure_url"])
@@ -142,16 +121,11 @@ def create_members():
         "member": member.serialize()
     }
     return jsonify(response_body), 200
-    
-
-
 
 @api.route('/members', methods=['GET'])
 def get_members():
-    members = Member.query.all() #a query that checks the query all the activities and put them in a variable named activity
-    serialized_members = [] # the list of activities once they are serialized (a function that organizes the info ref model: serialized function)
-    for member in members :
-        serialized_members.append(member.serialize())# append or add each activity after they have been serialized
+    members = Member.query.all()
+    serialized_members = [member.serialize() for member in members]
     response_body = {
         "message": "Here is the list of the members",
         "members": serialized_members
@@ -163,9 +137,9 @@ def post_testimony():
     body = request.get_json(force=True)
     full_name = body.get('full_name')
     description = body.get('description')
-     
-    if full_name is None or description is None :
-        raise APIException(400, "full_name, description,date are required")
+
+    if full_name is None or description is None:
+        raise APIException("full_name and description are required", 400)
     testimony = Testimony(full_name=full_name, description=description)
     db.session.add(testimony)
     db.session.commit()
@@ -176,16 +150,67 @@ def post_testimony():
     }
     return jsonify(response_body), 200
 
-
-
 @api.route('/testimony', methods=['GET'])
 def get_testimonies():
-    testimonies = Testimony.query.all() #a query that checks the query all the activities and put them in a variable named activity
-    serialized_testimonies = [] # the list of activities once they are serialized (a function that organizes the info ref model: serialized function)
-    for testimony in testimonies :
-        serialized_testimonies.append(testimony.serialize())# append or add each activity after they have been serialized
+    testimonies = Testimony.query.all()
+    serialized_testimonies = [testimony.serialize() for testimony in testimonies]
     response_body = {
         "message": "The different testimonies are here",
         "testimonies": serialized_testimonies
     }
     return jsonify(response_body), 200
+
+# @api.route('/forgot-password', methods=['POST'])
+# def forgot_password():
+   
+    
+
+# @api.route('/reset-password', methods = ['POST'])
+# def reset_password():
+    
+
+# @api.route('/reset_password', methods=['POST'])
+# def reset_request():
+#     data = request.get_json()
+#     email = data.get('email')
+#     if not email:
+#         return jsonify({"error": "Email is required"}), 400
+
+#     user = User.query.filter_by(email=email).first()
+#     if user:
+#         send_reset_email(user)
+#     return jsonify({"message": "An email has been sent with instructions to reset your password."}), 200
+
+# def send_reset_email(user):
+#     token = user.get_reset_token()
+#     msg = Message('Password Reset Request',
+#                   sender='noreply@demo.com',
+#                   recipients=[user.email])
+#     msg.body = f'''To reset your password, visit the following link:
+# {url_for('reset_token', token=token, _external=True)}
+
+# If you did not make this request then simply ignore this email and no changes will be made.
+# '''
+#     mail.send(msg)
+
+# @api.route('/reset_password/<token>', methods=['GET', 'POST'])
+# def reset_token(token):
+#     user = User.verify_reset_token(token)
+#     if not user:
+#         flash('That is an invalid or expired token', 'warning')
+#         return redirect(url_for('reset_request'))
+#     if request.method == 'POST':
+#         data = request.get_json()
+#         password = data.get('password')
+#         if not password:
+#             return jsonify({"error": "Password is required"}), 400
+
+#         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+#         user.password = hashed_password
+#         db.session.commit()
+#         return jsonify({"message": "Your password has been updated! You are now able to log in"}), 200
+#     return render_template('reset_token.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+

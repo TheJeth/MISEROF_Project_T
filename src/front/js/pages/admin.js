@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../styles/profile.css";
 
 
-
-
 //create your first component
 export const Admin = () => {
     const { store, actions } = useContext(Context);

@@ -11,7 +11,8 @@ export const ForgotPassword = () => {
   );
   const { store, actions } = useContext(Context);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     let result = await actions.forgotPasswordRequest(email);
     if (result) {
       setMessage("An email with a password reset link has been sent to you!");

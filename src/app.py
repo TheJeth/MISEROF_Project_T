@@ -11,6 +11,7 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail
 
 # from models import Person
 
@@ -23,6 +24,9 @@ app.url_map.strict_slashes = False
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
 jwt = JWTManager(app)
+
+# Setup the mailing service
+mail = Mail(app)
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
@@ -77,3 +81,4 @@ def serve_any_other_file(path):
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
     app.run(host='0.0.0.0', port=PORT, debug=True)
+

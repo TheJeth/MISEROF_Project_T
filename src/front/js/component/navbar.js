@@ -39,7 +39,8 @@ export const Navbar = () => {
 							<Link class="nav-link active" aria-current="page" to="/organisation">About us</Link>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Locations</a>
+							<Link class="nav-link" to="/PastEvent">Past events</Link>
+
 						</li>
 
 						<div class="dropdown me-5">
