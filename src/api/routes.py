@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, render_template  
 from api.models import db, User, Activities, Member, Testimony
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -10,6 +10,11 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 import json, datetime
 import cloudinary
 import cloudinary.uploader
+from threading import Thread
+from flask_mail import Message
+from api.services.mail_service import send_async_email, send_email
+
+
           
 cloudinary.config( 
   cloud_name = "dkwnepcnk", 
@@ -21,6 +26,8 @@ api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
+
+
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -160,57 +167,53 @@ def get_testimonies():
     }
     return jsonify(response_body), 200
 
-# @api.route('/forgot-password', methods=['POST'])
-# def forgot_password():
-   
-    
+@api.route('/forgot-password', methods=['POST'])
+def forgot_password():
+    body = request.get_json()
+    email = body.get('email')
+    if not email:
+        return jsonify({"error": "Email is required"}), 400
 
-# @api.route('/reset-password', methods = ['POST'])
-# def reset_password():
-    
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({"error": "User not found"}), 404
 
-# @api.route('/reset_password', methods=['POST'])
-# def reset_request():
-#     data = request.get_json()
-#     email = data.get('email')
-#     if not email:
-#         return jsonify({"error": "Email is required"}), 400
+    expires = datetime.timedelta(minutes=5)
+    reset_token = create_access_token(str(user.id), expires_delta=expires)
+    url = request.url_root + "api/reset-password/"
+    return send_email('Reset Your Password',
+                        sender=os.getenv("SENDER_EMAIL"),
+                        recipients=[user.email],
+                        text_body='Hi '+ str(user.first_name)+', We received a request to reset your password. Click the button below to reset your password:'+ str(url) + str(reset_token) + ' If you did not request a password reset, please ignore this email or contact support if you have questions. Thank you, The Miserof Web Support Team',
 
-#     user = User.query.filter_by(email=email).first()
-#     if user:
-#         send_reset_email(user)
-#     return jsonify({"message": "An email has been sent with instructions to reset your password."}), 200
+                        html_body='<style>body {font-family: Arial, sans-serif;background-color: #f4f4f4;margin: 0;padding: 0;}.email-container {max-width: 600px;margin: 20px auto;background-color: #ffffff;padding: 20px;border: 1px solid #dddddd;border-radius: 5px;}.email-header {text-align: center;border-bottom: 1px solid #dddddd;padding-bottom: 10px;margin-bottom: 20px;}.email-header h1 {margin: 0;color: #333333;}.email-body {color: #333333;line-height: 1.6;}.email-body p {margin: 20px 0;}.reset-button {display: block;width: 200px;margin: 20px auto;padding: 10px 20px;text-align: center;background-color: #007bff;color: #ffffff;text-decoration: none;border-radius: 5px;}.reset-button:hover {background-color: #0056b3;}.email-footer {text-align: center;color: #777777;font-size: 12px;margin-top: 20px;}</style><div class="email-container"><div class="email-header"><h1>Password Reset Request</h1></div><div class="email-body"><p>Hi ' + str(user.first_name)+',</p><p>We received a request to reset your password. Click the button below to reset your password:</p><a href="'+str(url) + str(reset_token)+'" class="reset-button">Reset Password</a><p>If you did not request a password reset, please ignore this email or contact support if you have questions.</p><p>Thank you,<br>The Miserof Church Web Support Team</p></div>')
 
-# def send_reset_email(user):
-#     token = user.get_reset_token()
-#     msg = Message('Password Reset Request',
-#                   sender='noreply@demo.com',
-#                   recipients=[user.email])
-#     msg.body = f'''To reset your password, visit the following link:
-# {url_for('reset_token', token=token, _external=True)}
 
-# If you did not make this request then simply ignore this email and no changes will be made.
-# '''
-#     mail.send(msg)
+@api.route('/reset-password', methods = ['POST'])
+def reset_password():
+    body = request.get_json()
+    reset_token = body.get('reset_token')
+    password = body.get('password')
 
-# @api.route('/reset_password/<token>', methods=['GET', 'POST'])
-# def reset_token(token):
-#     user = User.verify_reset_token(token)
-#     if not user:
-#         flash('That is an invalid or expired token', 'warning')
-#         return redirect(url_for('reset_request'))
-#     if request.method == 'POST':
-#         data = request.get_json()
-#         password = data.get('password')
-#         if not password:
-#             return jsonify({"error": "Password is required"}), 400
+    if not reset_token or not password:
+        return jsonify({"error": "Reset token and password are required"}), 400
 
-#         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-#         user.password = hashed_password
-#         db.session.commit()
-#         return jsonify({"message": "Your password has been updated! You are now able to log in"}), 200
-#     return render_template('reset_token.html')
+    user_id = decode_token(reset_token)['identity']
+
+    user = User.query.filter_by(id=user_id).first()
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    user.password=password
+    db.session.commit()
+
+    return send_email('Password reset successful',
+                        sender=os.getenv("SENDER_EMAIL"),
+                        recipients=[user.email],
+                        text_body='Password reset was successful',
+                        html_body='<p>Password reset was successful</p>')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-

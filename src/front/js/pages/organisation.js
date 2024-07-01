@@ -11,12 +11,12 @@ export const Organisation = () => {
 
 		<div class="container-fluid org-container-fluid text-center h-auto">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
-			<h1 class="row"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h1>
+			<h3 class="row"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h3>
 			<p class="text">
 				<div className="englishVersion">
 					<h4 className="org-h4"><b>EVANGELICAL MISSION</b></h4>
 					<br />
-					<h6 className="org-h6">
+					<h6 className="org-h5">
 						Our ultimate goal: Seek the lost souls and bring them back to Christ as
 						befits: Go, make all nations disciples, baptizing them in the name of the
 						Father, the Son, and the Holy Spirit, and teach them to observe all that
@@ -31,7 +31,7 @@ export const Organisation = () => {
 				<div className="frenchVersion">
 					<h4 className="org-h4"><b>MISSION EVANGELIQUE</b></h4>
 					<br />
-					<h6 className="org-h6">
+					<h6 className="org-h5">
 						Notre but ultime : Rechercher les âmes égarées et à les ramener à
 						Christ comme il convient : Allez, faites de toutes les nations des
 						disciples, les baptisant au nom du Père, du Fils et du Saint Esprit,

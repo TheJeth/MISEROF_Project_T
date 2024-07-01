@@ -5,6 +5,7 @@
    background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
+  
   /* Adjust height as needed */
   
 }
@@ -22,4 +23,22 @@
 
   color: white;
 
+}
+
+.card-title{
+  width : 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.card-text{
+  width : 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.btn-primary{
+  
+  margin-left: 15%;
+  margin-right: 15%;
 }

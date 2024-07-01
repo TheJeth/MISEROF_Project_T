@@ -8,7 +8,7 @@ import "../../styles/nav.css";
 export const Nav = () => {
 	return (
 		<nav className="nav-custom1 ">
-			<ul class="nav justify-content-end  nav-custom border-bottom border-body" data-bs-theme="dark">
+			<ul class="nav justify-content-center  nav-custom border-bottom border-body" data-bs-theme="dark">
 				<li class="nav-item ">
 					<a class="nav-link active" aria-current="page" href="https://twitter.com/MISEROF18948/status/1788876904713355315?t=a-OmUq_y6vCqV41jxjj8HA&s=19">
 						<i class="fa-brands fa-square-x-twitter"></i>

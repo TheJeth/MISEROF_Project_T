@@ -13,6 +13,10 @@ from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail
 
+from threading import Thread
+from flask_mail import Message
+
+
 # from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -27,6 +31,9 @@ jwt = JWTManager(app)
 
 # Setup the mailing service
 mail = Mail(app)
+
+
+
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")

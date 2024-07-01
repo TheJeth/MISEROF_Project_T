@@ -1,8 +1,10 @@
 from threading import Thread
 from flask_mail import Message
+from flask import jsonify
+import sys
+sys.path.append("../../app.py")
+from app import app 
 
-from app import app
-from app import mail
 
 
 def send_async_email(app, msg):
@@ -10,7 +12,7 @@ def send_async_email(app, msg):
         try:
             mail.send(msg)
         except ConnectionRefusedError:
-            raise InternalServerError("[MAIL SERVER] not working")
+            return jsonify("[MAIL SERVER] not working"),500
 
 
 def send_email(subject, sender, recipients, text_body, html_body):
