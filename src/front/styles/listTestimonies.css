@@ -1,0 +1,27 @@
+  .la-h1 {
+    font-size: large;
+    color: black;
+  }
+
+  .me-1 {
+    font-size: large;
+    color: blue;
+  }
+
+  p {
+    font-size: large;
+    /*color: blue;*/
+  }
+  .testimonyBubble {
+    height: auto;
+  }
+  
+  .testimonyFeed {
+    width: 40%;
+  }
+  
+  .custom-width {
+    width: 40%
+  }
+
+  

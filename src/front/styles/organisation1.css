@@ -1,7 +1,48 @@
 
-ul{
-    color:rgb(27, 130, 232);
-}
+
 .area{
-    color:rgb(27, 130, 232);
+    color:whitesmoke;
+    width : 70%;
+    margin-left: 15%;
+    margin-right: 15%;
 }
+
+
+.p-organisation1{
+    color:whitesmoke;
+    width : 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.row{
+    color:whitesmoke;
+    width : 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  
+  .ul{
+    width : 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    color:whitesmoke;
+  }
+
+  .li{
+    width : 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    color:whitesmoke;
+    font-family: Trebuchet MS;
+  }
+  
+  .col-btn{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  
+  .col-btn-primary{
+    margin-right: 5%;
+  }
+

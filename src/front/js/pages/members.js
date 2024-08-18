@@ -49,10 +49,6 @@ export const Members = () => {
                                         }}/>        
 		                </div>
                                 <div className="jumbotron justify-content-center text-end mx-auto col" style={{ width: "450px" }}>
-                                        <div class="form-group row" >
-                                                
-                                                
-                                        </div>
                                         <div className="mb-3 row" >
                                                 <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>First Name:</b></p>
                                                 <input value={first_name} onChange={(e) => setFirst_name(e.target.value)} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your first name here"></input>

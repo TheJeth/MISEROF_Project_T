@@ -1,16 +1,38 @@
 p{
-    color:blue;
+   /* color: blue !important;*/
+    
 }
 
 h1{
     color:blue;
 }
+
+.adminTitle{
+    color : blue !important;
+}
+
 h6{
     color:white;
+}
+
+.pastevent{
+    color: blue;
 }
 
 .roundedPict{
     border-style:groove;
     border-color: blue;
     border-width: 3%;    
+}
+
+.text-center{
+    color: blue !important;
+}
+.text-center1{
+    color:blue !important;
+    justify-content: center;
+}
+
+.blabel{
+    color:blue;
 }

@@ -4,10 +4,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 
-			activities :[],//that is a storage space to save all the activities fetched from the backend
-			members : [], //that is a storage space to save all the activities fetched from the backend
+			activities: [],//that is a storage space to save all the activities fetched from the backend
+			members: [], //that is a storage space to save all the activities fetched from the backend
 			users: [],
-			testimonies:[]
+			testimonies: [],
+			events: []
 
 		},
 		actions: {
@@ -29,27 +30,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			authenticate: async () => {
 				const opts = {
-				  method: "GET",
-				  headers: {
-					"Content-Type": "application/json",
-					Authorization: "Bearer " + sessionStorage.getItem("token"),
-				  },
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + sessionStorage.getItem("token"),
+					},
 				};
-		
+
 				const resp = await fetch(
-				  process.env.BACKEND_URL + "/api/authentication",
-				  opts
+					process.env.BACKEND_URL + "/api/authentication",
+					opts
 				);
 				if (resp.status != 200) {
-				  console.log(resp.status);
-		
-				  return false;
+					console.log(resp.status);
+
+					return false;
 				}
 				const data = await resp.json();
 				console.log("This comes from backend", data);
 				return true;
-			  },
-		
+			},
+
+			forgotPasswordRequest: async (email) => {
+				const opts = {
+					method: "GET",
+					headers: {
+
+					}
+				}
+			},
+
 
 			login: async (email, password) => {
 				console.log("email", email);
@@ -78,7 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token });
 					return true;
-					
+
 				} catch (error) {
 					console.log("There was error !!!", error);
 				}
@@ -107,7 +117,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			createActivities: async (description,start_date,end_date,responsible) => {
+			createActivities: async (description, start_date, end_date, responsible) => {
 				const opts = {
 					method: "POST",
 
@@ -119,9 +129,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						start_date: start_date,
 						end_date: end_date,
 						description: description,
-						responsible :responsible						
+						responsible: responsible
 					}),
-					
+
 				};
 				try {
 					const resp = await fetch(
@@ -141,16 +151,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return true;
 				} catch (error) {
 					console.log("There was error !!!", error);
-					}
-				
+				}
+
 			},
 			getActivities: () => {
 				fetch(process.env.BACKEND_URL + "/api/activities")
-				    .then((response) => response.json())
+					.then((response) => response.json())
 					.then((data) => {
-                        console.log(data);
-                        setStore({ activities: data.activities });
-                    })
+						console.log(data);
+						setStore({ activities: data.activities });
+					})
 			},
 
 			addMembers: async (
@@ -160,62 +170,62 @@ const getState = ({ getStore, getActions, setStore }) => {
 				tel,
 				description,
 				picture
-			  ) => {
+			) => {
 				let data = JSON.stringify({
-				  first_name: first_name,
-				  last_name: last_name,
-				  email: email,
-				  tel: tel,
-				  description: description,
+					first_name: first_name,
+					last_name: last_name,
+					email: email,
+					tel: tel,
+					description: description,
 				});
-		
+
 				const formData = new FormData();
-		
+
 				formData.append("data", data);
-		
+
 				formData.append("file", picture);
-		
+
 				const opts = {
-				  method: "POST",
-		
-				  headers: {
-					Authorization: "Bearer " + sessionStorage.getItem("token"),
-				  },
-				  body: formData,
+					method: "POST",
+
+					headers: {
+						Authorization: "Bearer " + sessionStorage.getItem("token"),
+					},
+					body: formData,
 				};
-				  const resp = await fetch(
+				const resp = await fetch(
 					process.env.BACKEND_URL + "/api/members",
 					opts
-				  );
-				  if (resp.status != 200) {
+				);
+				if (resp.status != 200) {
 					let errorMsg = await resp.json();
-					alert("An error occured while submitted the new member: "+errorMsg.msg)
+					alert("An error occured while submitted the new member: " + errorMsg.msg)
 					return false;
-				  }
-				  const respBody = await resp.json();
-				  console.log("This comes from backend", respBody);
-				  sessionStorage.setItem("token", respBody.access_token);
-				  setStore({ token: respBody.access_token, user: respBody.user });
-				  alert("New member added successfully");
-				  return true;
-				
-			  },   
+				}
+				const respBody = await resp.json();
+				console.log("This comes from backend", respBody);
+				//sessionStorage.setItem("token", respBody.access_token);
+				//setStore({ token: respBody.access_token, user: respBody.user });
+				alert("New member added successfully");
+				return true;
+
+			},
 			getMembers: () => {
 				fetch(process.env.BACKEND_URL + "/api/members")
-				    .then((response) => response.json())
+					.then((response) => response.json())
 					.then((data) => {
-                        console.log(data);
-                        setStore({ members: data.members });
-                    })
+						console.log(data);
+						setStore({ members: data.members });
+					})
 			},
 
-			postTestimony: async (full_name,description) => {
+			postTestimony: async (full_name, description) => {
 				const opts = {
 					method: "POST",
 
 					headers: {
 						"Content-Type": "application/json",
-						
+
 					},
 					body: JSON.stringify({
 						full_name: full_name,
@@ -238,20 +248,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return true;
 				} catch (error) {
 					console.log("There was error !!!", error);
-					}
-				
+				}
+
 			},
 			getTestimony: () => {
 				fetch(process.env.BACKEND_URL + "/api/testimony")
-				    .then((response) => response.json())
+					.then((response) => response.json())
 					.then((data) => {
-                        console.log(data);
-                        setStore({ testimonies: data.testimonies });
+						console.log(data);
+						setStore({ testimonies: data.testimonies });
 
-                    })
+					})
 					.catch((error) => {
-                        console.log(error);
-                    });
+						console.log(error);
+					});
 			},
 
 			getProfile: async (first_name, last_name, email, picture, id) => {
@@ -321,8 +331,59 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("There was error !!!", error);
 				}
-			}
+			},
 
+
+			addEvents: async (
+				description,
+				date,
+				picture
+			) => {
+				let data = JSON.stringify({
+					description: description,
+					date: date,
+					picture: picture,
+				});
+
+				const formData = new FormData();
+
+				formData.append("data", data);
+
+				formData.append("file", picture);
+
+				const opts = {
+					method: "POST",
+
+					headers: {
+						Authorization: "Bearer " + sessionStorage.getItem("token"),
+					},
+					body: formData,
+				};
+				const resp = await fetch(
+					process.env.BACKEND_URL + "/api/events",
+					opts
+				);
+				if (resp.status != 200) {
+					let errorMsg = await resp.json();
+					alert("An error occured while submitted this past event: " + errorMsg.msg)
+					return false;
+				}
+				const respBody = await resp.json();
+				console.log("This comes from backend", respBody);
+				sessionStorage.setItem("token", respBody.access_token);
+				setStore({ token: respBody.access_token, user: respBody.user });
+				alert("Past event added successfully");
+				return true;
+
+			},
+			getEvents: () => {
+				fetch(process.env.BACKEND_URL + "/api/events")
+					.then((response) => response.json())
+					.then((data) => {
+						console.log(data);
+						setStore({ events: data.events });
+					})
+			},
 
 		}
 	};

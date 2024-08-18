@@ -6,35 +6,33 @@ import { Link } from "react-router-dom";
 import { ImageCard } from "../component/ImageCard";
 
 
-
-
 export const Headquater = () => {
 	const { store, actions } = useContext(Context);
-
+  
 	const cards = [
 		{
-			imageSrc: "https://i.ibb.co/1QNwz6G/Sister-Miserof.jpg",
-			title: "Card 1",
-			text: "Some quick example text to build on the card title.",
+			imageSrc: "https://i.ibb.co/M6gfk4m/Roseline.jpg",
+			title: "Roseline A. LEBLANC  Programming Manager",
+			text: "FROM 2012 TO PRESENT. Her dynamism and expertise allow us to achieve between 95% and 97% of our annual programs.",
 		},
-		{
+		{ 
 			imageSrc: "https://i.ibb.co/WHLpJVc/Mrie-Florence-Joassaint.jpg",
-			title: "Card 2",
-			text: "Some quick example text to build on the card title.",
+			title: "Marie Florence JOASSAINT Spiritual Devotion Director",
+			text: "From 2019 to present. Her prayer helps us to walk from victory to victory and to bring lost and fallen souls to Christ",
 		},
 		{
 			imageSrc: "https://i.ibb.co/bHytsWm/Joceline.jpg",
-			title: "Card 3",
-			text: "Some quick example text to build on the card title.",
+			title: "Jocelyne JEAN PIERRE     /   Advisor ",
+			text: "2007 TO PRESENT. Her ideas help us a lot to move forward. She contributes financially to the carrying out missions and evangelization tours.",
 		},
 	];
-
+ 
 	return (
-		<div className="board">
+		<div className="board h-auto">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 
 			<div className="container">
-				<div className="row">
+				<div className="row hq-r">
 					{cards.map((card, index) => (
 						<div className="col-sm-4 mb-4" key={index}>
 							<ImageCard
@@ -47,9 +45,9 @@ export const Headquater = () => {
 				</div>
 			</div>
 
-			<div className="row">
+			<div className="row mt-3">
 
-					<Link to="/" class="btn btn-primary">
+					<Link to="/organisation1" class="btn btn-success hq-btn w-auto">
 						Back»»»
 					</Link>
 				

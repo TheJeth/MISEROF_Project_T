@@ -15,6 +15,7 @@ def setup_admin(app):
     admin.add_view(ModelView(Activities, db.session))
     admin.add_view(ModelView(Member, db.session))
     admin.add_view(ModelView(Testimony, db.session))
+    #admin.add_view(ModelView(Headquater, db.session))
 
     # You can duplicate that line to add mew models
     # admin.add_view(ModelView(YourModelName, db.session))

@@ -25,7 +25,7 @@ export const Navbar = () => {
 				<Link to="/">
 					<img
 						src="https://i.ibb.co/bmLJDgh/Miserof-logo.jpg"
-						className="" height="50px" alt="The logo" />
+						className="" height="50px" width="auto" alt="The logo" />
 
 				</Link>
 				<button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

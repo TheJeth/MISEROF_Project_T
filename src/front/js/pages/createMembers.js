@@ -11,7 +11,6 @@ import {
   ValidateTextArea,
 } from "../store/validators";
 
-//create your first component
 export const CreateMembers = () => {
   const { store, actions } = useContext(Context);
   const [first_name, setFirst_name] = useState("");
@@ -105,15 +104,14 @@ export const CreateMembers = () => {
         height="75px"
         width="100%"
       />
-      <button onClick={() => console.log(invalidItems)}>click here</button>
       <div className="mb-3">
-        <h1 className="text-center">Register Members</h1>
+        <h1 className="text-center1"><center>Register Members</center></h1>
       </div>
       <div className="row">
-        <div className="col-2">
+        <div className="col-12">
           <img height="200px" className="rounded-circle" src={previewURL} />
-          <p className="col-3 ps-0" for="picture">
-            <b>Select Picture</b>
+          <p className="col-3 ps-0" htmlFor="picture">
+            <b className="blabel">Select Picture</b>
           </p>
 
           <input
@@ -140,14 +138,11 @@ export const CreateMembers = () => {
             </label>
           )}
         </div>
-        <div
-          className="jumbotron justify-content-center text-end mx-auto col"
-          style={{ width: "450px" }}
-        >
-          <div class="form-group row"></div>
+        <div className="jumbotron justify-content-center text-end mx-auto col">
+          <div className="form-group row"></div>
           <div className="mb-3 row">
             <p htmlFor="formGroupExampleInput2" className="col-3 ps-0">
-              <b>First Name:</b>
+              <b className="blabel">First Name:</b>
             </p>
 
             <input
@@ -157,7 +152,7 @@ export const CreateMembers = () => {
               className="form-control col"
               id="formGroupExampleInput2"
               placeholder="Enter your first name here"
-            ></input>
+            />
             {invalidItems.includes("firstName") && (
               <label className="error-label text-dark">
                 Please enter a valid value
@@ -167,7 +162,7 @@ export const CreateMembers = () => {
 
           <div className="mb-3 row">
             <p htmlFor="formGroupExampleInput2" className="col-3 ps-0">
-              <b>Last Name:</b>
+              <b className="blabel">Last Name:</b>
             </p>
             <input
               value={last_name}
@@ -176,7 +171,7 @@ export const CreateMembers = () => {
               className="form-control col"
               id="formGroupExampleInput2"
               placeholder="Enter your last name here"
-            ></input>
+            />
             {invalidItems.includes("lastName") && (
               <label className="error-label text-dark">
                 Please enter a valid value
@@ -186,7 +181,7 @@ export const CreateMembers = () => {
 
           <div className="mb-3 row">
             <p htmlFor="formGroupExampleInput2" className="col-3 ps-0">
-              <b>Email:</b>
+              <b className="blabel">Email:</b>
             </p>
             <input
               value={email}
@@ -195,7 +190,7 @@ export const CreateMembers = () => {
               className="form-control col"
               id="formGroupExampleInput2"
               placeholder="Enter your email address here"
-            ></input>
+            />
             {invalidItems.includes("email") && (
               <label className="error-label text-dark">
                 Please enter a valid value
@@ -205,7 +200,7 @@ export const CreateMembers = () => {
 
           <div className="mb-3 row">
             <p htmlFor="formGroupExampleInput2" className="col-3 ps-0">
-              <b>Tel:</b>
+              <b className="blabel">Tel:</b>
             </p>
             <input
               value={tel}
@@ -214,7 +209,7 @@ export const CreateMembers = () => {
               className="form-control col"
               id="formGroupExampleInput2"
               placeholder="Enter your Telephone here"
-            ></input>
+            />
             {invalidItems.includes("phone") && (
               <label className="error-label text-dark">
                 Please enter a valid value
@@ -224,7 +219,7 @@ export const CreateMembers = () => {
 
           <div className="mb-3 row">
             <p htmlFor="formGroupExampleInput2" className="col-3 ps-0">
-              <b>Description</b>
+              <b className="blabel">Description</b>
             </p>
             <input
               value={description}
@@ -233,50 +228,41 @@ export const CreateMembers = () => {
               className="form-control col"
               id="formGroupExampleInput2"
               placeholder="A Short description of the member here"
-            ></input>
+              maxLength="80"
+            />
             {invalidItems.includes("description") && (
               <label className="error-label text-dark">
                 Please enter a valid value
               </label>
             )}
           </div>
-      <div className="row">
-        <div classNameName="button">
-              <div className="col">
-                <button className="btn btn-primary" onClick={handleSubmit}>
-                  Create Members{" "}
-                </button>
-              </div>
-              <div className="col">
-                      <Link
-                    type="button"
-                    to={"/admin"}
-                    className="btn btn-primary  justify-content-center">
-                    Back to Admin page
-                  </Link>
-              </div>
-              <div className="col">
-                  <Link
-                    type="button"
-                    to={"/"}
-                    className="btn btn-primary  justify-content-center"
-                  >
-                    Cancel
-                  </Link>
-              </div>
-              <div className="col">
-                    <Link
-                  type="button"
-                  to={"/"}
-                  className="btn btn-primary justify-content-right"
-                >
-                  Go to Home page
-                </Link>
-              </div>
-    </div>
-
-          </div>
         </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <button className="btn btn-success" onClick={handleSubmit}>
+            Create Members{" "}
+          </button>
+        </div>
+        <div className="col">
+          <Link
+            type="button"
+            to={"/admin"}
+            className="btn btn-success  justify-content-center"
+          >
+            Back to Admin page
+          </Link>
+        </div>
+        <div className="col">
+          <Link
+            type="button"
+            to={"/"}
+            className="btn btn-success  justify-content-center"
+          >
+            Cancel
+          </Link>
+        </div>
+
       </div>
     </div>
   );

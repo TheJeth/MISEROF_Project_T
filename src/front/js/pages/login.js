@@ -25,9 +25,9 @@ export const Login = () => {
 
 
     return (
-        <div className="text-center mt-5">
+        <div className="text-center mt-5 h-100">
             <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
-            <h1>Login</h1>
+            <h1 className="loginTitle">Login</h1>  
             {(store.token && store.token != "" && store.token != undefined) ? "You are logged in with a token" + store.token :
 
                 <div className="Login">
@@ -42,7 +42,7 @@ export const Login = () => {
                     <div className="forgotPassword">
 						<Link to="/forgotPassword"> Forgot password </Link>
 					</div>
-                </div>
+                </div> 
 
                 
             }

@@ -12,7 +12,7 @@ import cloudinary
 import cloudinary.uploader
 from threading import Thread
 from flask_mail import Message
-from api.services.mail_service import send_async_email, send_email
+#from api.services.mail_service import send_async_email, send_email
 
 
           
@@ -119,6 +119,7 @@ def create_members():
         return jsonify({"msg": "Member with this email already exists"}), 409
 
     response = cloudinary.uploader.upload(picture)
+    print(response)
     member = Member(first_name=first_name, last_name=last_name, email=email, tel=tel, description=description, picture=response["secure_url"])
     db.session.add(member)
     db.session.commit()
@@ -167,51 +168,51 @@ def get_testimonies():
     }
     return jsonify(response_body), 200
 
-@api.route('/forgot-password', methods=['POST'])
-def forgot_password():
-    body = request.get_json()
-    email = body.get('email')
-    if not email:
-        return jsonify({"error": "Email is required"}), 400
+# @api.route('/forgot-password', methods=['POST'])
+# def forgot_password():
+#     body = request.get_json()
+#     email = body.get('email')
+#     if not email:
+#         return jsonify({"error": "Email is required"}), 400
 
-    user = User.query.filter_by(email=email).first()
-    if not user:
-        return jsonify({"error": "User not found"}), 404
+#     user = User.query.filter_by(email=email).first()
+#     if not user:
+#         return jsonify({"error": "User not found"}), 404
 
-    expires = datetime.timedelta(minutes=5)
-    reset_token = create_access_token(str(user.id), expires_delta=expires)
-    url = request.url_root + "api/reset-password/"
-    return send_email('Reset Your Password',
-                        sender=os.getenv("SENDER_EMAIL"),
-                        recipients=[user.email],
-                        text_body='Hi '+ str(user.first_name)+', We received a request to reset your password. Click the button below to reset your password:'+ str(url) + str(reset_token) + ' If you did not request a password reset, please ignore this email or contact support if you have questions. Thank you, The Miserof Web Support Team',
+#     expires = datetime.timedelta(minutes=5)
+#     reset_token = create_access_token(str(user.id), expires_delta=expires)
+#     url = request.url_root + "api/reset-password/"
+#     return send_email('Reset Your Password',
+#                         sender=os.getenv("SENDER_EMAIL"),
+#                         recipients=[user.email],
+#                         text_body='Hi '+ str(user.first_name)+', We received a request to reset your password. Click the button below to reset your password:'+ str(url) + str(reset_token) + ' If you did not request a password reset, please ignore this email or contact support if you have questions. Thank you, The Miserof Web Support Team',
 
-                        html_body='<style>body {font-family: Arial, sans-serif;background-color: #f4f4f4;margin: 0;padding: 0;}.email-container {max-width: 600px;margin: 20px auto;background-color: #ffffff;padding: 20px;border: 1px solid #dddddd;border-radius: 5px;}.email-header {text-align: center;border-bottom: 1px solid #dddddd;padding-bottom: 10px;margin-bottom: 20px;}.email-header h1 {margin: 0;color: #333333;}.email-body {color: #333333;line-height: 1.6;}.email-body p {margin: 20px 0;}.reset-button {display: block;width: 200px;margin: 20px auto;padding: 10px 20px;text-align: center;background-color: #007bff;color: #ffffff;text-decoration: none;border-radius: 5px;}.reset-button:hover {background-color: #0056b3;}.email-footer {text-align: center;color: #777777;font-size: 12px;margin-top: 20px;}</style><div class="email-container"><div class="email-header"><h1>Password Reset Request</h1></div><div class="email-body"><p>Hi ' + str(user.first_name)+',</p><p>We received a request to reset your password. Click the button below to reset your password:</p><a href="'+str(url) + str(reset_token)+'" class="reset-button">Reset Password</a><p>If you did not request a password reset, please ignore this email or contact support if you have questions.</p><p>Thank you,<br>The Miserof Church Web Support Team</p></div>')
+#                         html_body='<style>body {font-family: Arial, sans-serif;background-color: #f4f4f4;margin: 0;padding: 0;}.email-container {max-width: 600px;margin: 20px auto;background-color: #ffffff;padding: 20px;border: 1px solid #dddddd;border-radius: 5px;}.email-header {text-align: center;border-bottom: 1px solid #dddddd;padding-bottom: 10px;margin-bottom: 20px;}.email-header h1 {margin: 0;color: #333333;}.email-body {color: #333333;line-height: 1.6;}.email-body p {margin: 20px 0;}.reset-button {display: block;width: 200px;margin: 20px auto;padding: 10px 20px;text-align: center;background-color: #007bff;color: #ffffff;text-decoration: none;border-radius: 5px;}.reset-button:hover {background-color: #0056b3;}.email-footer {text-align: center;color: #777777;font-size: 12px;margin-top: 20px;}</style><div class="email-container"><div class="email-header"><h1>Password Reset Request</h1></div><div class="email-body"><p>Hi ' + str(user.first_name)+',</p><p>We received a request to reset your password. Click the button below to reset your password:</p><a href="'+str(url) + str(reset_token)+'" class="reset-button">Reset Password</a><p>If you did not request a password reset, please ignore this email or contact support if you have questions.</p><p>Thank you,<br>The Miserof Church Web Support Team</p></div>')
 
 
-@api.route('/reset-password', methods = ['POST'])
-def reset_password():
-    body = request.get_json()
-    reset_token = body.get('reset_token')
-    password = body.get('password')
+# @api.route('/reset-password', methods = ['POST'])
+# def reset_password():
+#     body = request.get_json()
+#     reset_token = body.get('reset_token')
+#     password = body.get('password')
 
-    if not reset_token or not password:
-        return jsonify({"error": "Reset token and password are required"}), 400
+#     if not reset_token or not password:
+#         return jsonify({"error": "Reset token and password are required"}), 400
 
-    user_id = decode_token(reset_token)['identity']
+#     user_id = decode_token(reset_token)['identity']
 
-    user = User.query.filter_by(id=user_id).first()
-    if not user:
-        return jsonify({"error": "User not found"}), 404
+#     user = User.query.filter_by(id=user_id).first()
+#     if not user:
+#         return jsonify({"error": "User not found"}), 404
 
-    user.password=password
-    db.session.commit()
+#     user.password=password
+#     db.session.commit()
 
-    return send_email('Password reset successful',
-                        sender=os.getenv("SENDER_EMAIL"),
-                        recipients=[user.email],
-                        text_body='Password reset was successful',
-                        html_body='<p>Password reset was successful</p>')
+#     return send_email('Password reset successful',
+#                         sender=os.getenv("SENDER_EMAIL"),
+#                         recipients=[user.email],
+#                         text_body='Password reset was successful',
+#                         html_body='<p>Password reset was successful</p>')
 
 
 

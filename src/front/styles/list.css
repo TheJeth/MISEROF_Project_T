@@ -13,9 +13,17 @@
     font-size: large;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
+    height: auto !important;
     /* Adjust height as needed */
   }
+
+  
+  .la-h4{
+    margin-bottom: 5%; 
+    font-size: small;
+    color:whitesmoke;
+  }
+
   
   .hq-card-body {
     background-image: url("https://i.ibb.co/9NmSNP2/croix-v.jpg");
@@ -46,13 +54,22 @@
   
   .la-h3 {
     font-size: large;
-    color: black;
+    color: whitesmoke;
+  }
+
+  .me-3 {
+    font-size: large;
+    color: blue;
   }
   
+  
+
+
   h4 {
     font-size: large;
     color: blue;
   }
+  
   
   .hq-h1 {
     font-size: xx-large;
@@ -64,28 +81,29 @@
   }
   
   table {
-    border: 5px solid black;
+
     border-collapse: collapse;
     border-radius: 10px;
-    width: 100%;
-    enable-background: 0%;
-    background-color: rgb(233, 233, 243);
+    width: 70%;
+    enable-background: 0%;     
   
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 5px;
     padding-right: 5px;
+    margin-left: 15%;
+    margin-right: 15%;
   }
   
   th {
     align-items: center;
-    border: 5px solid rgb(0, 0, 0);
+    
     border-collapse: collapse;
     color: blue;
   }
   
   td {
-    border: 5px solid rgb(244, 238, 238);
+    border-bottom: 2px solid whitesmoke;
     border-collapse: collapse;
     border-radius: 10px;
     color: rgba(221, 222, 237, 0.45);
@@ -99,7 +117,7 @@
         #000000 51%,
         rgb(8, 8, 145) 20%,
         #000000 51%,
-        #2600ff 100%);
+        #16047d 100%);
     transition: 0.5s;
     color: white;
     border: none;
@@ -132,4 +150,14 @@
     border: none;
     margin-right: 2%;
     align-content: center;
+  }
+
+
+  .listActivities{
+    background-image: url("https://i.ibb.co/XJYnnbB/blue-sky-without.jpg");
+    /*Adjust the path */
+    font-size: large;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
   }

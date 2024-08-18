@@ -25,7 +25,7 @@ li{
   color: white;
   border: none;
   margin-right: 2%;
-}
+}   
 
 .btn-success{
   background-size: 80% 80%;
@@ -96,3 +96,13 @@ h5{
   color: white;
   font-size: small;
 }
+
+.navlogo {
+  background-image: linear-gradient(to right,
+      white 0%,
+      #3b07f9 100%,
+      #000110 100%);
+  transition: 0.5s;
+  color: white !important;
+  border: none;
+}    

@@ -9,16 +9,17 @@ export const Organisation1 = () => {
 
 	return (
 
-		<div class="container-fluid h-auto">
+		<div class="org-container-fluid h-100">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
-			<h1 class="row"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h1>
+			<h3 class="row"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h3>
 			<p class="text">
 				<div className="englishVersion">
 					<h4 className="area"><b>AREA OF DEVELOPMENT</b></h4>
 					<br />
 					<h6>
-						MISEROFF is a non-profit institution <br/>
-						To achieve our goal, we are putting free training sessions such as:<br/>
+						<p className="p-organisation1">MISEROFF is a non-profit institution <br/>
+							To achieve our goal, we are putting free training sessions such as:<br/>
+						</p> 
 						<ul>
 						 	<li>Online doctrinal Bible courses</li>
 							<li>Preaching, Worship and Praise</li>
@@ -35,7 +36,7 @@ export const Organisation1 = () => {
 		
 		<div className="row">
 			<div className="col">
-				<Link to="/organisation" class="btn btn-primary">
+				<Link to="/organisation" class="btn btn-success">
 					Back to the organisation»»»
 				</Link>
 			</div>
@@ -44,7 +45,6 @@ export const Organisation1 = () => {
 					Headquater members here»»»
 				</Link>
 			</div>
-
 		</div>
 
 	</div>

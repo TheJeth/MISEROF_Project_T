@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/profile.css";
 
-
+  
 //create your first component
 export const Admin = () => {
     const { store, actions } = useContext(Context);
@@ -30,27 +30,28 @@ export const Admin = () => {
 
     return (
 
-        <div className="form h-auto" >
+        <div className="form h-100" >
             <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
-            <div className="mb-3">
-                <h1 className="text-center">Admin Page</h1>
+            <div className="mb-3">                
+                <h1 className="text-center"> <p className="adminTitle">Admin Page</p></h1>
             </div>
-            <div className="row">
-                <div className="col-2">
-                    <img height="200px" className="rounded-circle" src="https://i.ibb.co/1qXfdp0/user.png" />
+            <div className="admin text-center">
+                <div className="col-2 mx-auto">
+                    <img height="150px" width="80%" className="rounded-circle" src="https://i.ibb.co/1qXfdp0/user.png" />
                 </div>
-                <div className="jumbotron justify-content-center text-end mx-auto col" style={{ width: "450px" }}>
-                   
-                    <div classNameName="button">
-                        <center>
-                            <Link to={"/profile"} type="button" className="btn btn-primary" onClick={() => actions.verifyUser(first_name, last_name, email, picture, id)}>Update profile </Link>
-                            <Link to={"/"} type="button" className="btn btn-primary" onClick={() => actions.updateProfile(first_name, last_name, email, picture, id)}>Create Prayers </Link>
-                            <Link type="button" to={"/createMembers"} className="btn btn-primary  justify-content-center">Create Members</Link>
-                            <Link to={"/activities"} type="button" className="btn btn-primary" >Create Activities </Link>
-                            <Link type="button" to={"/"} className="btn btn-primary  justify-content-center">Cancel</Link>
-                            <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>
-                        </center>
+                <div classNameName="row">
+                        <div className ="col mb-3">                   
+                            <Link to={"/addpastevent"} type="button" className="btn btn-success" onClick={() => actions.addEvents(description, date, picture)}>Add Past Event </Link>
+                            <Link to={"/createMembers"} type="button" className="btn btn-success">Create Members</Link>
+                        </div>
+                        <div className ="col">
+                            <Link to={"/activities"} type="button" className="btn btn-success" >Create Activities </Link>
+                            <Link type="button" to={"/"} className="btn btn-success">Go to Home page</Link>
+                        </div>
+                        
                     </div>
+                <div className="jumbotron justify-content-center d-flex text-end mx-auto col" style={{ width: "450px" }}>
+                     
                 </div>
             </div>
 

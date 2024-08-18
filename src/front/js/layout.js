@@ -4,25 +4,26 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
-import {Organisation} from "./pages/organisation";
+import { Organisation } from "./pages/organisation";
 import { Organisation1 } from "./pages/organisation1";
-import {Headquater} from "./pages/headquater";
-import {Activities} from "./pages/activities";
-import {Login} from "./pages/login";
-import {Profile} from "./pages/profile";
-import {Admin} from "./pages/admin";
-import {CreateMembers} from "./pages/createMembers";
-import {Testimonies} from "./pages/testimonies";
-import {ListTestimonies} from "./pages/listTestimonies";
+import { Headquater } from "./pages/headquater";
+import { Activities } from "./pages/activities";
+import { Login } from "./pages/login";
+import { Profile } from "./pages/profile";
+import { Admin } from "./pages/admin";
+import { CreateMembers } from "./pages/createMembers";
+import { Testimonies } from "./pages/testimonies";
+import { ListTestimonies } from "./pages/listTestimonies";
 import { ForgotPassword } from "./pages/forgotPassword";
+import { AddPastEvent } from "./pages/addPastEvent";
 import { PastEvent } from "./pages/pastEvent";
-
+import { PastEvent1 } from "./pages/pastEvent1";
 
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
-import {Nav} from "./component/nav";
+import { Nav } from "./component/nav";
 import { Footer } from "./component/footer";
 import { ListActivities } from "./pages/listActivities";
 import { ListMembers } from "./pages/ListMembers";
@@ -33,14 +34,14 @@ const Layout = () => {
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
-        <div>
-            <BrowserRouter basename={basename}>
-                <ScrollToTop>
+        <div className="vh-100">
+            <BrowserRouter basename={basename} >
+                <ScrollToTop>     
                     <Navbar />
-                    <Routes className="">
+                    <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Organisation />} path="/organisation" />
                         <Route element={<Organisation1 />} path="/organisation1" />
@@ -55,7 +56,9 @@ const Layout = () => {
                         <Route element={<CreateMembers />} path="/createMembers" />
                         <Route element={<Testimonies />} path="/testimonies" />
                         <Route element={<ListTestimonies />} path="/listTestimonies" />
+                        <Route element={<AddPastEvent />} path="/addPastEvent" />
                         <Route element={<PastEvent />} path="/pastEvent" />
+                        <Route element={<PastEvent1 />} path="/pastEvent1" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

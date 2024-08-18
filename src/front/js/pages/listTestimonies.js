@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-//import "../../styles/list.css"
+import "../../styles/listTestimonies.css";
 import { Link } from "react-router-dom";
 import Pagination from "../component/pagination";
 
@@ -19,7 +19,7 @@ export const ListTestimonies = () => {
         const currentItems = store.testimonies.slice(
                 indexOfFirstItem,
                 indexOfLastItem
-        );
+        );  
         const paginate = (pageNumber) => setCurrentPage(pageNumber);
         return (
                 <div className="listView h-auto">
@@ -54,13 +54,13 @@ export const ListTestimonies = () => {
                                                 " " +
                                                 convertedDate.getDate() +
                                                 ", " +
-                                                convertedDate.getFullYear();
+                                                convertedDate.getFullYear(); 
                                         return (
                                                 <div className="bg-light rounded mb-5 testimonyBubble ps-2 pt-2 ">
-                                                        <p className="la-h3">{item.description}</p>
-                                                        <div className="d-flex ">
-                                                                <p className="me-3">{item.full_name}</p>
-                                                                <p className="la-h3">{formattedDate}</p>
+                                                        <p className="la-h1">{item.description}</p>
+                                                        <div className="d-flex"> 
+                                                                <p className="me-1">{item.full_name}</p>
+                                                                <p className="la-h1">{formattedDate}</p>
                                                         </div>
                                                 </div>
                                         );
@@ -70,14 +70,14 @@ export const ListTestimonies = () => {
                                 <div className="custom-width">
                                         <button
                                                 type="button"
-                                                className="btn btn-primary  justify-content-center"
+                                                className="btn btn-success  justify-content-center"
                                         >
                                                 <i class="fa-solid fa-print"></i>
                                         </button>
                                         <Link
                                                 type="button"
                                                 to={"/"}
-                                                className="btn btn-primary justify-content-right"
+                                                className="btn btn-success justify-content-right"
                                         >
                                                 Go to Home page
                                         </Link>

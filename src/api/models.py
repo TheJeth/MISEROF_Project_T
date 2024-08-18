@@ -100,3 +100,18 @@ class Testimony(db.Model):
             "description": self.description,
             "dateTestimony": self.dateTestimony
         }
+
+class PastEvents(db.Model):
+    __tablename__ = "pastevents"
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(300), unique=False, nullable=False)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+    picture = db.Column(db.String(255), unique=False, nullable=True)
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "description": self.description,
+            "date": self.date,
+            "picture": self.picture
+        }

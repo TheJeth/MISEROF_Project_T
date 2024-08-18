@@ -22,9 +22,11 @@ button{
     animation: gradient 2s ease infinite;
   }
 
-  h1{
+  .loginTitle{
     justify-content: center;
+    color:blue
   }
+  
 
   input{
     margin-right: 2%;

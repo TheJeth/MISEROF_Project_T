@@ -18,7 +18,7 @@ export const MemberCard = ({ member }) => {
             <img src={member?.picture} className="card-img-top" alt="..." />
             <div className="card-body">
                 <h5 className="card-title text-black">{member.first_name} {member.last_name}</h5>
-                <p className="card-text text-black">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p className="card-text text-black">{member.description}</p>
 
             </div>
         </div>

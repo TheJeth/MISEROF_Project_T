@@ -8,39 +8,53 @@
   color:whitesmoke;
 }
 
-.org-container-fluid {
-
-  
+.org-container-fluid {  
   /* Adjust height as needed */
-
-
   height: 85vh;
   /* Adjust height as needed */
-}
-
-
-.container-fluid {
   background-image: url('https://i.ibb.co/XJYnnbB/blue-sky-without.jpg');
   /*Adjust the path */
    font-size: large;
    background-repeat: no-repeat;
   background-size: cover;
+}
+
+.org-container{
   height: 100%;
-  
-}
-.row{
-  color:whitesmoke;
-}
-
-
-.row{
-  width : 70%;
-  margin-left: 15%;
-  margin-right: 15%;
+  min-height: 100vh;
 }
 
 .text{
   width : 70%;
   margin-left: 15%;
-  margin-right: 15%;
+  margin-right: 15%;  
 }
+
+
+.col-btn{
+    margin-right: auto;
+    display:flex; 
+    justify-items: center;
+    
+}
+
+
+.col-btn1{
+  margin-left: 1%;  
+}
+
+
+
+.btn2{  
+  margin-left: 1%;
+ }
+ 
+.btn3{
+  margin-left: 15%; 
+}
+
+.org-h5{
+font-family: Trebuchet MS;
+}
+
+
