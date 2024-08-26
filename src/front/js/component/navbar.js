@@ -11,7 +11,7 @@ export const Navbar = () => {
 	// Function to handle logout and navigate to login page
 	const handleLogout = () => {
 		actions.logout();
-		navigate("/login");
+		navigate("/login");  
 	};
 
 	// Function to navigate to profile
@@ -20,11 +20,12 @@ export const Navbar = () => {
 
 	return (
 
-		<nav class="navbar navbar-expand-lg bg-body-tertiary nav-custom">
+		<nav class="navbar navbar-expand-lg bg-body-tertiary nav-custom" >
+
 			<div class="container">
 				<Link to="/">
 					<img
-						src="https://i.ibb.co/bmLJDgh/Miserof-logo.jpg"
+						src="https://res.cloudinary.com/dkwnepcnk/image/upload/v1724681985/Miserof_logo_vrahdp.jpg"
 						className="" height="50px" width="auto" alt="The logo" />
 
 				</Link>
@@ -71,6 +72,8 @@ export const Navbar = () => {
 					</ul>
 				</div>
 			</div>
+
+			
 		</nav>
 
 

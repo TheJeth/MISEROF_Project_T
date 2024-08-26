@@ -45,7 +45,7 @@ export const Testimonies = () => {
 
     return (
 
-        <div className="container-fluid org-container-fluid text-center h-100">
+        <div className="container-fluid org-container-fluid text-center h-100 w-100">
             <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
             <div className="mb-3">
                 <h1 className="text-center">Post your testimony !!!</h1>

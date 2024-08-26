@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 export const Organisation = () => {
 	const { store, actions } = useContext(Context);
 
-	return ( 
+	return (
 
-		<div class="org-container-fluid org-container text-center h-auto">
+		<div class="org-container-fluid org-container text-center h-auto w-100">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 			<div ClassName="text-center  french-english h-100">
 				<h3 className="row"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h3>
@@ -47,20 +47,20 @@ export const Organisation = () => {
 						</h6>
 					</div>
 				</p>
-						<div className="col-btn d-flex">
-							<Link to="/" class="btn btn-success btn1">
-								Back»»»
-							</Link>
-						
-							<Link to="/organisation1" class="btn btn-success btn2">
-								Read more about the organisation»»»
-							</Link>
-						
-							<Link to="/headquater" class="btn btn-success btn3" >
-								Headquater members here»»»
-							</Link>		
-						</div> 			
-						
+				<div className="text d-flex">
+					<Link to="/" class="btn btn-success btn1">
+						Back»»»
+					</Link>
+
+					<Link to="/organisation1" class="btn btn-success btn2">
+						Read more about the organisation»»»
+					</Link>
+
+					<Link to="/headquater" class="btn btn-success btn3" >
+						Headquater members here»»»
+					</Link>
+				</div>
+
 			</div>
 		</div>
 

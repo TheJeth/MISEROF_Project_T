@@ -28,24 +28,21 @@ export const Headquater = () => {
 	];
  
 	return (
-		<div className="board h-auto">
+		<div className="board h-100 w-100" >
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 
-			<div className="container">
-				<div className="row hq-r">
+			<div className="container cont-bck" >
+				<div className="row hq-r" >
 					{cards.map((card, index) => (
 						<div className="col-sm-4 mb-4" key={index}>
-							<ImageCard
+							<ImageCard 
 								imageSrc={card.imageSrc}
 								title={card.title}
 								text={card.text}
-							/>
+							/> 
 						</div>
 					))}
-				</div>
-			</div>
-
-			<div className="row mt-3">
+				</div> 
 
 					<Link to="/organisation1" class="btn btn-success hq-btn w-auto">
 						Back»»»
@@ -53,7 +50,7 @@ export const Headquater = () => {
 				
 			</div>
 
-		</div>
+		</div>  
 
 	);
 };

@@ -22,7 +22,7 @@ export const ImageCard = ({ imageSrc, title, text }) => {
                 />
             </div>
 
-            <div className="card-body">
+            <div className="card-body hq-card-background">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{text}</p>
             </div>

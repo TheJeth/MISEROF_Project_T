@@ -10,14 +10,15 @@
 
 .org-container-fluid {  
   /* Adjust height as needed */
-  height: 85vh;
+ 
   /* Adjust height as needed */
   background-image: url('https://i.ibb.co/XJYnnbB/blue-sky-without.jpg');
   /*Adjust the path */
    font-size: large;
    background-repeat: no-repeat;
   background-size: cover;
-}
+  
+} 
 
 .org-container{
   height: 100%;
@@ -27,7 +28,8 @@
 .text{
   width : 70%;
   margin-left: 15%;
-  margin-right: 15%;  
+  margin-right: 15%; 
+  justify-content: center; 
 }
 
 

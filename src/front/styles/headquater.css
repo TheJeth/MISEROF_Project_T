@@ -11,11 +11,11 @@
 .hq-h1{
     color :burlywood;
     font-size: larger;
-    font-family :Georgia;
+    font-family :Georgia;   
 }
    
-board{
-    background-image: url('https://i.ibb.co/jgM5Gp7/Croix.jpg');
+.hq-card-background{
+    background-image: url('https://res.cloudinary.com/dkwnepcnk/image/upload/v1724682201/croix_Golgotha_wsykrh.jpg');
     font-size: large;
     background-repeat: no-repeat;
    background-size: cover;
@@ -25,9 +25,16 @@ board{
 
 .hq-r{
     color:blue;    
-    margin-left: 15%;
     margin-right: 15%;
+    justify-content: center;
+   
   }
+
+
+.card-position{
+    justify-content: center;
+
+}
 
 .hq-btn{
     margin-right: 15%;
@@ -35,5 +42,10 @@ board{
   }
   
   .mb-4{
-    color:whitesmoke;
+    color: whitesmoke;
+    font-size:smaller;
+    font-family: trebuchet MS;
   }
+
+
+  

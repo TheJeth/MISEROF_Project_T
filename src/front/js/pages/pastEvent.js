@@ -13,7 +13,7 @@ export const PastEvent = () => {
 
 	return (
 
-		<div className="card mb-3 h-auto">
+		<div className="card mb-3 h-auto w-100">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 			<div className="mb-3">
 				

@@ -1,15 +1,33 @@
 .home-card-body {
-  background-image: url('https://i.ibb.co/XJYnnbB/blue-sky-without.jpg');
-  /*Adjust the path */
    font-size: large;
-   background-repeat: no-repeat;
-  background-size: cover;
   height: 100%;
   
   /* Adjust height as needed */
   
 }
 
+  
+
+.background1{
+  background-image: url('https://res.cloudinary.com/dkwnepcnk/image/upload/v1715190394/io3hxdympyg5ki5swvn8.jpg');
+  background-repeat: no-repeat !important;
+  background-size: cover;
+  height: 100%;
+}
+
+.background2{
+  background-image: url('https://i.ibb.co/jgM5Gp7/Croix.jpg');
+  background-repeat: no-repeat !important;
+  background-size: cover;
+  height: 100%;
+}
+
+.background3{
+  background-image: url('https://res.cloudinary.com/dkwnepcnk/image/upload/v1724682201/croix_Golgotha_wsykrh.jpg');
+  background-repeat: no-repeat !important;
+  background-size: cover;
+  height: 60%;
+}
 
 .home-h2 {
   font-size: large;
