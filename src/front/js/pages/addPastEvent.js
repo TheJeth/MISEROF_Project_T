@@ -25,7 +25,7 @@ export const AddPastEvent = () => {
 
         return (
 
-                <div className="form h-auto" >
+                <div className="form addPastEvent-form h-100 w-100" >
                         <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
                         <div className="mb-3">
                                 <h1 className="text-center"> <p className="adminTitle">Add Past Event</p></h1>
@@ -48,15 +48,18 @@ export const AddPastEvent = () => {
                                 </div>
 
                         </div>
-                        <div className="jumbotron justify-content-center text-end mx-auto" style={{ height: "70%" }}>
+                        <div className="jumbotron justify-content-center text-end mx-auto " >
                                 <div className="mb-3 d-flex">
                                         <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b className="blabel">Date of the event</b></p>
-                                        <input value={Date} onChange={(e) => setDate(e.target.value)} type="text" className="form-control" id="formGroupExampleInput2" placeholder="Enter The date here"></input>
+                                        <input value={Date} onChange={(e) => setDate(e.target.value)}
+
+                                                type="Date" className="form-control" id="formGroupExampleInput2"
+                                                placeholder="Enter The date here"></input>
                                 </div>
 
                                 <div className="mb-3 d-flex">
                                         <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b className="blabel">Description</b></p>
-                                        <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" className="form-control" id="formGroupExampleInput2" placeholder="The description of the event here" height="400px" width="1020px " maxlength="100"></input>
+                                        <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" className="form-control" id="formGroupExampleInput2" placeholder="The description of the event here" height="600px" width="1020px " maxlength="100"></input>
                                 </div>
 
 

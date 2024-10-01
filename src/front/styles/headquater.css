@@ -23,11 +23,21 @@
  
 }
 
+.hq-bck{
+  background-image: url('https://res-console.cloudinary.com/dkwnepcnk/thumbnails/v1/image/upload/v1715037820/b2RxdWhmbW50OW84bGRoc2Jlb2Y=/drilldown');
+    font-size: large;
+    background-repeat: no-repeat;
+   background-size: cover;
+   height: 100%;
+}
+
 .hq-r{
     color:blue;    
-    margin-right: 15%;
-    justify-content: center;
    
+  }
+
+  .text-board{
+    color: blue;
   }
 
 
@@ -35,17 +45,25 @@
     justify-content: center;
 
 }
-
+/*
 .hq-btn{
     margin-right: 15%;
     width : 15%;
   }
+    */
   
   .mb-4{
     color: whitesmoke;
     font-size:smaller;
     font-family: trebuchet MS;
   }
+
+  
+  .hq-btn{
+       margin-left: 15%;
+  }
+
+  
 
 
   

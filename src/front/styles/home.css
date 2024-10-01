@@ -16,14 +16,22 @@
 }
 
 .background2{
-  background-image: url('https://i.ibb.co/jgM5Gp7/Croix.jpg');
+  background-image: url('https://res-console.cloudinary.com/dkwnepcnk/thumbnails/v1/image/upload/v1725760529/amVzdXNfY3J1Y2lmaXhpb25fMl9weHVjbGc=/drilldown');
   background-repeat: no-repeat !important;
   background-size: cover;
   height: 100%;
 }
 
 .background3{
-  background-image: url('https://res.cloudinary.com/dkwnepcnk/image/upload/v1724682201/croix_Golgotha_wsykrh.jpg');
+  background-image: url('https://res-console.cloudinary.com/dkwnepcnk/thumbnails/v1/image/upload/v1725031433/R29sZ290aGFfc3Vuc2V0X2Nyb3NzX3p5NGY0MA==/drilldown');
+  background-repeat: no-repeat !important;
+  background-size: cover;
+  height: 60%;
+}
+
+
+.background4{
+  background-image: url('https://res-console.cloudinary.com/dkwnepcnk/thumbnails/v1/image/upload/v1725760529/amVzdXNfY3J1Y2lmaXhpb25fMl9weHVjbGc=/drilldown');
   background-repeat: no-repeat !important;
   background-size: cover;
   height: 60%;

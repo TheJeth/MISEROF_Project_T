@@ -55,7 +55,7 @@ export const Activities = () => {
 
                                         <div className="mb-3 row" >
                                                 <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>Starting Date:</b></p>
-                                                <input value={startDate} onChange={(e) => {
+                                                <input value={startDate} onChange={(e) => {  
 
                                                         setStartDate(e.target.value);
                                                 }} type="Date" className="form-control col" id="formGroupExampleInput2"></input>

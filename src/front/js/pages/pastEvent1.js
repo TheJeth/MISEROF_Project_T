@@ -9,16 +9,17 @@ export const PastEvent1 = () => {
 
 	return (  
 
-		<div className="card mb-3 h-100">
+		<div className="card mb-3  h-auto w-100 event-bck">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 			<div className="card-body home-card-body">
+				<h1 classname="text-center "><center className="pastEvent">Past Events</center></h1>
 				<table>
 					<tr>
 						<td>
-							<img src="https://i.ibb.co/hsKvf1j/pastevent2.jpg" height="70%" width="70%" />
+							<img src="https://i.ibb.co/hsKvf1j/pastevent2.jpg" width="100px" height="100px" />
 						</td>
 						<td>
-							<p>
+							<p className="pastEvent">
 								DECEMBER 2, 2019 – APRIL 2021<br />
 
 								Invention of a major show: MISEROF “Gouvernail la Nuit Apporte Conseils” MIGNAC
@@ -33,10 +34,10 @@ export const PastEvent1 = () => {
 						</td>
 					</tr>
 					<tr>
-						<td><img src="https://i.ibb.co/1R8dxCP/pstevent1.jpg" width="70%" height="70%" />
+						<td><img src="https://i.ibb.co/1R8dxCP/pstevent1.jpg" width="100px" height="100px" />
 						</td>
 						<td>
-							<p>
+							<p className="pastEvent">
 								JUNE 2018 <br />
 								Evangelism Tour: Orlando Florida (Orange County)
 
@@ -45,11 +46,11 @@ export const PastEvent1 = () => {
 					</tr>
 					<tr>
 						<td>
-							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhp-a42fnrXad8oOu2c5rP_HH8lu0yLDv9tw&s" width="100%" height="100%" />
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhp-a42fnrXad8oOu2c5rP_HH8lu0yLDv9tw&s"width="100px" height="100px" />
 						</td>
 
 						<td>
-							<p>
+							<p className="pastEvent">
 								SEPTEMBER 2018<br />
 								Evangelism Tour: Orlando Florida (Orange County)
 							</p>
@@ -57,10 +58,10 @@ export const PastEvent1 = () => {
 					</tr>
 					<tr>
 						<td>
-							<img src="https://www.mnnonline.org/wp-content/uploads/2022/03/Screen-Shot-2022-03-04-at-1.21.19-PM.png" width="100%" height="100%" />
+							<img src="https://www.mnnonline.org/wp-content/uploads/2022/03/Screen-Shot-2022-03-04-at-1.21.19-PM.png" width="100px" height="100px" />
 						</td>
 						<td>
-							<p>
+							<p className="pastEvent">
 								OCTOBER 2019<br />
 								1. Evangelism Tour: Orlando Florida (Orange County)
 								2. GREAT ANNUAL SPIRITUAL AWAKENING

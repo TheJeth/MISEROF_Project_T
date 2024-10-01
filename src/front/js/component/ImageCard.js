@@ -3,6 +3,7 @@ import React from "react";
 export const ImageCard = ({ imageSrc, title, text }) => {
     const cardStyle = {
         width: "18rem", // Set a fixed width for the card
+
     };
 
     const imgStyle = {
@@ -12,6 +13,7 @@ export const ImageCard = ({ imageSrc, title, text }) => {
     };
 
     return (
+        <div>
         <div className="card" style={cardStyle}>
             <div className="" style={{ height: "18rem" }}>
                 <img
@@ -26,6 +28,7 @@ export const ImageCard = ({ imageSrc, title, text }) => {
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{text}</p>
             </div>
+        </div>
         </div>
     );
 };

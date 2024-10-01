@@ -101,6 +101,11 @@
     border-collapse: collapse;
     color: blue;
   }
+
+  .thActivities{
+    margin-bottom :2%;
+    padding-bottom: 3%;
+  }
   
   td {
     border-bottom: 2px solid whitesmoke;
@@ -159,5 +164,18 @@
     font-size: large;
     background-repeat: no-repeat;
     background-size: cover;
-    
+    justify-content: center;
+    justify-items: center;
   }
+
+  .tb-button{
+    margin-top: 2%;
+    justify-items: center;
+   }
+
+   .td-pagination{
+    padding: 0%;
+   }
+   .td-link{
+    padding :0%;
+   }

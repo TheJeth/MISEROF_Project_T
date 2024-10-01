@@ -24,14 +24,14 @@ export const ListActivities = () => {
                 actions.getActivities()
         }, [])
         return (
-                <div className="list listActivities h-100  overflow-scroll">
+                <div className="list listActivities h-100 text-center">
                         <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 
-                        <table >
-                                <th className="tdActivities"><h3 className="la-h3"><b>Description</b></h3></th>
-                                <th className="tdActivities"><h3 className="la-h3"><b> Date_start</b></h3></th>
-                                <th className="tdActivities"><h3 className="la-h3"><b> Date_end</b></h3></th>
-                                <th className="tdActivities"><h3 className="la-h3"><b> Person Responsible</b></h3></th>
+                        <table>
+                                <th className="thActivities"><h3 className="la-h3"><b>Description</b></h3></th>
+                                <th className="thActivities"><h3 className="la-h3"><b> Date_start</b></h3></th>
+                                <th className="thActivities"><h3 className="la-h3"><b> Date_end</b></h3></th>
+                                <th className="thActivities"><h3 className="la-h3"><b> Person Responsible</b></h3></th>
                                 {store.activities.map((activity, index) => {
                                         return (
                                                 <tr className="tdActivities">
@@ -45,11 +45,9 @@ export const ListActivities = () => {
 
                         </table>
                         <div className="d-flex justify-content-center">
-                                
-                                        <button type="button" className="btn btn-primary  justify-content-center" onClick={(e) => {
-                                                window.print()
-                                        }}><i class="fa-solid fa-print"></i></button>
-                                       
+                            <table className="tb-button justify-content-center">    
+                              <tr>    
+                                <td className="td-pagination justify-content-center">      
                                 <Pagination
                                         itemsPerPage={itemsPerPage}
                                         totalItems={store.activities.length}
@@ -57,9 +55,12 @@ export const ListActivities = () => {
                                         currentPage={currentPage}
                                         
                                 /> 
-
-                                <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>
-                                
+                                </td>
+                                <td>                                
+                                     <Link type="button" to={"/"} className="btn btn-success justify-content-right">Go to Home page</Link>
+                                </td>
+                             </tr>
+                          </table>      
 
                         </div>
 

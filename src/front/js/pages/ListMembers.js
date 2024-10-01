@@ -52,7 +52,7 @@ export const ListMembers = () => {
 
                                                         <td>
                                                                 <a className="btn-pict" type="button" data-bs-toggle="modal" data-bs-target={"#memberModal" + index}>
-                                                                        <h3 className="la-h3"><b><img class="object-fit-fill border rounded" alt="..." width="100px" height="100px" src={member.picture}/></b></h3>
+                                                                        <h3 className="la-h3"><b><img class="object-fit-fill border rounded" alt="..." width="100px" height="100px" src={member.picture} /></b></h3>
                                                                 </a>
                                                         </td>
                                                         <div class="modal fade" id={"memberModal" + index} tabindex="-1" aria-labelledby={"memberModalLabel" + index} aria-hidden="true">
@@ -74,23 +74,25 @@ export const ListMembers = () => {
                                 })}
 
                         </table>
-                
-                <div className="d-flex dpagination text-center">
 
-                        <button type="button" className="btn btn-primary justify-content-center" onClick={(e) => {
-                                window.print()
-                        }}><i class="fa-solid fa-print"></i></button>
-                       
-                        <Pagination
-                                        itemsPerPage={itemsPerPage}
-                                        totalItems={store.members.length}
-                                        paginate={paginate}
-                                        currentPage={currentPage}
-                        /> 
+                        <div className="d-flex dpagination text-center">
+                                <table className="tb-button justify-content-center">
+                                        <tr>
+                                                <td className="td-pagination">
 
-                         <Link type="button" to={"/"} className="btn btn-success justify-content-right">Go to Home page</Link>
- 
-                   </div>
-                </div>
-        );
+                                                        <Pagination
+                                                                itemsPerPage={itemsPerPage}
+                                                                totalItems={store.members.length}
+                                                                paginate={paginate}
+                                                                currentPage={currentPage}
+                                                        />
+                                                </td>
+                                                <td className="td-link">
+                                                        <Link type="button" to={"/"} className="btn btn-success justify-content-right">Go to Home page</Link>
+                                                </td>
+                                        </tr>
+                                    </table>
+                                   </div>
+                                </div>
+                                        );
 };

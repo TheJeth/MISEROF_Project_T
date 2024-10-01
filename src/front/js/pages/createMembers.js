@@ -255,7 +255,7 @@ export const CreateMembers = () => {
         </div>
         <div className="col">
           <Link
-            type="button"
+            type="button"  
             to={"/"}
             className="btn btn-success  justify-content-center"
           >

@@ -8,12 +8,12 @@ import { Carousel } from "./carousel";
 
 
 
-export const Home = () => {
+export const Home = () => { 
 	const { store, actions } = useContext(Context);
 
 	return (
 
-		<div className="card h-100" >
+		<div className="card h-auto" >
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 
 			<Carousel />

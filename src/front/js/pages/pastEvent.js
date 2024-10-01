@@ -8,24 +8,24 @@ export const PastEvent = () => {
 	const { store, actions } = useContext(Context);
 	const [selectedMember, setSelectedMember] = useState()
 	useEffect(() => {
-		actions.getEvents()
+		actions.getEvents()  
 	}, [])
 
 	return (
 
-		<div className="card mb-3 h-auto w-100">
+		<div className="card mb-3 h-auto w-100 event-bck">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 			<div className="mb-3">
 				
 			</div>
 			<div className="card-body home-card-body">
-			<h1 classname="text-center"><center>Past Events</center></h1>
+			<h1 classname="text-center "><center className="pastEvent">Past Events</center></h1>
 				<table className="tb-pastEvents">
 					<><tr>
 						<td>
-							<img src="https://i.ibb.co/br5SmJV/Group.jpg" height="50%" width="50%" />
+							<img src="https://i.ibb.co/br5SmJV/Group.jpg border rounded" alt="..." width="100px" height="100px" />
 						</td>
-						<td>
+						<td>  
 							<p className="pastEvent">
 								JUNE 2024<br />
 								June Evangelistic Tour: North Columbus (OHIO)
@@ -35,7 +35,7 @@ export const PastEvent = () => {
 						</td>
 					</tr>
 						<tr>
-							<td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1KBV2B8xJONuxG6LEWIdqXPxHsuZZT_zENw&s" width="50%" height="50%" />
+							<td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1KBV2B8xJONuxG6LEWIdqXPxHsuZZT_zENw&s border rounded" alt="..." width="100px" height="100px" />
 							</td>
 							<td>
 								<p className="pastEvent">
@@ -47,7 +47,7 @@ export const PastEvent = () => {
 						</tr>
 						<tr>
 							<td>
-								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhp-a42fnrXad8oOu2c5rP_HH8lu0yLDv9tw&s" width="100%" height="100%" />
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhp-a42fnrXad8oOu2c5rP_HH8lu0yLDv9tw&s border rounded" alt="..." width="100px" height="100px" />
 							</td>
 							<td>
 								<p className="pastEvent">
@@ -59,7 +59,8 @@ export const PastEvent = () => {
 							</td>
 						</tr><tr>
 							<td>
-								<img src="https://www.mnnonline.org/wp-content/uploads/2022/03/Screen-Shot-2022-03-04-at-1.21.19-PM.png" width="100%" height="100%" />
+								<img src="https://res-console.cloudinary.com/dkwnepcnk/thumbnails/v1/image/upload/v1724989558/R3JvdXBfbWVldGluZ19iajRrMWw=/drilldown 
+								 border rounded" alt="..." width="100px" height="100px" />
 							</td>
 							<td>
 								<p className="pastEvent">
@@ -84,7 +85,7 @@ export const PastEvent = () => {
 				<div className="row col-btn">
 					<div className="col">
 						<Link to="/pastEvent1" class="btn btn-success btn1">
-							Next Events»»»
+							Next»»»
 						</Link>
 					</div>
 

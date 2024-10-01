@@ -46,7 +46,7 @@ export const Testimonies = () => {
     return (
 
         <div className="container-fluid org-container-fluid text-center h-100 w-100">
-            <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
+            <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="110%" />
             <div className="mb-3">
                 <h1 className="text-center">Post your testimony !!!</h1>
             </div>
@@ -55,12 +55,12 @@ export const Testimonies = () => {
 
                     <div className="mb-3 row" >
                         <p htmlFor="formGroupExampleInput2 " className="col-3 ps-0"><b>Full Name</b></p>
-                        <input value={full_name} onChange={(e) => setFull_name(e.target.value)} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Your full name" maxlength="30"></input>
+                        <input value={full_name} onChange={(e) => setFull_name(e.target.value)} style={{ width: "auto" }} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Your full name" maxlength="30"></input>
                     </div>
 
                     <div className="mb-3 row ">
                         <p htmlFor="formGroupExampleInput2 justify-content-center" className="col-3 ps-0"><b>Testimony</b></p>
-                        <textarea value={description} onChange={(e) => setDescription(e.target.value)} style={{ width: "1020px" }} height="950px" className="form-control" id="formGroupExampleInput2" placeholder="Your testimony here" maxlength="500"></textarea>
+                        <textarea value={description} onChange={(e) => setDescription(e.target.value)} style={{ width: "920px" }} height="950px" className="form-control" id="formGroupExampleInput2" placeholder="Your testimony here" maxlength="500"></textarea>
                     </div>
 
 

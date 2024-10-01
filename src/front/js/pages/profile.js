@@ -56,7 +56,7 @@ export const Profile = () => {
                         <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
                         <div className="mb-3">
                                 <h1 className="text-center">Update Profile</h1>
-                        </div>
+                        </div> 
                         <div className="row">
                                 <div className="col-2">
                                         <img height="200px" className="rounded-circle" src={previewURL} />

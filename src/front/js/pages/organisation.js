@@ -12,7 +12,7 @@ export const Organisation = () => {
 		<div class="org-container-fluid org-container text-center h-auto w-100">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 			<div ClassName="text-center  french-english h-100">
-				<h3 className="row"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h3>
+				<h3 className="row org-row"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h3>
 				<p class="text ">
 					<div className="englishVersion">
 						<h4 className="org-h4"><b>EVANGELICAL MISSION</b></h4>
