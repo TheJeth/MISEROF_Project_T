@@ -1,6 +1,6 @@
-const Dotenv = require('dotenv-webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -9,10 +9,10 @@ module.exports = merge(common, {
   },
   plugins: [
     new Dotenv({
-      safe: true,
-      systemvars: true,
-      silent: true,
-      defaults: false
+      systemvars: true, // Load all system environment variables as well
+      safe: true, // Load '.env.example' to verify the '.env' variables are all set
+      silent: true,  // Hide any warnings
+      defaults: false // Don't load '.env.defaults'
     })
   ]
 });
