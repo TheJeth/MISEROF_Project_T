@@ -1,18 +1,24 @@
-const Dotenv = require('dotenv-webpack');
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
-
-module.exports = merge(common, {
-  mode: 'production',
-  output: {
-    publicPath: '/'
+{
+  "name": "react-hello-webapp",
+  "engines": {
+    "node": "16.x"
   },
-  plugins: [
-    new Dotenv({
-      safe: true,
-      systemvars: true,
-      silent: true,
-      defaults: false
-    })
-  ]
-});
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js --port 3000",
+    "build": "webpack --config webpack.prod.js",
+    "heroku-postbuild": "npm install --only=dev && npm run build"
+  },
+  // ... rest of your package.json ...
+  "dependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-polyfills": "0.0.1",
+    "react-router-dom": "^6.3.0",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
