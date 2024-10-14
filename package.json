@@ -7,7 +7,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "webpack-dev-server --config webpack.dev.js --port 3000",
+		"start": "node server.js",
 		"build": "webpack --config webpack.prod.js"
 	},
 	"author": {
@@ -73,6 +73,7 @@
 		]
 	},
 	"dependencies": {
+		"express": "^4.21.1",
 		"libphonenumber-js": "^1.11.4",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
