@@ -14,33 +14,7 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      },
-      {
-        test: /\.(css|scss)$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' }
-        ]
-      },
-      {
-        test: /\.(png|svg|jpg|gif|jpeg|webp)$/,
-        use: {
-          loader: 'file-loader',
-          options: { name: '[name].[ext]' }
-        }
-      },
-      {
-        test: /\.html$/i,
-        loader: 'html-loader'
-      },
-      {
-        test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
-        use: ['file-loader']
-      }
+      // ... (keep your existing rules here)
     ]
   },
   resolve: {
@@ -53,7 +27,9 @@ module.exports = {
     }),
     new Dotenv({
       safe: true,
-      systemvars: true
+      systemvars: true,
+      silent: true,
+      defaults: true
     })
   ]
 };

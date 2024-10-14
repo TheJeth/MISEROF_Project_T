@@ -1,15 +1,16 @@
+// webpack.prod.js
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
-const webpack = require('webpack');
-
+const Dotenv = require('dotenv-webpack');
 module.exports = merge(common, {
-  mode: 'production',
-  output: {
-    publicPath: '/'
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(process.env)
-    })
-  ]
+    mode: 'production',
+    output: {
+        publicPath: '/'
+    },
+    plugins: [
+        new Dotenv({
+            safe: true,
+            systemvars: true
+        })
+    ]
 });
