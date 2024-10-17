@@ -49,10 +49,10 @@ export const Navbar = () => {
 								More
 							</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="testimonies">Post Testimony</a></li>
-								<li><a class="dropdown-item" href="listTestimonies">Testimonies posted</a></li>
-								<li><a class="dropdown-item" href="listActivities">Activities</a></li>
-								<li><a class="dropdown-item" href="listMembers">Members</a></li>
+								<li><Link class="dropdown-item" to="/testimonies">Post Testimony</Link></li>
+								<li><Link class="dropdown-item"to="/listTestimonies">Testimonies posted</Link></li>
+								<li><Link class="dropdown-item" to="/listActivities">Activities</Link></li>
+								<li><Link class="dropdown-item" to="/listMembers">Members</Link></li>
 								<li>{sessionStorage.getItem("token") ? <div className="logged-in d-flex">
 									<Link to="/admin"><button className="btn btn-primary btn-animated3" onClick={""}>Admin</button></Link>
 									<button className="btn btn-primary btn-animated3" onClick={handleLogout}>Logout</button>
