@@ -86,6 +86,8 @@ class Member(db.Model):
             "picture": self.picture,
         }
 
+        
+
 class Testimony(db.Model):
     __tablename__ = "testimony"
     id = db.Column(db.Integer, primary_key=True)

@@ -163,53 +163,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 
-			addMembers: async (
-				first_name,
-				last_name,
-				email,
-				tel,
-				description,
-				picture
-			) => {
-				let data = JSON.stringify({
-					first_name: first_name,
-					last_name: last_name,
-					email: email,
-					tel: tel,
-					description: description,
-				});
-
-				const formData = new FormData();
-
-				formData.append("data", data);
-
-				formData.append("file", picture);
-
-				const opts = {
+			addMembers: async (getStore, getActions, { first_name, last_name, email, tel, description, picture }) => {
+				try {
+				  const formData = new FormData();
+				  formData.append("data", JSON.stringify({ first_name, last_name, email, tel, description }));
+				  if (picture) {
+					formData.append("file", picture);
+				  }
+			  
+				  const resp = await fetch(`${process.env.BACKEND_URL}/api/members`, {
 					method: "POST",
-
 					headers: {
-						Authorization: "Bearer " + sessionStorage.getItem("token"),
+					  Authorization: `Bearer ${sessionStorage.getItem("token")}`,
 					},
 					body: formData,
-				};
-				const resp = await fetch(
-					process.env.BACKEND_URL + "/api/members",
-					opts
-				);
-				if (resp.status != 200) {
-					let errorMsg = await resp.json();
-					alert("An error occured while submitted the new member: " + errorMsg.msg)
-					return false;
+				  });
+			  
+				  if (!resp.ok) {
+					const errorData = await resp.json();
+					throw new Error(errorData.msg || "Failed to add member");
+				  }
+			  
+				  const data = await resp.json();
+				  console.log("Response from backend:", data);
+			  
+				  // Update the store if necessary
+				  // getActions().fetchMembers(); // Assuming you have an action to fetch updated members list
+			  
+				  return true;
+				} catch (error) {
+				  console.error("Error adding member:", error);
+				  alert(`An error occurred while adding the new member: ${error.message}`);
+				  return false;
 				}
-				const respBody = await resp.json();
-				console.log("This comes from backend", respBody);
-				//sessionStorage.setItem("token", respBody.access_token);
-				//setStore({ token: respBody.access_token, user: respBody.user });
-				alert("New member added successfully");
-				return true;
-
-			},
+			  },
+			  
 			getMembers: () => {
 				fetch(process.env.BACKEND_URL + "/api/members")
 					.then((response) => response.json())
