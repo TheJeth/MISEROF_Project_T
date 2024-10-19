@@ -103,32 +103,53 @@ def get_activities():
 @api.route('/members', methods=['POST'])
 @jwt_required()
 def create_members():
-    raw_data = request.form.get("data")
-    picture = request.files.get("file")
-    body = json.loads(raw_data)
-    first_name = body.get('first_name')
-    last_name = body.get('last_name')
-    email = body.get('email')
-    tel = body.get('tel')
-    description = body.get('description')
+    try:
+        raw_data = request.form.get("data")
+        if not raw_data:
+            return jsonify({"msg": "No data provided"}), 400
 
-    if first_name is None or last_name is None or email is None or tel is None or description is None or picture is None:
-        return jsonify({"msg": "first_name, last_name, email, tel, description, and picture are required"}), 400
-    check_member = Member.query.filter_by(email=email).first()
-    if check_member:
-        return jsonify({"msg": "Member with this email already exists"}), 409
+        body = json.loads(raw_data)
+        required_fields = ['first_name', 'last_name', 'email', 'tel', 'description']
+        
+        for field in required_fields:
+            if field not in body or not body[field]:
+                return jsonify({"msg": f"{field} is required"}), 400
 
-    response = cloudinary.uploader.upload(picture)
-    print(response)
-    member = Member(first_name=first_name, last_name=last_name, email=email, tel=tel, description=description, picture=response["secure_url"])
-    db.session.add(member)
-    db.session.commit()
-    db.session.refresh(member)
-    response_body = {
-        "message": "Member registered successfully",
-        "member": member.serialize()
-    }
-    return jsonify(response_body), 200
+        picture = request.files.get("file")
+        if not picture:
+            return jsonify({"msg": "Picture is required"}), 400
+
+        check_member = Member.query.filter_by(email=body['email']).first()
+        if check_member:
+            return jsonify({"msg": "Member with this email already exists"}), 409
+
+        cloudinary_response = upload(picture)
+        
+        new_member = Member(
+            first_name=body['first_name'],
+            last_name=body['last_name'],
+            email=body['email'],
+            tel=body['tel'],
+            description=body['description'],
+            picture=cloudinary_response["secure_url"]
+        )
+
+        db.session.add(new_member)
+        db.session.commit()
+
+        return jsonify({
+            "message": "Member registered successfully",
+            "member": new_member.serialize()
+        }), 201
+
+    except json.JSONDecodeError:
+        return jsonify({"msg": "Invalid JSON in data field"}), 400
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"msg": f"An error occurred: {str(e)}"}), 500
+
+
+
 
 @api.route('/members', methods=['GET'])
 def get_members():
