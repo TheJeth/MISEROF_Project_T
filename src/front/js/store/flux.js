@@ -163,12 +163,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 
-			addMembers: async (getStore, getActions, { first_name, last_name, email, tel, description, picture }) => {
+			addMembers: async (getStore, getActions, memberData) => {
 				try {
 				  const formData = new FormData();
-				  formData.append("data", JSON.stringify({ first_name, last_name, email, tel, description }));
-				  if (picture) {
-					formData.append("file", picture);
+				  formData.append("data", JSON.stringify({
+					first_name: memberData.first_name,
+					last_name: memberData.last_name,
+					email: memberData.email,
+					tel: memberData.tel,
+					description: memberData.description
+				  }));
+				  
+				  if (memberData.picture) {
+					formData.append("file", memberData.picture);
 				  }
 			  
 				  const resp = await fetch(`${process.env.BACKEND_URL}/api/members`, {
@@ -187,17 +194,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  const data = await resp.json();
 				  console.log("Response from backend:", data);
 			  
-				  // Update the store if necessary
-				  // getActions().fetchMembers(); // Assuming you have an action to fetch updated members list
+				  // Optionally update the store with the new member
+				  // const store = getStore();
+				  // getActions().setStore({ members: [...store.members, data.member] });
 			  
 				  return true;
 				} catch (error) {
 				  console.error("Error adding member:", error);
-				  alert(`An error occurred while adding the new member: ${error.message}`);
-				  return false;
+				  throw error; // Re-throw the error to be handled by the component
 				}
 			  },
 			  
+			  			  
+
 			getMembers: () => {
 				fetch(process.env.BACKEND_URL + "/api/members")
 					.then((response) => response.json())

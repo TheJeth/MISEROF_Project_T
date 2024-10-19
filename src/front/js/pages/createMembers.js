@@ -70,8 +70,8 @@ export const CreateMembers = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const result = await actions.addMembers({ ...formData, picture });
-      if (result) {
+      try {
+        await actions.addMembers({ ...formData, picture });
         setFormData({
           first_name: "",
           last_name: "",
@@ -82,6 +82,8 @@ export const CreateMembers = () => {
         setPicture(null);
         setPreviewURL("");
         alert("Member added successfully!");
+      } catch (error) {
+        alert(`Failed to add member: ${error.message}`);
       }
     }
   };
