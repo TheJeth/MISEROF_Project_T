@@ -12,7 +12,7 @@ import {
 } from "../store/validators";
 
 export const CreateMembers = () => {
-  const { actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -71,6 +71,9 @@ export const CreateMembers = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
+        if (typeof actions.addMembers !== 'function') {
+          throw new Error('actions.addMembers is not a function');
+        }
         await actions.addMembers({ ...formData, picture });
         setFormData({
           first_name: "",
@@ -83,6 +86,7 @@ export const CreateMembers = () => {
         setPreviewURL("");
         alert("Member added successfully!");
       } catch (error) {
+        console.error('Error in handleSubmit:', error);
         alert(`Failed to add member: ${error.message}`);
       }
     }
@@ -135,10 +139,3 @@ export const CreateMembers = () => {
     </div>
   );
 };
-
-
-
-
-
-
-
