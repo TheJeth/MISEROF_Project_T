@@ -44,7 +44,7 @@ export const Headquater = () => {
 								title={card.title}
 								text={card.text}
 							/>
-						</div>
+						</div>  
 					))}
 				</div>
 			
