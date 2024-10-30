@@ -14,11 +14,12 @@ export const Login = () => {
     const handleClick = async () => {
 
         let result = await actions.login(email, password)
-        if(result){
+        if(result==true || result.status == 200){
             navigate("/admin")
         }
         else{
-            alert("There was an error attempting to log in!")
+            const payload= await result.json()
+            alert(payload.message || "unknown error")
         }
      
     }

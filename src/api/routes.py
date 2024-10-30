@@ -48,9 +48,11 @@ def handle_login():
     email = body.get('email')
     password = body.get('password')
     if email is None or password is None:
+        print("Hello")
         raise APIException("Email and password are required", 400)
     user = User.query.filter_by(email=email).first()
     if user is None or user.password != password:
+        print("Goodbye!")
         raise APIException("Invalid email or password", 400)
     expires = datetime.timedelta(hours=1)
     access_token = create_access_token(identity=user.id, expires_delta=expires)

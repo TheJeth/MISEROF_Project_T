@@ -81,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (resp.status != 200) {
 						console.log(resp.status);
 
-						return false;
+						return resp;
 					}
 					const data = await resp.json();
 					console.log("This comes from backend", data);
