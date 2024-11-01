@@ -75,7 +75,7 @@ def sitemap():
 # any other endpoint will try to serve it like a static file
 
 @app.route('/admin', methods=['GET'])
-def serve_the_admin(path):
+def serve_the_admin():
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0  # avoid cache memory
     return response
