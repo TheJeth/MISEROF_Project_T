@@ -15,7 +15,7 @@ export const Login = () => {
 
         let result = await actions.login(email, password)
         if(result==true || result.status == 200){
-            navigate("/admin")
+            navigate("/administrator")
         }
         else{
             const payload= await result.json()

@@ -54,7 +54,7 @@ export const Navbar = () => {
 								<li><a class="dropdown-item" href="listActivities">Activities</a></li>
 								<li><a class="dropdown-item" href="listMembers">Members</a></li>
 								<li>{sessionStorage.getItem("token") ? <div className="logged-in d-flex">
-									<Link to="/admin"><button className="btn btn-primary btn-animated3" onClick={""}>Admin</button></Link>
+									<Link to="/administator"><button className="btn btn-primary btn-animated3" onClick={""}>Admin</button></Link>
 									<button className="btn btn-primary btn-animated3" onClick={handleLogout}>Logout</button>
 
 								</div>
