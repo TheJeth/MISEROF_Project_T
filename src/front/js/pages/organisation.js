@@ -9,11 +9,11 @@ export const Organisation = () => {
 
 	return (
 
-		<div class="org-container-fluid org-container text-center h-auto w-100">
+		<div className="org-container-fluid org-container text-center h-auto w-100">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
-			<div ClassName="text-center  french-english h-100">
+			<div className="text-center  french-english h-100">
 				<h3 className="row org-row"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h3>
-				<p class="text ">
+				<p className="text ">
 					<div className="englishVersion">
 						<h4 className="org-h4"><b>EVANGELICAL MISSION</b></h4>
 						<br />
@@ -48,15 +48,15 @@ export const Organisation = () => {
 					</div>
 				</p>
 				<div className="text d-flex">
-					<Link to="/" class="btn btn-success btn1">
+					<Link to="/" className="btn btn-success btn1">
 						Back»»»
 					</Link>
 
-					<Link to="/organisation1" class="btn btn-success btn2">
+					<Link to="/organisation1" className="btn btn-success btn2">
 						Read more about the organisation»»»
 					</Link>
 
-					<Link to="/headquater" class="btn btn-success btn3" >
+					<Link to="/headquater" className="btn btn-success btn3" >
 						Headquater members here»»»
 					</Link>
 				</div>

@@ -78,7 +78,7 @@ export const Activities = () => {
                                                 <input value={responsible} onChange={(e) => setResponsible(e.target.value)} type="textArea" width="300px" height="450px" className="form-control col" id="formGroupExampleInput2" placeholder="Enter who is responsible of the activity here"></input>
                                         </div>
 
-                                        <div classNameName="button">
+                                        <div className="button">
                                                 <button type="button" className="btn btn-primary" onClick={(e) => {
                                                         let formattedStartDate = new Date(startDate);
                                                         let formattedEnDate = new Date(endDate);

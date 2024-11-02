@@ -72,7 +72,7 @@ export const Profile = () => {
                                                 }} />
                                 </div>
                                 <div className="jumbotron justify-content-center text-end mx-auto col" style={{ width: "450px" }}>
-                                        <div class="form-group row" >
+                                        <div className="form-group row" >
                                         </div>
                                         <div className="mb-3 row" >
                                                 <p htmlFor="formGroupExampleInput2" className="col-3 ps-0"><b>First Name:</b></p>
@@ -94,7 +94,7 @@ export const Profile = () => {
                                                 <input value={user.tel} onChange={(e) => setUser({ tel: e.target.value })} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="Enter your Telephone here"></input>
                                         </div>
 
-                                        <div classNameName="button">
+                                        <div className="button">
                                                 <Link to={"/"} type="button" className="btn btn-primary" onClick={() => actions.updateProfile(first_name, last_name, email, picture, id)}>Update Profile </Link>
                                                 <Link type="button" to={"/admin"} className="btn btn-primary  justify-content-center">Back to Admin page</Link>
                                                 <Link type="button" to={"/"} className="btn btn-primary  justify-content-center">Cancel</Link>

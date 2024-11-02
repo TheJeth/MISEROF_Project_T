@@ -20,47 +20,47 @@ export const Navbar = () => {
 
 	return (
 
-		<nav class="navbar navbar-expand-lg bg-body-tertiary nav-custom" >
+		<nav className="navbar navbar-expand-lg bg-body-tertiary nav-custom" >
 
-			<div class="container">
+			<div className="container">
 				<Link to="/">
 					<img
 						src="https://res.cloudinary.com/dkwnepcnk/image/upload/v1724681985/Miserof_logo_vrahdp.jpg"
 						className="" height="50px" width="auto" alt="The logo" />
 
 				</Link>
-				<button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-					{/* <span class="navbar-toggler-icon text-black"></span> */}
-					<i class="fa-solid fa-bars text-black"></i>
+				<button className="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					{/* <span className="navbar-toggler-icon text-black"></span> */}
+					<i className="fa-solid fa-bars text-black"></i>
 				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav ms-auto">
+				<div className="collapse navbar-collapse" id="navbarNav">
+					<ul className="navbar-nav ms-auto">
 
-						<li class="nav-item ">
-							<Link class="nav-link active" aria-current="page" to="/organisation">About us</Link>
+						<li className="nav-item ">
+							<Link className="nav-link active" aria-current="page" to="/organisation">About us</Link>
 						</li>
-						<li class="nav-item">
-							<Link class="nav-link" to="/PastEvent">Past events</Link>
+						<li className="nav-item">
+							<Link className="nav-link" to="/PastEvent">Past events</Link>
 
 						</li>
 
-						<div class="dropdown me-5">
-							<a class="btn text-white borner-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<div className="dropdown me-5">
+							<a className="btn text-white borner-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								More
 							</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="testimonies">Post Testimony</a></li>
-								<li><a class="dropdown-item" href="listTestimonies">Testimonies posted</a></li>
-								<li><a class="dropdown-item" href="listActivities">Activities</a></li>
-								<li><a class="dropdown-item" href="listMembers">Members</a></li>
+							<ul className="dropdown-menu">
+								<li><a className="dropdown-item" href="testimonies">Post Testimony</a></li>
+								<li><a className="dropdown-item" href="listTestimonies">Testimonies posted</a></li>
+								<li><a className="dropdown-item" href="listActivities">Activities</a></li>
+								<li><a className="dropdown-item" href="listMembers">Members</a></li>
 								<li>{sessionStorage.getItem("token") ? <div className="logged-in d-flex">
-									<Link to="/administator"><button className="btn btn-primary btn-animated3" onClick={""}>Admin</button></Link>
+									<Link to="/administator"><button className="btn btn-primary btn-animated3">Admin</button></Link>
 									<button className="btn btn-primary btn-animated3" onClick={handleLogout}>Logout</button>
 
 								</div>
 									: (
-										<li class="nav-item ">
-											<Link to="/login" className="text-decoration-none text-black"><a class="dropdown-item" href="#">Admin Login</a></Link>
+										<li className="nav-item ">
+											<Link to="/login" className="text-decoration-none text-black"><a className="dropdown-item" href="#">Admin Login</a></Link>
 										</li>
 
 

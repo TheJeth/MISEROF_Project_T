@@ -74,7 +74,7 @@ export const Members = () => {
                                                 <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" className="form-control col" id="formGroupExampleInput2" placeholder="A Short description of the member here"></input>
                                         </div>
 
-                                        <div classNameName="button">
+                                        <div className="button">
                                                 <button className="btn btn-primary" onClick={() => actions.addMembers(first_name, last_name, email, tel,description, picture)}>Create Members </button>
                                                 <Link type="button" to={"/admin"} className="btn btn-primary  justify-content-center">Back to Admin page</Link>
                                                 <Link type="button" to={"/"} className="btn btn-primary  justify-content-center">Cancel</Link>

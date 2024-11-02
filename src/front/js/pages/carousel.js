@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 export const Carousel = () => {
     return (
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" >
-            <div class="carousel-inner ">
-                <div class="carousel-item active" data-bs-interval="30000">
+        <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel" >
+            <div className="carousel-inner ">
+                <div className="carousel-item active" data-bs-interval="30000">
                     <div className="card-body home-card-body h-100 carousel-backgound background1">
                         <h1 className="home-h1 card-title"><b>MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</b></h1>
                         <div className="card-text home">
@@ -28,7 +28,7 @@ export const Carousel = () => {
                     </div>
 
                 </div>
-                <div class="carousel-item" data-bs-interval="40000" >
+                <div className="carousel-item" data-bs-interval="40000" >
                     <div className="card-body home-card-body h-100 background2">
                         <h1 className="home-h1 card-title"><b>MISEROF - Great Team</b></h1>
                         <div className="card-text home">
@@ -46,7 +46,7 @@ export const Carousel = () => {
                     </div>
                 </div>
 
-                <div class="carousel-item" data-bs-interval="40000">
+                <div className="carousel-item" data-bs-interval="40000">
                     <div className="card-body home-card-body h-100 background3">
                         <h1 className="home-h1 card-title"><b>Past events</b></h1>
                         <div className="card-text home">
@@ -65,7 +65,7 @@ export const Carousel = () => {
                     </div>
                 </div>    
 
-                 <div class="carousel-item" data-bs-interval="40000">
+                 <div className="carousel-item" data-bs-interval="40000">
                     <div className="card-body home-card-body h-100 background4">
                         <h1 className="home-h1 card-title"><b>LET'S THE WORLD KNOW</b></h1>
                         <div className="card-text home">
@@ -85,13 +85,13 @@ export const Carousel = () => {
                  </div>
             </div>
         
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Next</span>
             </button>
         </div>
 

@@ -64,7 +64,7 @@ export const Testimonies = () => {
                     </div>
 
 
-                    <div classNameName="button">
+                    <div className="button">
                         <button type="button" className="btn btn-success" onClick={handleSubmit}>Post </button>
                         <Link type="button" to={"/"} className="btn btn-success justify-content-right">Go to Home page</Link>
                     </div>

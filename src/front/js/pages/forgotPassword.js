@@ -35,20 +35,20 @@ export const ForgotPassword = () => {
         <p> {message} </p>
         {showInput ? (
           <div>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label ">
+            <div className="mb-3">
+              <label for="exampleInputEmail1" className="form-label ">
                 Email address:
               </label>
               <input
                 type="email"
-                class="form-control  mx-auto"
+                className="form-control  mx-auto"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" className="btn btn-primary">
               Submit
             </button>
           </div>

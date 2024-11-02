@@ -84,7 +84,7 @@ export const PastEvent = () => {
 
 				<div className="row col-btn">
 					<div className="col">
-						<Link to="/pastEvent1" class="btn btn-success btn1">
+						<Link to="/pastEvent1" className="btn btn-success btn1">
 							Next»»»
 						</Link>
 					</div>

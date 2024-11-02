@@ -47,7 +47,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 				const data = await resp.json();
-				console.log("This comes from backend", data);
 				return true;
 			},
 
@@ -84,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return resp;
 					}
 					const data = await resp.json();
-					console.log("This comes from backend", data);
+					
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token });
 					return true;
@@ -144,7 +143,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 					const data = await resp.json();
-					console.log("This comes from backend", data);
+					
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token, user: data.user });
 					alert("Activity successfully created!");
@@ -231,7 +230,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 					const data = await resp.json();
-					console.log("This comes from backend", data);
+					
 					alert("Thank you for posting your testimony");
 					return true;
 				} catch (error) {
@@ -277,7 +276,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 					const data = await resp.json();
-					console.log("This comes from backend", data);
+					
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token, user: data.user });
 					return true;
@@ -312,7 +311,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 					const data = await resp.json();
-					console.log("This comes from backend", data);
+					
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token, user: data.user });
 					return true;
@@ -357,7 +356,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 				const respBody = await resp.json();
-				console.log("This comes from backend", respBody);
 				sessionStorage.setItem("token", respBody.access_token);
 				setStore({ token: respBody.access_token, user: respBody.user });
 				alert("Past event added successfully");

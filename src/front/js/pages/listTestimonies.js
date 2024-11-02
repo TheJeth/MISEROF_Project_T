@@ -72,7 +72,7 @@ export const ListTestimonies = () => {
                                                 type="button"
                                                 className="btn btn-success  justify-content-center"
                                         >
-                                                <i class="fa-solid fa-print"></i>
+                                                <i className="fa-solid fa-print"></i>
                                         </button>
                                         <Link
                                                 type="button"

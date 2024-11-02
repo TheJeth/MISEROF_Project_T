@@ -9,10 +9,10 @@ export const Organisation1 = () => {
 
 	return (
 
-		<div class="org-container-fluid h-100">
+		<div className="org-container-fluid h-100">
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
-			<h3 class="row"><b><center className="text-center">MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</center></b></h3>
-			<p class="text">
+			<h3 className="row"><b><center className="text-center">MISEROF - EVANGELICAL SOCIAL MISSION THE ROCK OF FAITH</center></b></h3>
+			<p className="text">
 				<div className="englishVersion">
 					<h4 className="area"><b>AREA OF DEVELOPMENT</b></h4>
 					<br />
@@ -32,11 +32,11 @@ export const Organisation1 = () => {
 				</div>	
 			
 		
-				<Link to="/organisation" class="btn btn-success">
+				<Link to="/organisation" className="btn btn-success">
 					Back to the organisation»»»
 				</Link>
 
-				<Link to="/headquater" class="btn btn-success">
+				<Link to="/headquater" className="btn btn-success">
 					Headquater members here»»»
 				</Link>
 			</p>

@@ -52,17 +52,17 @@ export const ListMembers = () => {
 
                                                         <td>
                                                                 <a className="btn-pict" type="button" data-bs-toggle="modal" data-bs-target={"#memberModal" + index}>
-                                                                        <h3 className="la-h3"><b><img class="object-fit-fill border rounded" alt="..." width="100px" height="100px" src={member.picture} /></b></h3>
+                                                                        <h3 className="la-h3"><b><img className="object-fit-fill border rounded" alt="..." width="100px" height="100px" src={member.picture} /></b></h3>
                                                                 </a>
                                                         </td>
-                                                        <div class="modal fade" id={"memberModal" + index} tabindex="-1" aria-labelledby={"memberModalLabel" + index} aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                        <div class="modal-content">
-                                                                                <div class="modal-header">
+                                                        <div className="modal fade" id={"memberModal" + index} tabindex="-1" aria-labelledby={"memberModalLabel" + index} aria-hidden="true">
+                                                                <div className="modal-dialog">
+                                                                        <div className="modal-content">
+                                                                                <div className="modal-header">
 
-                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                                 </div>
-                                                                                <div class="modal-body">
+                                                                                <div className="modal-body">
                                                                                         <MemberCard member={member} />
                                                                                 </div>
 

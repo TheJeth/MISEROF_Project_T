@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/profile.css";
@@ -28,6 +28,12 @@ export const Admin = () => {
      
     }
 
+    useEffect(()=>{
+        if(!store.token){
+            navigate("/login")
+        }
+    }, [store.token])
+
     return (
 
         <div className="form h-100" >
@@ -39,7 +45,7 @@ export const Admin = () => {
                 <div className="col-2 mx-auto">
                     <img height="150px" width="80%" className="rounded-circle" src="https://i.ibb.co/1qXfdp0/user.png" />
                 </div>
-                <div classNameName="row">
+                <div className="row">
                         <div className ="col mb-3">                   
                             <Link to={"/addpastevent"} type="button" className="btn btn-success" onClick={() => actions.addEvents(description, date, picture)}>Add Past Event </Link>
                             <Link to={"/createMembers"} type="button" className="btn btn-success">Create Members</Link>

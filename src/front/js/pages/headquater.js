@@ -32,7 +32,7 @@ export const Headquater = () => {
 		<div className={(w == 768 && h == 1024 ? "h-100 " : "h-auto ") + "w-100 " + "board"} >
 			<img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
 
-			<h3 class="row"><b><center className="text-board">MISEROF - The board </center></b></h3>
+			<h3 className="row"><b><center className="text-board">MISEROF - The board </center></b></h3>
 
 
 			<div className="d-board justify-content-center  hq-bck" >
@@ -48,7 +48,7 @@ export const Headquater = () => {
 					))}
 				</div>
 			
-				<Link to="/organisation1" class="btn btn-success hq-btn w-auto">
+				<Link to="/organisation1" className="btn btn-success hq-btn w-auto">
 					Back»»»
 				</Link>
 			</div>
