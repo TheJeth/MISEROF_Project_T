@@ -85,7 +85,7 @@ export const Activities = () => {
                                                         actions.createActivities(description, formattedStartDate, formattedEnDate, responsible)
                                                 }}>Create Activities </button>
 
-                                                <Link type="button" to={"/admin"} className="btn btn-primary  justify-content-center">Back to Admin</Link>
+                                                <Link type="button" to={"/administrator"} className="btn btn-primary  justify-content-center">Back to Admin</Link>
                                                 
                                                 <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>
                                         </div>

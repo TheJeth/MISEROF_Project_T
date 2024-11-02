@@ -122,11 +122,11 @@ export const CreateMembers = () => {
           <div className="col">
             <button type="submit" className="btn btn-success">Create Member</button>
           </div>
-          <div className="col">
-            <Link to="/admin" className="btn btn-secondary">Back to Admin page</Link>
+          <div className="col">  
+            <Link to="/administrator" className="btn btn-success">Back to Admin page</Link>
           </div>
           <div className="col">
-            <Link to="/" className="btn btn-danger">Cancel</Link>
+            <Link to="/" className="btn btn-success">Cancel</Link>
           </div>
         </div>
       </form>
