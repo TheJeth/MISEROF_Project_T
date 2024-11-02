@@ -88,9 +88,10 @@ export const ValidateImages = (uploadedImages, setInvalidItems) => {
     setInvalidItems((prevInvalidItems) => [...prevInvalidItems, "images"]);
     return false;
   }
-  setInvalidItems((prevInvalidItems) =>
+ /* setInvalidItems((prevInvalidItems) =>
     prevInvalidItems.filter((item) => item !== "images")
   );
+  */
   return true;
 };
 

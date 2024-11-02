@@ -55,7 +55,7 @@ export const CreateMembers = () => {
     }
   };
 
-  const validateForm = () => {
+  /*const validateForm = () => {
     const newInvalidItems = [];
     if (!ValidateFirstName(formData.first_name)) newInvalidItems.push("firstName");
     if (!ValidateLastName(formData.last_name)) newInvalidItems.push("lastName");
@@ -66,10 +66,17 @@ export const CreateMembers = () => {
     setInvalidItems(newInvalidItems);
     return newInvalidItems.length === 0;
   };
-
+*/
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    let isEmailValid = ValidateEmail(formData.email,setInvalidItems)
+    let isFirstNameValid = ValidateFirstName(formData.first_name,setInvalidItems)
+    let isLastNameValid = ValidateLastName(formData.last_name,setInvalidItems)
+    let isPhoneValid = ValidatePhone(formData.tel,setInvalidItems)
+    let isTextAreaValid = ValidateTextArea(formData.description,setInvalidItems)
+    let isPictureValid = ValidateImages(formData.picture,setInvalidItems)
+    if(isEmailValid && isFirstNameValid && isLastNameValid && isPhoneValid && isTextAreaValid && isPictureValid){
+
       const result = await actions.addMembers({ ...formData, picture });
       if (result) {
         setFormData({
@@ -83,53 +90,61 @@ export const CreateMembers = () => {
         setPreviewURL("");
         alert("Member added successfully!");
       }
+
     }
+    
+      
+    
   };
 
   return (
-    <div className="form h-auto">
-      <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" alt="banner" />
-      <h1 className="text-center">Register Members</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="pictureInput" className="form-label">Select Picture</label>
-          <input
-            id="pictureInput"
-            type="file"
-            className="form-control"
-            accept="image/*"
-            onChange={handleImageUpload}
-          />
-          {previewURL && <img src={previewURL} alt="Preview" className="mt-2 rounded-circle" style={{ maxHeight: "200px" }} />}
-          {invalidItems.includes("images") && <div className="text-danger">Please submit a picture for this member</div>}
-        </div>
-        {Object.entries(formData).map(([key, value]) => (
-          <div className="mb-3" key={key}>
-            <label htmlFor={key} className="form-label">{key.replace('_', ' ').charAt(0).toUpperCase() + key.slice(1)}</label>
+
+    <><img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" alt="banner" />
+    
+    <div className="container w-50 border shadow my-5">
+
+      <div className="form h-100">
+
+        <h1 className="text-center adminTitle">Register Members</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="pictureInput" className="form-label">Select Picture</label>
             <input
-              type={key === "email" ? "email" : key === "tel" ? "tel" : "text"}
+              id="pictureInput"
+              type="file"
               className="form-control"
-              id={key}
-              name={key}
-              value={value}
-              onChange={handleInputChange}
-              required
-            />
-            {invalidItems.includes(key) && <div className="text-danger">Please enter a valid value</div>}
+              accept="image/*"
+              onChange={handleImageUpload} />
+            {previewURL && <img src={previewURL} alt="Preview" className="mt-2 rounded-circle" style={{ maxHeight: "200px" }} />}
+            {invalidItems.includes("images") && <div className="text-danger">Please submit a picture for this member</div>}
           </div>
-        ))}
-        <div className="row">
-          <div className="col">
-            <button type="submit" className="btn btn-success">Create Member</button>
+          {Object.entries(formData).map(([key, value]) => (
+            <div className="mb-3" key={key}>
+              <label htmlFor={key} className="form-label">{key.replace('_', ' ').charAt(0).toUpperCase() + key.slice(1)}</label>
+              <input
+                type={key === "email" ? "email" : key === "tel" ? "tel" : "text"}
+                className="form-control"
+                id={key}
+                name={key}
+                value={value}
+                onChange={handleInputChange}
+                required />
+              {invalidItems.includes(key) && <div className="text-danger">Please enter a valid value</div>}
+            </div>
+          ))}
+          <div className="row">
+            <div className="col">
+              <button type="submit" className="btn btn-success">Create Member</button>
+            </div>
+            <div className="col">
+              <Link to="/administrator" className="btn btn-success">Back to Admin page</Link>
+            </div>
+            <div className="col">
+              <Link to="/" className="btn btn-success">Cancel</Link>
+            </div>
           </div>
-          <div className="col">  
-            <Link to="/administrator" className="btn btn-success">Back to Admin page</Link>
-          </div>
-          <div className="col">
-            <Link to="/" className="btn btn-success">Cancel</Link>
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </div></>
   );
 };
