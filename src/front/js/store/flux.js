@@ -162,14 +162,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 
-			addMembers: async (getStore, getActions, { first_name, last_name, email, tel, description, picture }) => {
+			addMembers: async (getStore, getActions, memberData) => {
 				try {
+					const { first_name, last_name, email, tel, description, picture } = memberData;
+					
 					const formData = new FormData();
-					formData.append("data", JSON.stringify({ first_name, last_name, email, tel, description }));
+					formData.append("first_name", first_name);
+					formData.append("last_name", last_name);
+					formData.append("email", email);
+					formData.append("tel", tel);
+					formData.append("description", description);
+					
 					if (picture) {
-						formData.append("file", picture);
+						formData.append("picture", picture);
 					}
-
+			
 					const resp = await fetch(`${process.env.BACKEND_URL}/api/members`, {
 						method: "POST",
 						headers: {
@@ -177,18 +184,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: formData,
 					});
-
+			
 					if (!resp.ok) {
 						const errorData = await resp.json();
 						throw new Error(errorData.msg || "Failed to add member");
 					}
-
+			
 					const data = await resp.json();
 					console.log("Response from backend:", data);
-
+			
 					// Update the store if necessary
 					// getActions().fetchMembers(); // Assuming you have an action to fetch updated members list
-
+			
 					return true;
 				} catch (error) {
 					console.error("Error adding member:", error);

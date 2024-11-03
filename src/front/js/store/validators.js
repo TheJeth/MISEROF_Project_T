@@ -37,11 +37,11 @@ export const ValidateFirstName = (first_name, setInvalidItems) => {
     first_name.length <= 2 ||
     first_name.length > 25
   ) {
-    setInvalidItems((prevInvalidItems) => [...prevInvalidItems, "firstName"]);
+    setInvalidItems((prevInvalidItems) => [...prevInvalidItems, "first_name"]);
     return false;
   }
   setInvalidItems((prevInvalidItems) =>
-    prevInvalidItems.filter((item) => item !== "firstName")
+    prevInvalidItems.filter((item) => item !== "first_name")
   );
   return true;
 };
@@ -83,15 +83,11 @@ export const ValidateAddress = (address, setInvalidItems) => {
   return true;
 };
 
-export const ValidateImages = (uploadedImages, setInvalidItems) => {
-  if (uploadedImages.length === 0) {
+export const ValidateImages = (uploadedImage, setInvalidItems) => {
+  if (!uploadedImage) {
     setInvalidItems((prevInvalidItems) => [...prevInvalidItems, "images"]);
     return false;
   }
- /* setInvalidItems((prevInvalidItems) =>
-    prevInvalidItems.filter((item) => item !== "images")
-  );
-  */
   return true;
 };
 
