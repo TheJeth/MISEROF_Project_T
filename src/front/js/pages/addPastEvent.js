@@ -65,7 +65,7 @@ export const AddPastEvent = () => {
 
                                 <div className="button">
                                         <button className="btn btn-primary" onClick={() => actions.addEvents(description, date, picture)}>Add a past event </button>
-                                        <Link type="button" to={"/admin"} className="btn btn-primary  justify-content-center">Back to Admin page</Link>
+                                        <Link type="button" to={"/administrator"} className="btn btn-primary  justify-content-center">Back to Admin page</Link>
                                         <Link type="button" to={"/"} className="btn btn-primary  justify-content-center">Cancel</Link>
                                         <Link type="button" to={"/"} className="btn btn-primary justify-content-right">Go to Home page</Link>
                                 </div>

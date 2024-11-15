@@ -83,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return resp;
 					}
 					const data = await resp.json();
-					
+
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token });
 					return true;
@@ -143,7 +143,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 					const data = await resp.json();
-					
+
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token, user: data.user });
 					alert("Activity successfully created!");
@@ -162,21 +162,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 
+			/*
 			addMembers: async (getStore, getActions, memberData) => {
 				try {
-					const { first_name, last_name, email, tel, description, picture } = memberData;
-					
 					const formData = new FormData();
-					formData.append("first_name", first_name);
-					formData.append("last_name", last_name);
-					formData.append("email", email);
-					formData.append("tel", tel);
-					formData.append("description", description);
-					
-					if (picture) {
-						formData.append("picture", picture);
+					formData.append("data", JSON.stringify({
+						first_name: memberData.first_name,
+						last_name: memberData.last_name,
+						email: memberData.email,
+						tel: memberData.tel,
+						description: memberData.description
+					}));
+
+					if (memberData.picture) {
+						formData.append("file", memberData.picture);
 					}
-			
+
 					const resp = await fetch(`${process.env.BACKEND_URL}/api/members`, {
 						method: "POST",
 						headers: {
@@ -184,23 +185,118 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: formData,
 					});
-			
+
 					if (!resp.ok) {
 						const errorData = await resp.json();
 						throw new Error(errorData.msg || "Failed to add member");
 					}
-			
+
 					const data = await resp.json();
 					console.log("Response from backend:", data);
-			
-					// Update the store if necessary
-					// getActions().fetchMembers(); // Assuming you have an action to fetch updated members list
-			
+
+					// Optionally update the store with the new member
+					// const store = getStore();
+					// getActions().setStore({ members: [...store.members, data.member] });
+
 					return true;
 				} catch (error) {
 					console.error("Error adding member:", error);
-					alert(`An error occurred while adding the new member: ${error.message}`);
-					return false;
+					throw error; // Re-throw the error to be handled by the component
+				}
+			},
+
+				*/
+
+			/*
+				addMembers: async (first_name,last_name,email,tel,description,picture) => {
+				
+					const opts = {
+						method: "POST",
+	
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: "Bearer " + sessionStorage.getItem("token")
+						},
+						body: JSON.stringify({
+							first_name: first_name,
+								last_name: last_name,
+								email: email,
+								tel: tel,
+								description: description,
+								picture: picture
+						}),
+	
+					};	
+
+					try {
+						const resp = await fetch(
+							process.env.BACKEND_URL + "/api/members",
+							opts
+						);
+						if (resp.status != 200) {
+							console.log(resp.status);
+	
+							return false;
+						}
+						const data = await resp.json();
+	
+						sessionStorage.setItem("token", data.access_token);
+						setStore({ token: data.access_token, user: data.user });
+						alert("Member successfully added!");
+						return true;
+					} catch (error) {
+						console.log("There was error !!!", error);
+					}
+				},
+*/
+
+			addMembers: async (memberData) => {
+				try {
+					const formData = new FormData();
+
+					// Add the text data as JSON string
+					const jsonData = {
+						first_name: memberData.first_name,
+						last_name: memberData.last_name,
+						email: memberData.email,
+						tel: memberData.tel,
+						description: memberData.description
+					};
+					formData.append("data", JSON.stringify(jsonData));
+
+					// If picture is a base64 string, convert it to a file
+					if (memberData.picture && memberData.picture.startsWith('data:image')) {
+						// Convert base64 to blob
+						const response = await fetch(memberData.picture);
+						const blob = await response.blob();
+						const file = new File([blob], "profile.jpg", { type: "image/jpeg" });
+						formData.append("file", file);
+					}
+
+					const resp = await fetch(`${process.env.BACKEND_URL}/api/members`, {
+						method: "POST",
+						headers: {
+							Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+						},
+						body: formData,
+					});
+
+					if (!resp.ok) {
+						const errorData = await resp.json();
+						throw new Error(errorData.msg || "Failed to add member");
+					}
+
+					const data = await resp.json();
+					console.log("Response from backend:", data);
+
+					// Update store with new member
+					const store = getStore();
+					setStore({ members: [...store.members, data.member] });
+
+					return true;
+				} catch (error) {
+					console.error("Error adding member:", error);
+					throw error;
 				}
 			},
 
@@ -237,7 +333,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 					const data = await resp.json();
-					
+
 					alert("Thank you for posting your testimony");
 					return true;
 				} catch (error) {
@@ -283,7 +379,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 					const data = await resp.json();
-					
+
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token, user: data.user });
 					return true;
@@ -318,7 +414,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 					const data = await resp.json();
-					
+
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token, user: data.user });
 					return true;

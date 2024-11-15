@@ -13,18 +13,15 @@ import {
 
 export const CreateMembers = () => {
   const { actions } = useContext(Context);
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    tel: "",
-    description: "",
-  });
-
-  
+  const [first_name, setFirst_name] = useState("");
+  const [last_name, setLast_name] = useState("");
+  const [email, setEmail] = useState("");
+  const [tel, setTel] = useState("");
+  const [description, setDescription] = useState("");
   const [picture, setPicture] = useState(null);
-  const [invalidItems, setInvalidItems] = useState([]);
   const [previewURL, setPreviewURL] = useState(null);
+  const [invalidItems, setInvalidItems] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,13 +34,6 @@ export const CreateMembers = () => {
     authenticate();
   }, [actions, navigate]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value
-    }));
-  };
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file && file.size <= 100000) {
@@ -54,24 +44,25 @@ export const CreateMembers = () => {
     }
   };
 
+  /*
   const handleSubmit = async (e) => {
     e.preventDefault();
     setInvalidItems([]); // Reset invalid items
-  
+
     // Validate all fields
-    const isFirstNameValid = ValidateFirstName(firstName, setInvalidItems);
-    const isLastNameValid = ValidateLastName(lastName, setInvalidItems);
+    const isfirst_nameValid = ValidateFirstName(first_name, setInvalidItems);
+    const islast_nameValid = ValidateLastName(last_name, setInvalidItems);
     const isEmailValid = ValidateEmail(email, setInvalidItems);
-    const isPhoneValid = ValidatePhone(phone, setInvalidItems);
+    const istelValid = ValidatePhone(tel, setInvalidItems);
     const isDescriptionValid = ValidateTextArea(description, setInvalidItems);
     const isPictureValid = ValidateImages(picture, setInvalidItems);
-  
-    if (isFirstNameValid && 
-        isLastNameValid && 
-        isEmailValid && 
-        isPhoneValid && 
-        isDescriptionValid && 
-        isPictureValid) {
+
+    if (isfirst_nameValid &&
+      islast_nameValid &&
+      isEmailValid &&
+      istelValid &&
+      isDescriptionValid &&
+      isPictureValid) {
       try {
         // Convert picture to base64 if it exists
         let pictureBase64 = null;
@@ -82,22 +73,22 @@ export const CreateMembers = () => {
             reader.readAsDataURL(picture);
           });
         }
-  
+
         const result = await actions.addMembers({
-          first_name: firstName,
-          last_name: lastName,
+          first_name: first_name,
+          last_name: last_name,
           email: email,
-          tel: phone,
+          tel: tel,
           description: description,
           picture: pictureBase64
         });
-        
+
         if (result) {
           // Reset all fields
-          setFirstName("");
-          setLastName("");
+          setFirst_name("");
+          setLast_name("");
           setEmail("");
-          setPhone("");
+          setTel("");
           setDescription("");
           setPicture(null);
           setPreviewURL(null);
@@ -105,17 +96,80 @@ export const CreateMembers = () => {
           alert("Member added successfully!");
         } else {
           throw new Error("Failed to add member");
-        }
+        } 
       } catch (error) {
         console.error("Error adding member:", error);
-        alert(error.message || "Failed to add member. Please try again.");
+        alert(error.message || "Failed to add member. Please try again.");  
       }
     } else {
       alert("Please correct the invalid fields before submitting.");
     }
   };
 
-  useEffect(() => {
+  */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setInvalidItems([]); // Reset invalid items
+
+    // Validate all fields
+    const isfirst_nameValid = ValidateFirstName(first_name, setInvalidItems);
+    const islast_nameValid = ValidateLastName(last_name, setInvalidItems);
+    const isEmailValid = ValidateEmail(email, setInvalidItems);
+    const istelValid = ValidatePhone(tel, setInvalidItems);
+    const isDescriptionValid = ValidateTextArea(description, setInvalidItems);
+    const isPictureValid = ValidateImages(picture, setInvalidItems);
+
+    if (isfirst_nameValid &&
+        islast_nameValid &&
+        isEmailValid &&
+        istelValid &&
+        isDescriptionValid &&
+        isPictureValid) {
+        try {
+            // Convert picture to base64 if it exists
+            let pictureBase64 = null;
+            if (picture) {
+                const reader = new FileReader();
+                pictureBase64 = await new Promise((resolve) => {
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.readAsDataURL(picture);
+                });
+            }
+
+            const memberData = {
+                first_name,
+                last_name,
+                email,
+                tel,
+                description,
+                picture: pictureBase64
+            };
+
+            const result = await actions.addMembers(memberData);
+
+            if (result) {
+                // Reset all fields
+                setFirst_name("");
+                setLast_name("");
+                setEmail("");
+                setTel("");
+                setDescription("");
+                setPicture(null);
+                setPreviewURL(null);
+                setInvalidItems([]);
+                alert("Member added successfully!");
+            }
+        } catch (error) {
+            console.error("Error adding member:", error);
+            alert(error.message || "Failed to add member. Please try again.");
+        }
+    } else {
+        alert("Please correct the invalid fields before submitting.");
+    }
+};
+
+
+  useEffect(() => {     
     return () => {
       if (previewURL) {
         URL.revokeObjectURL(previewURL);
@@ -157,8 +211,8 @@ export const CreateMembers = () => {
                 className="form-control"
                 id="first_name"
                 name="first_name"
-                value={formData.first_name}
-                onChange={handleInputChange}
+                value={first_name}
+                onChange={(e) => setFirst_name(e.target.value)}
                 required
               />
               {invalidItems.includes("first_name") && <div className="text-danger">Please enter a valid first name</div>}
@@ -171,8 +225,8 @@ export const CreateMembers = () => {
                 className="form-control"
                 id="last_name"
                 name="last_name"
-                value={formData.last_name}
-                onChange={handleInputChange}
+                value={last_name}
+                onChange={(e) => setLast_name(e.target.value)}
                 required
               />
               {invalidItems.includes("last_name") && <div className="text-danger">Please enter a valid last name</div>}
@@ -185,25 +239,25 @@ export const CreateMembers = () => {
                 className="form-control"
                 id="email"
                 name="email"
-                value={formData.email}
-                onChange={handleInputChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               {invalidItems.includes("email") && <div className="text-danger">Please enter a valid email</div>}
             </div>
 
             <div className="mb-3">
-              <label htmlFor="tel" className="form-label">Phone</label>
+              <label htmlFor="tel" className="form-label">tel</label>
               <input
                 type="tel"
                 className="form-control"
                 id="tel"
                 name="tel"
-                value={formData.tel}
-                onChange={handleInputChange}
+                value={tel}
+                onChange={(e) => setTel(e.target.value)}
                 required
               />
-              {invalidItems.includes("tel") && <div className="text-danger">Please enter a valid phone number</div>}
+              {invalidItems.includes("tel") && <div className="text-danger">Please enter a valid tel number</div>}
             </div>
 
             <div className="mb-3">
@@ -212,8 +266,8 @@ export const CreateMembers = () => {
                 className="form-control"
                 id="description"
                 name="description"
-                value={formData.description}
-                onChange={handleInputChange}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 required
               />
               {invalidItems.includes("description") && <div className="text-danger">Please enter a valid description</div>}

@@ -9,7 +9,7 @@ from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 import json, datetime
 import cloudinary
-import cloudinary.uploader
+import cloudinary.uploader as uploader
 from threading import Thread
 from flask_mail import Message
 #from api.services.mail_service import send_async_email, send_email
@@ -102,40 +102,50 @@ def get_activities():
     }
     return jsonify(response_body), 200
 
+
 @api.route('/members', methods=['POST'])
 @jwt_required()
 def create_members():
     try:
-        raw_data = request.form.get("data")
-        if not raw_data:
+        # Retrieve the form data and file
+        data = request.form.get("data")
+        files = request.files.get("file")
+
+        if data is None:
             return jsonify({"msg": "No data provided"}), 400
 
-        body = json.loads(raw_data)
+        # Parse data as JSON
+        try:
+            data = json.loads(data)
+        except json.JSONDecodeError:
+            return jsonify({"msg": "Data is not valid JSON"}), 400
+
+        # Check for missing required fields
         required_fields = ['first_name', 'last_name', 'email', 'tel', 'description']
-        
-        for field in required_fields:
-            if field not in body or not body[field]:
-                return jsonify({"msg": f"{field} is required"}), 400
+        missing_fields = [field for field in required_fields if not data.get(field)]
+        if missing_fields:
+            return jsonify({"msg": f"Missing required fields: {', '.join(missing_fields)}"}), 400
 
-        picture = request.files.get("file")
-        if not picture:
-            return jsonify({"msg": "Picture is required"}), 400
-
-        check_member = Member.query.filter_by(email=body['email']).first()
+        # Check for an existing member with the same email
+        check_member = Member.query.filter_by(email=data.get('email')).first()
         if check_member:
             return jsonify({"msg": "Member with this email already exists"}), 409
 
-        cloudinary_response = upload(picture)
-        
+        # Handle the file if needed, e.g., save or process it
+        # Process picture field if provided in files (e.g., store or upload to a cloud service)
+        cloudinary_response = uploader.upload(files)  # Example for handling base64 pictures
+
+        # Create a new Member instance
         new_member = Member(
-            first_name=body['first_name'],
-            last_name=body['last_name'],
-            email=body['email'],
-            tel=body['tel'],
-            description=body['description'],
+            first_name=data.get('first_name'),
+            last_name=data.get('last_name'),
+            email=data.get('email'),
+            tel=data.get('tel'),
+            description=data.get('description'),
             picture=cloudinary_response["secure_url"]
         )
 
+        # Save to the database
         db.session.add(new_member)
         db.session.commit()
 
@@ -144,11 +154,10 @@ def create_members():
             "member": new_member.serialize()
         }), 201
 
-    except json.JSONDecodeError:
-        return jsonify({"msg": "Invalid JSON in data field"}), 400
     except Exception as e:
         db.session.rollback()
         return jsonify({"msg": f"An error occurred: {str(e)}"}), 500
+
 
 
 
