@@ -1,6 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 import datetime
 import enum
+
+from flask_security import UserMixin, RoleMixin
+
 
 
 
@@ -12,7 +16,7 @@ class MyEnum(enum.Enum):
     two = 2
     three = 3
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(250), unique=False, nullable=False)
     last_name = db.Column(db.String(80), unique=False, nullable=False)
@@ -22,6 +26,7 @@ class User(db.Model):
     picture = db.Column(db.String(250), unique=True, nullable=True)
     # levelAccess = db.Column(db.Enum(MyEnum))
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_admin = db.Column(db.Boolean(), unique=False, nullable=False, default=False)
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -36,6 +41,8 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, it's a security breach
         }
+ 
+
 
 
 #    def get_reset_token(self, expires_sec=1800):
@@ -115,3 +122,4 @@ class PastEvents(db.Model):
             "date": self.date,
             "picture": self.picture
         }
+    

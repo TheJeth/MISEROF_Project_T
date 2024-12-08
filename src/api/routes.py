@@ -42,8 +42,8 @@ def authenticate_user():
     response_body = {"msg": "Congrats, you are authenticated!"}
     return jsonify(response_body), 200
 
-@api.route('/login', methods=['POST'])
-def handle_login():
+@api.route('/token', methods=['POST'])
+def create_token():
     body = request.get_json(force=True)
     email = body.get('email')
     password = body.get('password')

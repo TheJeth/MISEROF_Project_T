@@ -74,7 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				try {
 					const resp = await fetch(
-						process.env.BACKEND_URL + "/api/login",
+						process.env.BACKEND_URL + "/api/token",
 						opts
 					);
 					if (resp.status != 200) {
