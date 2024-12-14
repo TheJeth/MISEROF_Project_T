@@ -24,9 +24,12 @@ export const ListActivities = () => {
                 actions.getActivities()
         }, [])
         return (
-                <div className="list listActivities h-100 text-center">
-                        <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
-
+                
+                <div className="list listActivities h-100 ">
+                        <div className="banner">
+                                 <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" />
+                        </div>        
+                        
                         <table>
                                 <th className="thActivities"><h3 className="la-h3"><b>Description</b></h3></th>
                                 <th className="thActivities"><h3 className="la-h3"><b> Date_start</b></h3></th>

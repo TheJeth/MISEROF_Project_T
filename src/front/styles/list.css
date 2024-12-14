@@ -14,7 +14,18 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: auto !important;
-    /* Adjust height as needed */
+    /* Adjust height as needed */  
+  }
+
+
+  .listActivities {
+    background-image: url("https://i.ibb.co/XJYnnbB/blue-sky-without.jpg");
+    /*Adjust the path */
+    font-size: large;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto !important;
+    /* Adjust height as needed */  
   }
 
   
@@ -157,16 +168,6 @@
     align-content: center;
   }
 
-
-  .listActivities{
-    background-image: url("https://i.ibb.co/XJYnnbB/blue-sky-without.jpg");
-    /*Adjust the path */
-    font-size: large;
-    background-repeat: no-repeat;
-    background-size: cover;
-    justify-content: center;
-    justify-items: center;
-  }
 
   .tb-button{
     margin-top: 2%;

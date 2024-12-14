@@ -31,6 +31,20 @@ def setup_commands(app):
             db.session.commit()
             print("User: ", user.email, " created.")
 
+
+            user = User()
+            user.first_name="Elena"
+            user.last_name="Pierre"
+            user.tel="7864323578"
+            user.email = "miserof27" + str(x) + "@gmail.com"
+            user.password = "Elena2024"
+            user.is_admin= True
+            user.is_active = True
+            db.session.add(user)
+            db.session.commit()
+            print("User: ", user.email, " created.")
+
+
         print("All test users created")
 
     @app.cli.command("insert-test-data")

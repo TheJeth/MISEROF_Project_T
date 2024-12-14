@@ -35,7 +35,7 @@ def setup_admin(app):
     app.secret_key = os.environ.get('FLASK_APP_KEY', 'sample key')
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
     app.config['LOGIN_DISABLED'] = False
-    # app.config['SERVER_NAME'] = 'crispy-disco-4j7p6qg6w9xj274x6-3001.app.github.dev'
+    #app.config['SERVER_NAME'] = 'crispy-disco-4j7p6qg6w9xj274x6-3001.app.github.dev'
     admin = Admin(app, name='4Geeks Admin', template_mode='bootstrap3', index_view=MyAdminIndexView())
 
     @app.route('/admin/login', methods=['GET', 'POST'])
@@ -50,15 +50,15 @@ def setup_admin(app):
 
             if user and user.password == password:  # Check if password matches
                 if user.is_admin:  # Check if the user has admin privileges
-                    login_user(user)  # Log the user in
+                  login_user(user)  # Log the user in
                     #return redirect(url_for('admin_dashboard'))  # Redirect to the admin dashboard
-                    return redirect(url_for('admin.index'))
-                else:
+                return redirect(url_for('admin.index'))
+            else:
                     flash('You do not have admin access.', 'danger')
                     return redirect(url_for('login'))  # Redirect to login if not an admin
-            else:
+        else:
                 flash(f'Invalid username or password', 'danger')
-                return redirect(url_for('login'))  # Redirect to login if authentication fails
+                #return redirect(url_for('login'))  # Redirect to login if authentication fails
            
         return render_template('login.html')
 

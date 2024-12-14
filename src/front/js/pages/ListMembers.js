@@ -24,7 +24,7 @@ export const ListMembers = () => {
         const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
         useEffect(() => {
-                actions.getMembers()
+                actions.getMembers()     
         }, [])
         return (
                 <div className="list listView">
