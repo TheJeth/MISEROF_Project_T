@@ -24,15 +24,26 @@ export const CreateMembers = () => {
 
   const navigate = useNavigate();
 
+  const token = sessionStorage.getItem("token")
+
   useEffect(() => {
+    /*
+    if (!token){
+      navigate("/login");
+    }
+    */
     const authenticate = async () => {
+      
       const authenticated = await actions.authenticate();
       if (!authenticated) {
-        navigate("/login");
+        console.log("Authenticating...",authenticated)
+      if (!token){
+          navigate("/login");
+        }
       }
     };
     authenticate();
-  }, [actions, navigate]);
+  },[]);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -44,69 +55,6 @@ export const CreateMembers = () => {
     }
   };
 
-  /*
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setInvalidItems([]); // Reset invalid items
-
-    // Validate all fields
-    const isfirst_nameValid = ValidateFirstName(first_name, setInvalidItems);
-    const islast_nameValid = ValidateLastName(last_name, setInvalidItems);
-    const isEmailValid = ValidateEmail(email, setInvalidItems);
-    const istelValid = ValidatePhone(tel, setInvalidItems);
-    const isDescriptionValid = ValidateTextArea(description, setInvalidItems);
-    const isPictureValid = ValidateImages(picture, setInvalidItems);
-
-    if (isfirst_nameValid &&
-      islast_nameValid &&
-      isEmailValid &&
-      istelValid &&
-      isDescriptionValid &&
-      isPictureValid) {
-      try {
-        // Convert picture to base64 if it exists
-        let pictureBase64 = null;
-        if (picture) {
-          const reader = new FileReader();
-          pictureBase64 = await new Promise((resolve) => {
-            reader.onloadend = () => resolve(reader.result);
-            reader.readAsDataURL(picture);
-          });
-        }
-
-        const result = await actions.addMembers({
-          first_name: first_name,
-          last_name: last_name,
-          email: email,
-          tel: tel,
-          description: description,
-          picture: pictureBase64
-        });
-
-        if (result) {
-          // Reset all fields
-          setFirst_name("");
-          setLast_name("");
-          setEmail("");
-          setTel("");
-          setDescription("");
-          setPicture(null);
-          setPreviewURL(null);
-          setInvalidItems([]);
-          alert("Member added successfully!");
-        } else {
-          throw new Error("Failed to add member");
-        } 
-      } catch (error) {
-        console.error("Error adding member:", error);
-        alert(error.message || "Failed to add member. Please try again.");  
-      }
-    } else {
-      alert("Please correct the invalid fields before submitting.");
-    }
-  };
-
-  */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setInvalidItems([]); // Reset invalid items
@@ -168,6 +116,61 @@ export const CreateMembers = () => {
     }
 };
 
+
+
+/*Claude Handlesubmit 
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setInvalidItems([]); // Reset invalid items
+
+  // Validate all fields
+  const isfirst_nameValid = ValidateFirstName(first_name, setInvalidItems);
+  const islast_nameValid = ValidateLastName(last_name, setInvalidItems);
+  const isEmailValid = ValidateEmail(email, setInvalidItems);
+  const istelValid = ValidatePhone(tel, setInvalidItems);
+  const isDescriptionValid = ValidateTextArea(description, setInvalidItems);
+  const isPictureValid = ValidateImages(picture, setInvalidItems);
+
+  if (isfirst_nameValid &&
+      islast_nameValid &&
+      isEmailValid &&
+      istelValid &&
+      isDescriptionValid &&
+      isPictureValid) {
+      try {
+          const memberData = {
+              first_name,
+              last_name,
+              email,
+              tel,
+              description,
+              picture: picture // Send the raw file
+          };
+
+          const result = await actions.addMembers(memberData);
+
+          if (result) {
+              // Reset all fields
+              setFirst_name("");
+              setLast_name("");
+              setEmail("");
+              setTel("");
+              setDescription("");
+              setPicture(null);
+              setPreviewURL(null);
+              setInvalidItems([]);
+              alert("Member added successfully!");
+          }
+      } catch (error) {
+          console.error("Error adding member:", error);
+          alert(error.message || "Failed to add member. Please try again.");
+      }
+  } else {
+      alert("Please correct the invalid fields before submitting.");
+  }
+};
+*/
 
   useEffect(() => {     
     return () => {
@@ -246,7 +249,7 @@ export const CreateMembers = () => {
               {invalidItems.includes("email") && <div className="text-danger">Please enter a valid email</div>}
             </div>
 
-            <div className="mb-3">
+            <div className="mb-3">   
               <label htmlFor="tel" className="form-label">tel</label>
               <input
                 type="tel"

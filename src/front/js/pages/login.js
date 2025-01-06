@@ -12,11 +12,11 @@ export const Login = () => {
     const navigate = useNavigate();
 
     const handleClick = async () => {
-
         let result = await actions.login(email, password)
-        if(result==true || result.status == 200){
+        if(result===true || result.status === 200){
             navigate("/administrator")
         }
+        
         else{
             const payload= await result.json()
             alert(payload.message || "unknown error")

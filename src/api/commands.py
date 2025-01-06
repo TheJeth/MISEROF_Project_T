@@ -47,6 +47,10 @@ def setup_commands(app):
 
         print("All test users created")
 
-    @app.cli.command("insert-test-data")
-    def insert_test_data():
-        pass
+    @app.cli.command("delete-all-data")
+    def delete_all_data():
+        #This function helps me to delete the data in the table I choose( Table User for example)
+        db.session.query(User).delete()
+        #db.session.query(Activity).delete()
+        db.session.commit()
+        print("Data was deleted")

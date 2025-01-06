@@ -34,7 +34,7 @@ def setup_admin(app):
 
     app.secret_key = os.environ.get('FLASK_APP_KEY', 'sample key')
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
-    app.config['LOGIN_DISABLED'] = False
+    app.config['LOGIN_DISABLED'] = True
     #app.config['SERVER_NAME'] = 'crispy-disco-4j7p6qg6w9xj274x6-3001.app.github.dev'
     admin = Admin(app, name='4Geeks Admin', template_mode='bootstrap3', index_view=MyAdminIndexView())
 
@@ -46,7 +46,7 @@ def setup_admin(app):
             from werkzeug.security import check_password_hash
 
             # Assuming 'username' and 'password' are being submitted from a form
-            user = User.query.filter_by(email=username).first()  # Query the user by username
+            user = User.query.filter_by(email=username.strip()).first()  # Query the user by username
 
             if user and user.password == password:  # Check if password matches
                 if user.is_admin:  # Check if the user has admin privileges

@@ -8,8 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			members: [], //that is a storage space to save all the activities fetched from the backend
 			users: [],
 			testimonies: [],
-			events: []
-
+			events: [],
+		
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -20,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (token && token != "" && token != undefined)
 					setStore({ token: token });
 			},
-
+ 
 			logout: () => {
 				sessionStorage.removeItem("token");
 				console.log("Log out");
@@ -71,7 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						email: email,
 						password: password,
 					}),
-				};
+				}; 
 				try {
 					const resp = await fetch(
 						process.env.BACKEND_URL + "/api/token",
@@ -90,6 +90,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				} catch (error) {
 					console.log("There was error !!!", error);
+
+					/* return {
+						status: 500,
+						json: () => Promise.resolve({ message: "Network or server error" })
+					
+				}
+						*/
 				}
 			},
 			getUserInfo: async () => {
@@ -139,7 +146,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					);
 					if (resp.status != 200) {
 						console.log(resp.status);
-
+ 
 						return false;
 					}
 					const data = await resp.json();
@@ -207,7 +214,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				*/
 
-			/*
+			
 				addMembers: async (first_name,last_name,email,tel,description,picture) => {
 				
 					const opts = {
@@ -248,57 +255,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("There was error !!!", error);
 					}
 				},
-*/
 
-			addMembers: async (memberData) => {
-				try {
-					const formData = new FormData();
-
-					// Add the text data as JSON string
-					const jsonData = {
-						first_name: memberData.first_name,
-						last_name: memberData.last_name,
-						email: memberData.email,
-						tel: memberData.tel,
-						description: memberData.description
-					};
-					formData.append("data", JSON.stringify(jsonData));
-
-					// If picture is a base64 string, convert it to a file
-					if (memberData.picture && memberData.picture.startsWith('data:image')) {
-						// Convert base64 to blob
-						const response = await fetch(memberData.picture);
-						const blob = await response.blob();
-						const file = new File([blob], "profile.jpg", { type: "image/jpeg" });
-						formData.append("file", file);
-					}
-
-					const resp = await fetch(`${process.env.BACKEND_URL}/api/members`, {
-						method: "POST",
-						headers: {
-							Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-						},
-						body: formData,
-					});
-
-					if (!resp.ok) {
-						const errorData = await resp.json();
-						throw new Error(errorData.msg || "Failed to add member");
-					}
-
-					const data = await resp.json();
-					console.log("Response from backend:", data);
-
-					// Update store with new member
-					const store = getStore();
-					setStore({ members: [...store.members, data.member] });
-
-					return true;
-				} catch (error) {
-					console.error("Error adding member:", error);
-					throw error;
-				}
-			},
 
 			getMembers: () => {
 				fetch(process.env.BACKEND_URL + "/api/members")

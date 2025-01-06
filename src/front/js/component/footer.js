@@ -14,7 +14,7 @@ export const Footer = () => (
 		</ul>
 		<ul className="nav justify-content-center  nav-custom border-bottom border-body" data-bs-theme="dark">
 			<li className="nav-item ">
-				<a className="nav-link active" aria-current="page" href="https://twitter.com/MISEROF18948/status/1788876904713355315?t=a-OmUq_y6vCqV41jxjj8HA&s=19">
+				<a className="nav-link active" aria-current="page" href="https://x.com/MISEROF18948/status/1859422365437829341?t=syfGIb3EbdAc3fMjbIVsIA&s=08">
 					<i className="fa-brands fa-square-x-twitter"></i>
 					<i className="fa-brands fa-square-twitter"></i>
 				</a>

@@ -247,6 +247,41 @@ def get_testimonies():
 #                         html_body='<p>Password reset was successful</p>')
 
 
+# Route to insert data
+#@api.route('/insert_user', methods=['POST'])
+#def insert_user():
+#    try:
+#        # Get data from JSON request
+#        data = request.json
+        
+        # Create a new user instance
+#        new_user = User(
+ #           first_name=data['Jethro'],
+#            last_name=data['Guerrier'],            
+#            email=data['guerrier.jethro@gmail.com'],
+#            tel=data['7867729823'],
+#            password=['Jeth1234@'],
+#            picture= [''],
+#            is_active=True,
+#            is_admin=True
+#        )
+        
+        # Add and commit the new user to the database
+#        db.session.add(new_user)
+#        db.session.commit()
+        
+#        return jsonify({
+#            'message': 'User inserted successfully',
+#            'user_id': new_user.id
+#        }), 201
+    
+#    except Exception as e:
+        # Rollback the session in case of error
+#        db.session.rollback()
+#        return jsonify({
+#            'error': str(e)
+#        }), 400
+
 
 if __name__ == '__main__':
     app.run(debug=True)
