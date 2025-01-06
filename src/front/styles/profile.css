@@ -14,6 +14,9 @@ h1{
 
 .adminTitle{
     color : blue !important;
+    font-weight: bold;
+    justify-content: center;
+
 }
 
 h6{

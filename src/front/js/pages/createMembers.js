@@ -181,11 +181,11 @@ const handleSubmit = async (e) => {
   }, [previewURL]);
 
   return (
-    <>
+    <>  
       <img src="https://i.ibb.co/4j8Gs4q/banner.jpg" height="75px" width="100%" alt="banner" />
       <div className="container w-50 border shadow my-5">
         <div className="form h-100">
-          <h1 className="text-center adminTitle">Register Members</h1>
+          <h1 className="adminTitle">Register Members</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="pictureInput" className="form-label">Select Picture</label>
