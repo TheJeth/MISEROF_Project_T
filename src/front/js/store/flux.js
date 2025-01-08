@@ -169,8 +169,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 
-			/*
-			addMembers: async (getStore, getActions, memberData) => {
+			
+			addMembers: async (memberData) => {
 				try {
 					const formData = new FormData();
 					formData.append("data", JSON.stringify({
@@ -212,9 +212,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-				*/
+				
 
-			
+			/*
 				addMembers: async (first_name,last_name,email,tel,description,picture) => {
 				
 					const opts = {
@@ -225,7 +225,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							Authorization: "Bearer " + sessionStorage.getItem("token")
 						},
 						body: JSON.stringify({
-							first_name: first_name,
+								first_name: first_name,
 								last_name: last_name,
 								email: email,
 								tel: tel,
@@ -255,7 +255,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("There was error !!!", error);
 					}
 				},
-
+			*/
 
 			getMembers: () => {
 				fetch(process.env.BACKEND_URL + "/api/members")

@@ -55,6 +55,7 @@ export const CreateMembers = () => {
     }
   };
 
+  /*
   const handleSubmit = async (e) => {
     e.preventDefault();
     setInvalidItems([]); // Reset invalid items
@@ -115,10 +116,10 @@ export const CreateMembers = () => {
         alert("Please correct the invalid fields before submitting.");
     }
 };
+*/
 
 
-
-/*Claude Handlesubmit 
+/*Claude Handlesubmit */
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -170,7 +171,7 @@ const handleSubmit = async (e) => {
       alert("Please correct the invalid fields before submitting.");
   }
 };
-*/
+
 
   useEffect(() => {     
     return () => {

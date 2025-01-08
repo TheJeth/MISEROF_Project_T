@@ -55,7 +55,7 @@ def create_token():
         print("Goodbye!")
         raise APIException("Invalid email or password", 400)
     expires = datetime.timedelta(hours=1)
-    access_token = create_access_token(identity=user.id, expires_delta=expires)
+    access_token = create_access_token(identity=str(user.id), expires_delta=expires)
     response_body = {
         "message": "You are successfully logged in",
         "access_token": access_token,
@@ -66,7 +66,7 @@ def create_token():
 @api.route("/get-user-info", methods=["GET"])
 @jwt_required()
 def get_user_info():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.filter_by(id=user_id).first()
     if user is None:
         raise APIException("User not found", 400)
@@ -102,66 +102,6 @@ def get_activities():
     }
     return jsonify(response_body), 200
 
-
-@api.route('/members', methods=['POST'])
-@jwt_required()
-def create_members():
-    try:
-        # Retrieve the form data and file
-        data = request.form.get("data")
-        files = request.files.get("file")
-
-        if data is None:
-            return jsonify({"msg": "No data provided"}), 400
-
-        # Parse data as JSON
-        try:
-            data = json.loads(data)
-        except json.JSONDecodeError:
-            return jsonify({"msg": "Data is not valid JSON"}), 400
-
-        # Check for missing required fields
-        required_fields = ['first_name', 'last_name', 'email', 'tel', 'description']
-        missing_fields = [field for field in required_fields if not data.get(field)]
-        if missing_fields:
-            return jsonify({"msg": f"Missing required fields: {', '.join(missing_fields)}"}), 400
-
-        # Check for an existing member with the same email
-        check_member = Member.query.filter_by(email=data.get('email')).first()
-        if check_member:
-            return jsonify({"msg": "Member with this email already exists"}), 409
-
-        # Handle the file if needed, e.g., save or process it
-        # Process picture field if provided in files (e.g., store or upload to a cloud service)
-        cloudinary_response = uploader.upload(files)  # Example for handling base64 pictures
-
-        # Create a new Member instance
-        new_member = Member(
-            first_name=data.get('first_name'),
-            last_name=data.get('last_name'),
-            email=data.get('email'),
-            tel=data.get('tel'),
-            description=data.get('description'),
-            picture=cloudinary_response["secure_url"]
-        )
-
-        # Save to the database
-        db.session.add(new_member)
-        db.session.commit()
-
-        return jsonify({
-            "message": "Member registered successfully",
-            "member": new_member.serialize()
-        }), 201
-
-    except Exception as e:
-        db.session.rollback()
-        return jsonify({"msg": f"An error occurred: {str(e)}"}), 500
-
-
-
-
-
 @api.route('/members', methods=['GET'])
 def get_members():
     members = Member.query.all()
@@ -189,6 +129,62 @@ def post_testimony():
         "testimony": testimony.serialize()
     }
     return jsonify(response_body), 200
+
+@api.route('/members', methods=['POST'])
+@jwt_required()
+def create_members():
+    try:
+        # Retrieve the form data and file
+        raw_data = request.form.get("data")
+        data = json.loads(raw_data)
+        files = request.files.get("file")
+
+        if data is None:
+            return jsonify({"msg": "No data provided"}), 400
+
+            # Parse data as JSON
+        # try:
+        #     data = json.loads(data)
+        # except json.JSONDecodeError:
+        #     return jsonify({"msg": "Data is not valid JSON"}), 400
+
+            # Check for missing required fields
+        required_fields = ['first_name', 'last_name', 'email', 'tel', 'description']
+        missing_fields = [field for field in required_fields if not data.get(field)]
+        if missing_fields:
+            return jsonify({"msg": f"Missing required fields: {', '.join(missing_fields)}"}), 400
+
+            # Check for an existing member with the same email
+        check_member = Member.query.filter_by(email=data.get('email')).first()
+        if check_member:
+            return jsonify({"msg": "Member with this email already exists"}), 409
+
+            # Handle the file if needed, e.g., save or process it
+            # Process picture field if provided in files (e.g., store or upload to a cloud service)
+        cloudinary_response = uploader.upload(files)  # Example for handling base64 pictures
+
+            # Create a new Member instance
+        new_member = Member(
+                first_name=data.get('first_name'),
+                last_name=data.get('last_name'),
+                email=data.get('email'),
+                tel=data.get('tel'),
+                description=data.get('description'),
+                picture=cloudinary_response["secure_url"]
+            )
+
+            #Save to the database
+        db.session.add(new_member)
+        db.session.commit()
+
+        return jsonify({
+            "message": "Member registered successfully",
+            "member": new_member.serialize()
+        }), 201
+
+    except Exception as e:
+         db.session.rollback()
+         return jsonify({"msg": f"An error occurred: {str(e)}"}), 500
 
 @api.route('/testimony', methods=['GET'])
 def get_testimonies():
